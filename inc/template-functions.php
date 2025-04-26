@@ -45,8 +45,9 @@ function essar_register_menus() {
             'top-footer-menu'    => __( 'Top Footer Menu', 'essar' ),
             'solutions-menu'     => __( 'Solutions Menu', 'essar' ),
             'markets-menu'       => __( 'Markets Menu', 'essar' ),
-            'footer-links-menu'  => __( 'Footer Links Menu', 'essar' ),
-            'social-links-menu'  => __( 'Social Links Menu', 'essar' ),
+            'news-room-menu'  => __( 'Newsroom Menu', 'essar' ),
+			'contact-us-menu'  => __( 'Contact Us Menu', 'essar' ),
+            'social-menu'  => __( 'Social Menu', 'essar' ),
         )
     );
 }

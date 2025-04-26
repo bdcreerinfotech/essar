@@ -20,8 +20,8 @@
                     </div>
 
                     <div class="midd-footer">
-                        <div class="foot-col-1 mar-R">
-                            <?php
+                            <div class="foot-col-1 mar-R">
+							<?php
                             wp_nav_menu(
                                 array(
                                     'theme_location' => 'top-footer-menu',
@@ -30,10 +30,9 @@
                                 )
                             );
                             ?>
-                        </div>
-
-                        <div class="foot-col-2 mar-R">
-                            <h3><?php esc_html_e( 'Our Solutions', 'essar' ); ?></h3>
+                            </div>
+                            <div class="foot-col-2 mar-R">
+							<h3><?php esc_html_e( 'Our Solutions', 'essar' ); ?></h3>
                             <?php
                             wp_nav_menu(
                                 array(
@@ -43,10 +42,9 @@
                                 )
                             );
                             ?>
-                        </div>
-
-                        <div class="foot-col-3 mar-R">
-                            <h3><?php esc_html_e( 'Markets', 'essar' ); ?></h3>
+                            </div>
+                            <div class="foot-col-3 mar-R">
+							<h3><?php esc_html_e( 'Markets', 'essar' ); ?></h3>
                             <?php
                             wp_nav_menu(
                                 array(
@@ -56,49 +54,55 @@
                                 )
                             );
                             ?>
-                        </div>
+                            </div>
+                            <div class="foot-col-4 mar-R">
+                              
 
-                        <div class="foot-col-4 mar-R">
-                            <?php
+								<?php
                             wp_nav_menu(
                                 array(
-                                    'theme_location' => 'footer-links-menu',
+                                    'theme_location' => 'news-room-menu',
                                     'menu_class'     => 'list-unstyled foot-page-links',
                                     'container'      => false,
                                 )
                             );
                             ?>
-                        </div>
+								
+                            </div>
 
-                        <div class="foot-col-5">
-                            <?php
+                            <div class="foot-col-5">
+							<?php
                             wp_nav_menu(
                                 array(
-                                    'theme_location' => 'footer-links-menu',
+                                    'theme_location' => 'contact-us-menu',
                                     'menu_class'     => 'list-unstyled foot-page-links',
                                     'container'      => false,
                                 )
                             );
                             ?>
-                        </div>
-
-                        <div class="clearfix"></div>
-                    </div>
+                            </div>
+                            <i class="clearfix"></i>
+                        </div> 
 
                     <div class="bottom-footer">
                         <div class="inner-container2">
                             <div class="WB-footer-textarea">
 
                                 <div class="footer-col-2 mobi">
-                                    <?php
-                                    wp_nav_menu(
-                                        array(
-                                            'theme_location' => 'social-links-menu',
-                                            'menu_class'     => 'social-links',
-                                            'container'      => false,
-                                        )
-                                    );
-                                    ?>
+								<ul class="social-links">
+    <?php
+    wp_nav_menu(
+        array(
+            'theme_location' => 'social-menu',
+            'container'      => false,
+            'items_wrap'     => '%3$s', // Removes default ul
+            'walker'         => new Essar_Social_Walker(),
+        )
+    );
+    ?>
+    <div class="clearfix"></div>
+</ul>
+
                                     <div class="clearfix"></div>
                                 </div>
 
@@ -107,15 +111,19 @@
                                 </div>
 
                                 <div class="footer-col-2 desktop">
-                                    <?php
-                                    wp_nav_menu(
-                                        array(
-                                            'theme_location' => 'social-links-menu',
-                                            'menu_class'     => 'social-links',
-                                            'container'      => false,
-                                        )
-                                    );
-                                    ?>
+								<ul class="social-links">
+    <?php
+    wp_nav_menu(
+        array(
+            'theme_location' => 'social-menu',
+            'container'      => false,
+            'items_wrap'     => '%3$s', // Removes default ul
+            'walker'         => new Essar_Social_Walker(),
+        )
+    );
+    ?>
+    <div class="clearfix"></div>
+</ul>
                                 </div>
 
                                 <div class="footer-col-3">

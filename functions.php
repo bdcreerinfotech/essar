@@ -159,3 +159,4 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/class-essar-walker-nav-menu.php';
+require get_template_directory() . '/inc/class-social-walker.php';
