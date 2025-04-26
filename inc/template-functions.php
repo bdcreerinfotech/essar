@@ -35,3 +35,19 @@ function essar_pingback_header() {
 	}
 }
 add_action( 'wp_head', 'essar_pingback_header' );
+
+/**
+ * Register footer menus.
+ */
+function essar_register_menus() {
+    register_nav_menus(
+        array(
+            'top-footer-menu'    => __( 'Top Footer Menu', 'essar' ),
+            'solutions-menu'     => __( 'Solutions Menu', 'essar' ),
+            'markets-menu'       => __( 'Markets Menu', 'essar' ),
+            'footer-links-menu'  => __( 'Footer Links Menu', 'essar' ),
+            'social-links-menu'  => __( 'Social Links Menu', 'essar' ),
+        )
+    );
+}
+add_action( 'init', 'essar_register_menus' );

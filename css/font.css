@@ -1,0 +1,126 @@
+/*     
+    @font-face {
+    font-family: 'Roboto Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Roboto Regular'), url('../fonts/Roboto-Regular.ttf') format('ttf');
+    }
+     */
+
+    /* @font-face {
+    font-family: 'Roboto Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Roboto Italic'), url('../fonts/Roboto-Italic.woff') format('woff');
+    } */
+    
+/* 
+    @font-face {
+    font-family: 'Roboto Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Roboto Bold'), url('../fonts/Roboto-Bold.ttf') format('ttf');
+    } */
+    
+
+    /* @font-face {
+    font-family: 'Roboto Bold Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Roboto Bold Italic'), url('../fonts/Roboto-BoldItalic.woff') format('woff');
+    }
+     */
+/* 
+    @font-face {
+    font-family: 'Roboto Thin';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Roboto Thin'), url('../fonts/Roboto-Thin.ttf') format('ttf');
+    }
+     */
+
+    /* @font-face {
+    font-family: 'Roboto Thin Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Roboto Thin Italic'), url('../fonts/Roboto-ThinItalic.woff') format('woff');
+    } */
+    
+
+    /* @font-face {
+    font-family: 'Roboto Light';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Roboto Light'), url('../fonts/Roboto-Light.ttf') format('tth');
+    }
+     */
+
+    /* @font-face {
+    font-family: 'Roboto Light Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Roboto Light Italic'), url('../fonts/Roboto-LightItalic.woff') format('woff');
+    } */
+    
+
+    /* @font-face {
+    font-family: 'Roboto Medium';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Roboto Medium'), url('../fonts/Roboto-Medium.ttf') format('ttf');
+    } */
+    
+
+    /* @font-face {
+    font-family: 'Roboto Medium Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Roboto Medium Italic'), url('../fonts/Roboto-MediumItalic.woff') format('woff');
+    } */
+    
+
+    /* @font-face {
+    font-family: 'Roboto Black';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Roboto Black'), url('../fonts/Roboto-Black.woff') format('woff');
+    } */
+    
+
+    /* @font-face {
+    font-family: 'Roboto Semi Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Roboto Semi Bold'), url('../fonts/Roboto-SemiBold.ttf') format('ttf');
+    }
+ */
+
+    @font-face {
+        font-family: 'AzeretMono-Regular';
+        src: url('../fonts/AzeretMono-Regular.woff2') format('woff2'),
+             url('../fonts/AzeretMono-Regular.woff') format('woff'),
+             url('../fonts/AzeretMono-Regular.ttf') format('truetype');
+        font-weight: 400;
+        font-display: swap;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'AzeretMono-Light';
+        src: url('../fonts/AzeretMono-Light.woff2') format('woff2'),
+             url('../fonts/AzeretMono-Light.woff') format('woff'),
+             url('../fonts/AzeretMono-Light.ttf') format('truetype');
+        font-weight: 300;
+        font-display: swap;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'AzeretMono-SemiBold';
+        src: url('../fonts/AzeretMono-SemiBold.woff2') format('woff2'),
+             url('../fonts/AzeretMono-SemiBold.woff') format('woff'),
+             url('../fonts/AzeretMono-SemiBold.ttf') format('truetype');
+        font-weight: 600;
+        font-display: swap;
+        font-style: normal;
+      }
