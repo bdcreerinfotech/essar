@@ -94,7 +94,18 @@
     .banner-right-path { 
         top: 32%;
     }
+    .inner-green-section {
+        padding: 69px 69px 69px 58px;
+    }
 
+/* --------------SAF Page------------- */
+.plant-section{
+    background: url(../images/saf/small_bg.png) no-repeat;
+    background-size: cover;
+  }
+
+
+    
 }
 
 
@@ -112,6 +123,8 @@
     .h-our-service-info {
         width: 560px;
     }
+   
+    
     .h-our-service-info-title {
         width: 100% !important;
     }
@@ -132,8 +145,15 @@
         left: 0%;
     }
     .footer-col-3 {
-        width: 30%;
+        width: 34%;
     }
+    .footer-col-1 {
+        width: 187px;
+    }
+    .ipad-b{
+        display: none;
+    }
+
 }
 
 
@@ -146,9 +166,19 @@
     .why-essar-enery-tab li {
         width: 100%;
     }
+    .banner-textarea {
+        padding: 42px 0 0 0;
+    }
+    .imagerevealRight img.desk-b {
+        display: none;
+    }
+    .imagerevealRight img.ipad-b {
+        display: block;
+    }
     .banner-left-path {
-        left: -61px;
-    }   
+        left: 0px;
+        top: -75px;
+    }
     .inner-container-box {
         padding: 16px 16px 16px 20px;
     } 
@@ -202,7 +232,7 @@
         left: 135px;
     }
     span.borderR {
-        right: 135px;
+        right: 128px;
     }
     .NR-content {
         padding: 20px 25.2px;
@@ -218,13 +248,22 @@
     .banner-textarea h2.right-path::after {
         /* right: -50px; */
     }
-    
+    .footer-col-3 {
+        width: 330px;
+    }
+    .socio-img img {
+        width: 32px;
+    }
 }
 
 /* Portrait */
 @media only screen and (min-width: 1024px)  and (max-height: 1366px)  and (orientation: portrait)  and (-webkit-min-device-pixel-ratio: 1.5) {
 
-
+    section.Essar-future-energy-section {
+        margin: 5px 0 20px 0;
+        width: 100%;
+        display: inline-block;
+    }
     .EFE-Midd-area {
         width: 38%;
     }
@@ -246,8 +285,18 @@
     .EFE-content {
         min-height: 130px;
     }
-
-
+    .mar-R {
+        margin-right: 80px;
+    }
+    .Right-content img {
+        left: -160%;
+    }
+    span.borderL {
+        left: 70px;
+    }
+    span.borderR {
+        right: 70px;
+    }
 }
 /* 
   ##Device = Tablets, Ipads (portrait)
@@ -312,9 +361,10 @@
         display: none;
     }
     .Right-content img {
-        transform: scale(3);
+        transform: scale(5);
         /* top: -160%; */
-        bottom: 130%;
+        bottom: 145%;
+        left: -180%;
     }
     .footer-col-3 span {
         float: none;
@@ -387,6 +437,11 @@
     .why-essar-enery-tab {
         width: 100%;
         display: block;
+    }
+    .accordion-item:last-child {
+        border-bottom: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
     }
     .count-box:first-child{
         margin:0 14px 0 0;
@@ -485,6 +540,7 @@
     }
     .mask.desk {
         display: block;
+        text-align: center;
     }
     .mask.mobi {
         display: none;
@@ -496,7 +552,7 @@
         position: absolute;
         left: 50%;
         top: 50%;
-        transform: translate(52%, 27%);
+        transform: translate(52%, -110%);
         height: 4px;
     }
     .half-circle-txt .item:last-child:after {
@@ -525,6 +581,7 @@
         margin-bottom: 25px;
         z-index: 9;
         position: relative;
+        margin-top: 20px;
     }
     .mask {
         bottom: -27%;
@@ -574,6 +631,7 @@
         width: 130px;
         line-height: 40px;
         letter-spacing: -0.1px;
+        padding: 0 0px 0 0px;
     }
     .NR-title {
         min-height: 40px;
@@ -618,7 +676,7 @@
         margin: 0;
     }
     .Left-content {
-        width: 100%;
+        width: 85%;
         float: left;
         padding-bottom: 310px;
     }
@@ -640,6 +698,7 @@
         height: 40px;
         line-height: 40px;
         letter-spacing: -0.1px;
+        padding: 0 0px 0 12px;
     }
     .Right-content.mobi {
         display: block;
@@ -691,10 +750,48 @@
         height: auto;
     }
     section.Circle-tabs-section {
-        padding: 48px 0 0 0;
+        padding: 48px 0 0 0;        top: 0px;
     }
   }
   
+@media only screen and (min-width: 1024px)  and (max-height: 1366px)  and (orientation: portrait)  and (-webkit-min-device-pixel-ratio: 1.5) {
+    span.borderL {
+        left: 70px;
+    }
+    span.borderR {
+        right: 70px;
+    }
+    .EFE-Midd-area {
+        width: 40%;
+        top: -14px;
+    }
+    .EFE-Left-area {
+        width: 286px;
+        border-radius: 0px 32px 32px 0px;
+    }
+    .EFE-Midd-area .EFE-content {
+        padding: 0 42px;
+    }
+    .container .EFE-Left-area .EFE-content {
+        padding-left: 18px;
+    }
+    .EFE-Right-area {
+        width: 286px;
+        border-radius: 32px 0px 0px 32px;
+    }
+    .top-path {
+        left: 212px;
+        top: -27%;
+    }
+    .bottom-path {
+        right: 23.9%;
+        bottom: -27%;
+    }
+    .banner-right-path {
+        right: -60px;transform: translate(87%, 36%);
+    }
+}
+
   /* 
     ##Device = Tablets, Ipads (landscape)
     ##Screen = B/w 768px to 1024px
@@ -712,10 +809,10 @@
         display: inline-block;
     }
     span.borderL {
-        left:60px;
+        left:70px;
     }
     span.borderR {
-        right: 60px;
+        right: 70px;
     }
     .top-path {
         left: 233px;
@@ -834,7 +931,7 @@
         width: 100%;
     }
     .mar-R {
-        margin-right: 88px;
+        margin-right: 33px;
     }
     .bottom-footer .inner-container2 {
         padding: 0 0px;
@@ -861,6 +958,7 @@
     }
     .footer-section {
         margin-bottom: 0;
+        margin-top: -30px;
     }
 }
 
@@ -895,6 +993,10 @@
     background-position: bottom;
 }
 
+}
+
+.Home-banner-section {
+    height: 100vh;
 }
 .Essar-future-energy-section .container {
     padding: 0 16px;
@@ -967,7 +1069,7 @@ h2.mobile-banner {
     height: 100%;
 }
 .banner-textarea {
-    bottom: 24px;
+    bottom: 80px;
     overflow: hidden;
     padding: 50px 0 0 0;
 }
@@ -1020,7 +1122,7 @@ h2.mobile-banner {
         padding-right: 0px;
     }
     .top-ab-area {
-        padding: 48px 0px;
+        padding: 28px 0px;
         position: relative;
     }
     .left-tbp-area, .right-tbp-area {
@@ -1038,7 +1140,7 @@ h2.mobile-banner {
         line-height: 24px;
         padding-left: 0px;
         margin-top: 20px;
-        padding-right: 20px;
+        padding-right: 34px;
     }
     .ab-img-right img.layer {
         width: 110px;
@@ -1096,12 +1198,14 @@ h2.mobile-banner {
     .WEF-title h3 {
         font-size: 28px;
         line-height: 36px;
+        letter-spacing: -0.6px;
+        padding-right: 30px;
     }
     .h-our-service-section .container {
         padding: 12px;
     }
     .inner-container-box {
-        padding: 16px;
+        padding: 16px 16px 9px 16px;
     }
     .why-essar-enery-section .inner-container-box {
         border-radius: 24px;
@@ -1149,12 +1253,15 @@ h2.mobile-banner {
         line-height: 24px;
         letter-spacing: -0.4px;
     }
-    .resp-tab-item.active .WE-txt p {
+        .LEFT-list {
+        padding: 32px 0px 0px 0px;
+    }
+    .accordion-item:last-child {
+    margin: 0 0 0px 0;
+}
+    .accordion-content p {
         font-size: 16px;
         line-height: 24px;
-        margin-bottom: 10px;
-        letter-spacing: -0.2px;
-        margin-top: 10px;    
     }
     .video-container {
         border-radius: 24px;
@@ -1275,7 +1382,7 @@ h2.mobile-banner {
         position: absolute;
         left: 50%;
         top: 50%;
-        transform: translate(52%, 27%);
+        transform: translate(57%, -81%);
         height: 4px;
     }
     .half-circle-txt .item:last-child:after {
@@ -1329,7 +1436,7 @@ h2.mobile-banner {
         margin: 0;
     }
     .our-solution-btn {
-        width: 156px;
+        width: 105px;
         font-size: 14px;
         height: 40px;
         line-height: 40px;
@@ -1348,6 +1455,15 @@ h2.mobile-banner {
         padding: 0;
         margin-top: 8px;
     }
+    .number-txt img {
+        width: 28px;
+    }
+    .number-txt {
+        width: 28px;
+        height: 28px;
+        position: relative;
+        display: inline-block;
+    }
     span.title-txt {
         display: none;
     }
@@ -1357,7 +1473,7 @@ h2.mobile-banner {
     .circle-section {
         min-height: auto;
         z-index: 9;
-        padding: 24px 0 0 0;
+        padding: 19px 0 0 0;
     }
     .Gbutton-box {
         padding: 0px 20px;
@@ -1372,7 +1488,10 @@ h2.mobile-banner {
         padding-bottom: 40px;
         min-height: 250px;
         margin-top: 70px;
-        
+        border-radius: 48px 48px 0 0px;
+    }
+    .center .inner-center-area h2 {
+        padding: 0 30px 10px 30px;
     }
     .center .inner-center-area{
         padding: 64px 16px 0 16px;
@@ -1393,7 +1512,7 @@ h2.mobile-banner {
         margin-top:0;
     }
     .brand-video-area {
-        padding: 30px 0 48px 0;
+        padding: 10px 0 48px 0;
     }
     .video-txt h1 {
         font-size: 36px;
@@ -1491,11 +1610,11 @@ h2.mobile-banner {
         letter-spacing: -0.6px;
     }
     section.Green-future-section {
-        margin: 12px 0 12px 0;
+        margin: 12px 0 -5px 0;
     }
     .Left-content {
         width: 100%;
-        padding-bottom: 137px;
+        padding-bottom: 194px;
     }
     .Left-content h2,
     .Left-content h2 span.gradient-font {
@@ -1647,9 +1766,9 @@ h2.mobile-banner {
         margin-right: -35px;
     }
     .Right-content img {
-        transform: scale(5);
+        transform: scale(6);
         /* top: -160%; */
-        bottom: 130%;
+        bottom: 147%;
     }
     .Right-content.mobi {
         display: block;
@@ -1667,7 +1786,16 @@ h2.mobile-banner {
     }
     .inner-green-section {
         position: relative;
-        padding: 20px 40px 0px 40px;
+        padding: 20px 40px 0px 16px;
+    }
+    .Gbutton {
+        width: 127px;
+        height: 40px;
+        line-height: 40px;
+    }
+    .Left-content .Gbutton{
+        z-index: 5;
+        position: relative;
     }
     /* .Gbutton {
         padding: 11px 22px;
@@ -1683,9 +1811,22 @@ h2.mobile-banner {
     .Left-content .Gbutton-box {
         padding: 12px 0 0 0;
         z-index: 0;
-        position: relative;
+    }
+    .Left-content span.gradient-font {
+        display: block;
     }
     
+/* ----SAF PAGE--------- */
+.our-solution-section {
+    padding: 16px;
+}
+h2.hero_title {
+    font-size: 32px;
+    line-height: 43px;
+}
+
+
+
 }
 @media (max-width:370px){
     .count-box {
@@ -1693,6 +1834,9 @@ h2.mobile-banner {
     }
     .mask.mobi {
         bottom: -26%;
+    }
+    .banner-textarea {
+        bottom: 74px;
     }
 /* 
 

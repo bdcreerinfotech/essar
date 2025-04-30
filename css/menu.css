@@ -21,10 +21,11 @@ nav:hover .menu-bg{
   top:0;
   left: 0;
   right: 0;
-  background: url(../images/menu_shadow.png) no-repeat;
-  min-height: 150px;
+  background: url(../images/menu-shadow2.png) no-repeat;
+  min-height: 200px;
   width: 100%;
   background-size: cover;
+  z-index: 2;
 }
   nav:hover{
       background: #fff; transition: 0.3s;min-height: auto;
@@ -32,7 +33,12 @@ nav:hover .menu-bg{
   nav .navbar .links li.mobile{
     display: none;
   }
-  
+  .saf_page nav{  
+    background:#ffffff;
+  }
+  .saf_page nav .navbar .links li a{
+    color: #000000;
+  }
   .search-box.desktop {
     display: block;
   }
@@ -151,7 +157,8 @@ nav:hover .menu-bg{
       font-weight: 500;
       letter-spacing: -0.2px;
     }
-    nav.navigation.is-sticky .navbar .links li a .arrow{
+    nav.navigation.is-sticky .navbar .links li a .arrow,
+    .saf_page nav .navbar .links li a .arrow{
       background: url(../images/menu-arrow.png) no-repeat;
     }
     nav:hover .navbar .links li a .arrow{
@@ -172,7 +179,7 @@ nav:hover .menu-bg{
   /* Button - Fill w Arrow 3 */
   .contact-bg{
     margin: 0 auto;
-    border-radius: 100px 100px 100px 0px;
+    border-radius: 132px 100px 100px 0px;
     flex-grow: 0;
     border: 0 none;
     color: #ffffff;
@@ -182,13 +189,20 @@ nav:hover .menu-bg{
     font-weight: 400;
     letter-spacing: -0.2px;
     height: 48px;
-    width: 166px;
+    width: 120px;
     position: relative;
     display: inline-block;
     text-align: center;
     line-height: 48px;
+    padding: 0 18px 0 28px;
     background: linear-gradient(92.86deg, #5F8AC7 0%, #5F8AC7 17.53%, #78A293 48.78%, #99C152 82%, #A6CE39 100%);
   }
+  span.con-txt {
+    font-weight: 400;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
   .contact-btn {
       background: linear-gradient(to right, #6aa9ff, #a0db3c); /* blue to green */
       border: none;
@@ -503,6 +517,9 @@ nav:hover .menu-bg{
         .navbar .bx-menu{
           font-size: 26px;
           color: #ffffff;
+        }
+        .saf_page .navbar .bx-menu{
+          color: #4B5563;
         }
         nav:hover .sidebar-logo  i,
         nav:hover .navbar .bx-menu {

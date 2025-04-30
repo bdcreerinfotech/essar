@@ -2,9 +2,7 @@
 /**
  * Template Name: Home Page Template
  *
- * The template for displaying all pages.
- * This is the template that displays all pages by default.
- * Other 'pages' on your WordPress site may use a different template.
+ * The template for displaying the home page.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
@@ -13,13 +11,12 @@
 
 get_header();
 ?>
-
 <section class="Home-banner-section" id="homeSectionTwo">
 	<div class="video-section">
 		<div class="black_bg"></div>
 		<div class="video-wrapper">
 			<video autoplay muted loop playsinline preload="metadata">
-				<source src="<?php echo esc_url( get_template_directory_uri() . '/images/flying-airplane-at-sunset-over-a-building-with-veg.mp4' ); ?>" type="video/mp4">
+				<source src="<?php the_field( 'banner_video' ); ?>" type="video/mp4">
 			</video>
 
 			<div class="banner-textarea bannertitle">
@@ -32,24 +29,32 @@ get_header();
 						</div>
 					</div>
 					<div class="inner-container2">
-						<h2 class="left-path roboto-custom offset-header-odd">Sustainable Fuels.</h2>
-						<h2 class="right-path roboto-custom offset-header-even">Limitless Possibilities.</h2>
-						<h2 class="mobile-banner">Sustainable Fuels. Limitless Possibilities.</h2>
+						<h2 class="left-path roboto-custom offset-header-odd"><?php the_field( 'title' ); ?></h2>
+						<h2 class="right-path roboto-custom offset-header-even"><?php the_field( 'sub_title' ); ?></h2>
+						<h2 class="mobile-banner"><?php the_field( 'mobile_title' ); ?></h2>
 
 						<div class="para-button-area offset-header-even bannertopslide">
 							<div class="paragraph">
-								<p>Essar Future Energy is leading India's energy transition by building the country's first and largest greenfield biofuels complex, designed to produce next-generation renewable fuels like Sustainable Aviation Fuel (SAF), Hydrotreated Vegetable Oil (HVO), Green Hydrogen, Green Ammonia, and e-Methanol.</p>
+								<p><?php the_field( 'description' ); ?></p>
 							</div>
 							<div class="story-button">
-								<a href="#">
-									<?php esc_html_e( 'Our Story', 'essar' ); ?>
-									<span class="arrow">
-										<img src="<?php echo esc_url( get_template_directory_uri() . '/images/Arrow-3.png' ); ?>" alt="Arrow">
-									</span>
-									<span class="arrow2">
-										<img src="<?php echo esc_url( get_template_directory_uri() . '/images/Arrow-3.png' ); ?>" alt="Arrow">
-									</span>
-								</a>
+								<?php
+								$link = get_field( 'our_story_button' );
+								if ( $link ) :
+									$link_url    = isset( $link['url'] ) ? $link['url'] : '';
+									$link_title  = isset( $link['title'] ) ? $link['title'] : '';
+									$link_target = isset( $link['target'] ) ? $link['target'] : '_self';
+									?>
+									<a href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>">
+										<?php echo esc_html( $link_title ); ?>
+										<span class="arrow">
+											<img src="<?php echo esc_url( get_template_directory_uri() . '/images/Arrow-3.png' ); ?>" alt="Arrow">
+										</span>
+										<span class="arrow2">
+											<img src="<?php echo esc_url( get_template_directory_uri() . '/images/Arrow-3.png' ); ?>" alt="Arrow">
+										</span>
+									</a>
+								<?php endif; ?>
 							</div>
 						</div>
 					</div>
@@ -64,106 +69,287 @@ get_header();
 		</div>
 	</div>
 </section>
-
 <section class="about-essar-section" id="homeSectionOne">
-    <div class="container">
-        <div class="inner-container2">
-            <div class="top-ab-area wool-paralax">
-                <div class="left-tbp-area bannertitle">
-                    <div class="ab-paragraph">
-                        <span>
-                            <?php esc_html_e( 'With a mission to ', 'essar' ); ?>
-                            <span class="gradient-font"><?php esc_html_e( 'decarbonize hard-to-', 'essar' ); ?></span>
-                            <span class="gradient-font"><?php esc_html_e( 'abate sectors', 'essar' ); ?></span>
-                            <?php esc_html_e( ' such as aviation, road, and marine transport industries, we are creating ', 'essar' ); ?>
-                            <span class="gradient-font"><?php esc_html_e( 'future-ready energy solutions', 'essar' ); ?></span>
-                            <?php esc_html_e( ' that will significantly reduce emissions and support global net-zero ambitions.', 'essar' ); ?>
-                        </span>
-                    </div>
-                </div>
-                <div class="right-tbp-area bannertitle">
-                    <p>
-                        <?php esc_html_e( 'As a pioneer in India’s green energy landscape, Essar Future Energy is not just shaping the future of energy - we are powering a more sustainable world for generations to come.', 'essar' ); ?>
-                    </p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-    <div class="ab-img-right imagerevealLeft">
-        <img src="<?php echo esc_url( get_template_directory_uri() . '/images/ab-right-img.png' ); ?>" class="layer" data-depth="0.20" alt="About Essar Image">
-    </div>
+	<div class="container">
+		<div class="inner-container2">
+			<div class="top-ab-area wool-paralax">
+				<div class="left-tbp-area bannertitle">
+					<div class="ab-paragraph">
+					<?php the_field( 'paragraph_left' ); ?>
+					</div>
+				</div>
+				<div class="right-tbp-area bannertitle">
+					<p>
+					<?php the_field( 'paragraph_right' ); ?>
+					</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="ab-img-right imagerevealLeft">
+		<img src="<?php echo esc_url( get_template_directory_uri() . '/images/ab-right-img.png' ); ?>" class="layer" data-depth="0.20" alt="About Essar Image">
+	</div>
 </section>
 <section class="about-chart-section header" id="header1">
-    <div class="container">
-        <div class="inner-container2">
-            <div class="chart-area" id="homeSectionThree">
-                <div class="ab-count-box">
+	<div class="container">
+		<div class="inner-container2">
+			<div class="chart-area" id="homeSectionThree">
+				<div class="ab-count-box">
 
-                    <div class="count-box CB1">
-                        <div class="inner-CB-box">
-                            <div class="chart-tbox2">
-                                <div class="inn-padd">
-                                    <h3 class="gradient-font"><?php esc_html_e( '2 Million+', 'essar' ); ?></h3>
-                                    <h3 class="white-font"><?php esc_html_e( '2 Million+', 'essar' ); ?></h3>
-                                </div>
-                            </div>
-                            <i class="clrfix"></i>
-                        </div>
-                        <div class="chart-txt"><?php esc_html_e( 'Tonnes of Low-Carbon Sustainable Biofuels to be produced annually', 'essar' ); ?></div>
-                        <i class="clrfix"></i>
-                    </div>
+					<?php if ( have_rows( 'counter_repeater' ) ) : ?>
+						<?php
+						$index = 0;
+						while ( have_rows( 'counter_repeater' ) ) :
+							the_row();
 
-                    <div class="count-box CB2">
-                        <div class="inner-CB-box">
-                            <div class="chart-tbox2">
-                                <div class="inn-padd">
-                                    <h3 class="gradient-font"><?php esc_html_e( '70%+', 'essar' ); ?></h3>
-                                    <h3 class="white-font"><?php esc_html_e( '70%+', 'essar' ); ?></h3>
-                                </div>
-                            </div>
-                            <i class="clrfix"></i>
-                        </div>
-                        <div class="chart-txt"><?php esc_html_e( 'Reduction in GHG Emissions', 'essar' ); ?></div>
-                        <i class="clrfix"></i>
-                    </div>
+							$title       = get_sub_field( 'title' );
+							$description = get_sub_field( 'description' );
+							$cb_class    = 'CB' . ( ++$index );
+							?>
+							<div class="count-box <?php echo esc_attr( $cb_class ); ?>">
+								<div class="inner-CB-box">
+									<div class="chart-tbox2">
+										<div class="inn-padd">
+											<h3 class="gradient-font"><?php echo esc_html( $title ); ?></h3>
+											<h3 class="white-font"><?php echo esc_html( $title ); ?></h3>
+										</div>
+									</div>
+									<div class="clrfix"></div>
+								</div>
+								<div class="chart-txt">
+									<?php echo esc_html( $description ); ?>
+								</div>
+								<div class="clrfix"></div>
+							</div>
+						<?php endwhile; ?>
+					<?php endif; ?>
 
-                    <div class="count-box CB3">
-                        <div class="inner-CB-box">
-                            <div class="chart-tbox2">
-                                <div class="inn-padd">
-                                    <h3 class="gradient-font"><?php esc_html_e( '1.1 Million+', 'essar' ); ?></h3>
-                                    <h3 class="white-font"><?php esc_html_e( '1.1 Million+', 'essar' ); ?></h3>
-                                </div>
-                            </div>
-                            <i class="clrfix"></i>
-                        </div>
-                        <div class="chart-txt"><?php esc_html_e( 'Tonnes of Green Ammonia and E-Methanol Production Capacity', 'essar' ); ?></div>
-                        <i class="clrfix"></i>
-                    </div>
-
-                    <div class="count-box CB4">
-                        <div class="inner-CB-box">
-                            <div class="chart-tbox2">
-                                <div class="inn-padd">
-                                    <h3 class="gradient-font"><?php esc_html_e( '0.8 Million+', 'essar' ); ?></h3>
-                                    <h3 class="white-font"><?php esc_html_e( '0.8 Million+', 'essar' ); ?></h3>
-                                </div>
-                            </div>
-                            <i class="clrfix"></i>
-                        </div>
-                        <div class="chart-txt"><?php esc_html_e( 'Tonnes of SAF and HVO Production Capacity', 'essar' ); ?></div>
-                        <i class="clrfix"></i>
-                    </div>
-
-                    <i class="clrfix"></i>
-
-                </div>
-            </div>
-        </div>
-    </div>
+					<div class="clrfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
+<section class="why-essar-enery-section">
+	<div class="h-our-service-section">
+		<div class="container">
+			<div class="inner-container-box">
+				<div class="why_container">
+					<div class="left LEFT-list">
+						<div class="WEF-title"> <h3><?php the_field( 'why_essar_future_energy_ttitle' ); ?></h3></div>
+
+						<div class="why-essar-enery-tab">
+							<?php
+							if ( have_rows( 'faq_repeater' ) ) :
+								$index = 1;
+								while ( have_rows( 'faq_repeater' ) ) :
+									the_row();
+									$icon         = get_sub_field( 'icon' );
+									$icon_hover   = get_sub_field( 'icon_hover' );
+									$title        = get_sub_field( 'title' );
+									$description  = get_sub_field( 'description' );
+									$active_class = ( 1 === $index ) ? 'active' : '';
+									?>
+									<div class="accordion-item">
+										<div class="accordion-header <?php echo esc_attr( $active_class ); ?>" id="toggleText<?php echo esc_attr( $index ); ?>">
+											<div class="WE-img">
+												<div class="IWE-img">
+													<img data-src="<?php echo esc_url( $icon ); ?>" src="<?php echo esc_url( $icon ); ?>" alt="" class="img-inactive" />
+													<img data-src="<?php echo esc_url( $icon_hover ); ?>" src="<?php echo esc_url( $icon_hover ); ?>" alt="" class="img-active" />
+												</div>
+												<div class="WE-title"><h3><?php echo esc_html( $title ); ?></h3></div>
+											</div>  
+										</div>
+										<div class="accordion-content" id="content<?php echo esc_attr( $index ); ?>">
+											<div class="WE-txt "><p><?php echo esc_html( $description ); ?></p></div>
+										</div>
+									</div>
+									<?php
+									$index++;
+								endwhile;
+							endif;
+							?>
+						</div>
+					</div>
+					<div class="right h-our-service-info">
+						<?php
+						if ( have_rows( 'faq_repeater' ) ) :
+							$counter = 1;
+							while ( have_rows( 'faq_repeater' ) ) :
+								the_row();
+								$image = get_sub_field( 'big_image' );
+								if ( $image ) :
+									?>
+									<div class="image-container h-our-service-info-title" id="image<?php echo esc_attr( $counter ); ?>">
+										<img data-src="<?php echo esc_url( $image ); ?>" src="<?php echo esc_url( $image ); ?>" alt="">
+									</div>
+									<?php
+								endif;
+								$counter++;
+							endwhile;
+						endif;
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section><!--End-->
+<section class="Essar-future-energy-section" data-aos="zoom-in">
+	<div class="EFE-video-area">
+		<div class="container">
+			<div class="video-container">
+				<video autoplay muted loop>
+					<source src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/essar-energy.mp4" type="video/mp4" />
+					<?php esc_html_e( 'Your browser does not support HTML5 video.', 'essar' ); ?>
+				</video>
+				<div class="EFE-overlay"></div>
+				<div class="video-txt">
+
+					<div class="top-path">
+						<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/ece-path.png" alt="<?php esc_attr_e( 'Top path decorative image', 'essar' ); ?>"/>
+					</div>
+					<div class="midd-area">
+						<div class="EFE-Left-area">
+							<div class="EFE-content">
+								<h4><?php the_field( 'left_title' ); ?></h4>
+								<p><?php the_field( 'left_description' ); ?></p>
+							</div>
+						</div>
+						<div class="EFE-Midd-area">
+							<div class="mobi-top-path">
+								<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/top_mobi_path.png" alt="<?php esc_attr_e( 'Mobile top path decorative image', 'essar' ); ?>"/>
+							</div>
+							<div class="EFE-content">
+								<span class="CEC-title"><?php the_field( 'circular_economy_title' ); ?></span>
+								<h4><?php the_field( 'middle_title' ); ?></h4>
+								<p><?php the_field( 'middle_description' ); ?></p>
+							</div>
+							<div class="mobi-bottom-path">
+								<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/bottom_mobi_path.png" alt="<?php esc_attr_e( 'Mobile bottom path decorative image', 'essar' ); ?>"/>
+							</div>
+						</div>
+						<div class="EFE-Right-area">
+							<div class="EFE-content">
+								<h4><?php the_field( 'right_title' ); ?></h4>
+								<p><?php the_field( 'right_description' ); ?></p>
+							</div>
+						</div>
+					</div>
+					<div class="bottom-path">
+						<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/ece-path1.png" alt="<?php esc_attr_e( 'Bottom path decorative image', 'essar' ); ?>"/>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="Circle-tabs-section" id="homeSectionSix">
+	<div class="container">
+		<div class="inner-container2">
+			<div class="">
+				<div class="top-OS-title-area">
+					<div class="quote">
+						<h3>
+							<?php the_field( 'circle_title' ); ?>
+						</h3>
+					</div>
+					<p data-aos="fade-up">
+						<?php the_field( 'circle_description' ); ?>
+					</p>
+					<?php $our_solutions_link = get_field( 'circle_button' ); ?>
+					<div class="Gbutton-box">
+						<?php if ( $our_solutions_link ) : ?>
+							<?php
+							$link_url_our_solutions     = $our_solutions_link['url'];
+							$link_title_our_solutions   = $our_solutions_link['title'];
+							$link_target_our_solutions  = $our_solutions_link['target'] ? $our_solutions_link['target'] : '_self';
+							?>
+							<a href="<?php echo esc_url( $link_url_our_solutions ); ?>" class="Gbutton our-solution-btn" target="<?php echo esc_attr( $link_target_our_solutions ); ?>">
+								<span class="solution-txt"><?php echo esc_html( $link_title_our_solutions ); ?></span>
+								<span class="arrow">
+									<img src="<?php echo esc_url( get_template_directory_uri() . '/images/Arrow-3.png' ); ?>" alt="Arrow">
+								</span>
+								<span class="arrow2">
+									<img src="<?php echo esc_url( get_template_directory_uri() . '/images/Arrow-3.png' ); ?>" alt="Arrow">
+								</span>
+							</a>
+						<?php endif; ?>
+					</div>
+				</div>
+
+				<div class="circle-section">
+					<div class="Ellipse">
+						<svg width="1048" height="475" viewBox="0 0 1050 395" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<ellipse cx="525" cy="488.5" rx="523" ry="486.5" stroke="#D1D5DB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 12" />
+						</svg>
+					</div>
+
+					<div class="half-circle-txt">
+						<?php
+						$items = array();
+
+						if ( have_rows( 'circle_repeater' ) ) {
+							while ( have_rows( 'circle_repeater' ) ) {
+								the_row();
+								$items[] = array(
+									'img'   => wp_get_attachment_image_url( get_sub_field( 'image' ), 'full' ),
+									'no'    => wp_get_attachment_image_url( get_sub_field( 'number_image' ), 'full' ),
+									'title' => get_sub_field( 'title' ),
+									'desc'  => get_sub_field( 'description' ),
+								);
+							}
+						}
+
+						foreach ( $items as $index => $item ) :
+							$index_plus_one = $index + 1;
+							?>
+							<div class="item item<?php echo esc_attr( $index_plus_one ); ?>" data-aos="fade-zoom-in"
+								data-title="<?php echo esc_attr( $item['title'] ); ?>"
+								data-text="<?php echo esc_attr( $item['desc'] ); ?>"
+								data-img="<img src='<?php echo esc_url( $item['img'] ); ?>' alt='<?php echo esc_attr( $item['title'] ); ?>' />">
+								<h3>
+									<span class="number-txt">
+										<img src="<?php echo esc_url( $item['no'] ); ?>" alt="Step <?php echo esc_attr( $index_plus_one ); ?>"><br/>
+									</span>
+									<span class="title-txt"><?php echo esc_html( $item['title'] ); ?></span>
+								</h3>
+							</div>
+						<?php endforeach; ?>
+					</div>
+
+					<?php if ( ! empty( $items ) ) : ?>
+						<div class="center" id="centerContent">
+							<div class="inner-center-area">
+								<div class="inner-center">
+									<div class="icon">
+										<img src="<?php echo esc_url( $items[0]['img'] ); ?>" alt="<?php echo esc_attr( $items[0]['title'] ); ?>">
+									</div>
+									<h2><?php echo esc_html( $items[0]['title'] ); ?></h2>
+									<p><?php echo esc_html( $items[0]['desc'] ); ?></p>
+								</div>
+							</div>
+						</div>
+					<?php endif; ?>
+
+					<i class="clearfix"></i>
+				</div>
+
+				<div class="mask desk">
+					<img src="<?php echo esc_url( get_template_directory_uri() . '/images/mask_group.png' ); ?>" alt="Mask Group">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="mask mobi">
+		<img src="<?php echo esc_url( get_template_directory_uri() . '/images/mobile-mask.png' ); ?>" alt="Mobile Mask">
+	</div>
+</section>
+
+
 
 <?php
 get_footer();
-?>
