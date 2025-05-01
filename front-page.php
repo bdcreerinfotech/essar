@@ -348,34 +348,129 @@ get_header();
 		<img src="<?php echo esc_url( get_template_directory_uri() . '/images/mobile-mask.png' ); ?>" alt="Mobile Mask">
 	</div>
 </section>
-<section>
-	<div class="brand-video-area">
-		<div class="inner-container-space">
-			<div class="container">
-				<div class="video-container">
-					<video autoplay muted loop>
-						<source src="<?php the_field('brand_video'); ?>" type="video/mp4" />
-						<?php esc_html_e( 'Your browser does not support HTML5 video.', 'essar' ); ?>
-					</video>
-					<div class="overlay"></div>
-					<div class="b-overlay"></div>
-					<div class="video-txt">
-						<span class="borderL"></span>
-						<h1>
-							<?php esc_html_e( 'Brand', 'essar' ); ?>
-							<img src="<?php echo esc_url( get_template_directory_uri() . '/images/video-icon.png' ); ?>" alt="<?php esc_attr_e( 'Play Icon', 'essar' ); ?>" />
-							<?php esc_html_e( 'Video', 'essar' ); ?>
-						</h1>
-						<span class="borderR"></span>
-					</div>
+<section class="NewsRoom-section">
+	<div class="NR-section">
+		<div class="container">
+			<div class="inner-container2">
+				<div class="NR-title">
+					<h3><?php esc_html_e( 'Newsroom', 'essar' ); ?></h3>
+					<a href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>" class="Gbutton">
+						<?php esc_html_e( 'View all', 'essar' ); ?>
+						<span class="arrow">
+							<img src="<?php echo esc_url( get_template_directory_uri() . '/images/Arrow-3.png' ); ?>" alt="<?php esc_attr_e( 'Arrow', 'essar' ); ?>" />
+						</span>
+						<span class="arrow2">
+							<img src="<?php echo esc_url( get_template_directory_uri() . '/images/Arrow-3.png' ); ?>" alt="<?php esc_attr_e( 'Arrow', 'essar' ); ?>" />
+						</span>
+					</a>
+				</div>
+
+				<div class="NR-list-area">
+					<?php
+					$args       = array(
+						'post_type'      => 'post',
+						'posts_per_page' => 3,
+					);
+					$news_query = new WP_Query( $args );
+
+					if ( $news_query->have_posts() ) :
+						while ( $news_query->have_posts() ) :
+							$news_query->the_post();
+							?>
+							<div class="NR-content">
+								<div class="INR-content">
+									<a href="<?php the_permalink(); ?>">
+										<div class="blog-img">
+											<?php
+											if ( has_post_thumbnail() ) {
+												the_post_thumbnail(
+													'medium',
+													array(
+														'alt' => the_title_attribute(
+															array(
+																'echo' => false,
+															)
+														),
+													)
+												);
+											} else {
+												?>
+												<img src="<?php echo esc_url( get_template_directory_uri() . '/images/default-news.png' ); ?>" alt="<?php esc_attr_e( 'Default News Image', 'essar' ); ?>" />
+												<?php
+											}
+											?>
+										</div>
+
+										<div class="contxt" data-aos="fade-up">
+											<p><?php echo esc_html( wp_trim_words( get_the_title(), 20, '...' ) ); ?></p>
+											<div class="bloger-name" data-aos="fade-up">
+												<span><?php echo esc_html( get_the_date( 'M d, Y' ) ); ?></span>
+												<span class="fr">
+													<img src="<?php echo esc_url( get_template_directory_uri() . '/images/nr-button.png' ); ?>" alt="<?php esc_attr_e( 'Read More', 'essar' ); ?>" />
+												</span>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+							<?php
+						endwhile;
+						wp_reset_postdata();
+					else :
+						?>
+						<p><?php esc_html_e( 'No news posts found.', 'essar' ); ?></p>
+						<?php
+					endif;
+					?>
 				</div>
 			</div>
 		</div>
 	</div>
 	<i class="clearfix"></i>
 </section>
+<section class="Green-future-section">        
+	<div class="inner-container-space">
+		<div class="container">
+			<div class="container1">
+				<div class="inner-green-section">
+					<div class="Left-content">
+						<h2 data-aos="fade-up">
+							<?php the_field( 'green_future_title' ); ?>
+						</h2>
+						<p data-aos="fade-up" data-aos-delay="300">
+						<?php the_field( 'green_future_description' ); ?>
+						</p>
+						<div class="Gbutton-box" data-aos="fade-up" data-aos-delay="300">
+						<?php
+						$contact_us_link = get_field( 'green_future_button' );
 
-
+						if ( $contact_us_link ) :
+							$link_url_green    = $contact_us_link['url'];
+							$link_title_green  = $contact_us_link['title'];
+							$link_target_green = $contact_us_link['target'] ? $contact_us_link['target'] : '_self';
+							?>
+							<a href="<?php echo esc_url( $link_url_green ); ?>" class="Gbutton" target="<?php echo esc_attr( $link_target_green ); ?>">
+								<?php echo esc_html( $link_title_green ); ?>
+								<span class="arrow">
+									<img src="<?php echo esc_url( get_template_directory_uri() . '/images/Arrow-3.png' ); ?>" alt="<?php esc_attr_e( 'Arrow', 'essar' ); ?>" />
+								</span>
+								<span class="arrow2">
+									<img src="<?php echo esc_url( get_template_directory_uri() . '/images/Arrow-3.png' ); ?>" alt="<?php esc_attr_e( 'Arrow', 'essar' ); ?>" />
+								</span>
+							</a>
+						<?php endif; ?>
+						</div>
+					</div>
+					<div class="Right-content scaleDown">
+						<img src="<?php echo esc_url( get_template_directory_uri() . '/images/zoom-img.png' ); ?>" class="earth-image" alt="<?php esc_attr_e( 'Zoomed Earth', 'essar' ); ?>" />
+					</div>
+					<i class="clearfix"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+	<i class="clearfix"></i>
+</section>
 
 <?php
 get_footer();
