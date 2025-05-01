@@ -5,7 +5,10 @@
     .top-path {
         left: 16.2%;
     }
-    
+    .plane-img {
+        max-width: 100%;
+        margin-top: -20%;
+    }
 }
 
 /* (1440x900) WXGA+ Display */
@@ -297,6 +300,12 @@
     span.borderR {
         right: 70px;
     }
+
+
+    /* ----------SAF PAGE-------------- */
+.browse-solutions .solutions-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
 }
 /* 
   ##Device = Tablets, Ipads (portrait)
@@ -384,11 +393,12 @@
     .footer-col-3 span.design-by {
         margin-left: 7px;
     }
-    footer .foot-col-1, footer .foot-col-3, footer .foot-col-4, footer .foot-col-5 {
-        padding-left: 0;
-    }
-    .left-tbp-area, .right-tbp-area {
+    
+    .right-tbp-area {
         width: 100%;
+    }
+    .left-tbp-area {
+        width: 583px;
     }
     .right-tbp-area p {
         font-size: 20px;
@@ -454,14 +464,14 @@
         line-height: 32px;
     }
     .EFE-Left-area {
-        /* padding: 24px; */
+         padding: 31px 0px 18px 0; 
         width: 236px;
         letter-spacing: -0.5px;
         border-radius: 0px 32px 32px 0px;
     }
     .EFE-Left-area .EFE-content p {
         padding: 0;
-        width: 210px;
+        width: 162px;
         line-height: 20px;
         font-size: 14px;
         letter-spacing: -0.1px;
@@ -477,7 +487,7 @@
     }
     .EFE-Right-area {
         /* padding: 24px; */
-        width: 236px;
+        width: 226px;
         border-radius: 32px 0px 0px 32px;
     }
     .EFE-Right-area .EFE-content p {
@@ -485,7 +495,7 @@
         font-size: 14px;
         line-height: 20px;
         letter-spacing: -0.1px;
-        width: 210px;
+        width: 178px;
     }
     .EFE-Midd-area .EFE-content h4 {
         font-size: 36px;
@@ -506,7 +516,7 @@
         font-size: 12px;
     }
     .EFE-Midd-area {
-        width:38%;
+        width:38%;        top: -24px;
     }
    
    
@@ -676,7 +686,7 @@
         margin: 0;
     }
     .Left-content {
-        width: 85%;
+        width:97%;
         float: left;
         padding-bottom: 310px;
     }
@@ -689,6 +699,9 @@
         line-height: 74px;
         margin-top: 0;
         letter-spacing: -1.8px;
+    }
+    .Left-content h2 {
+        padding-right: 14px;
     }
     .Left-content p {
         width: 100%;
@@ -720,9 +733,7 @@
     .video-txt h1 {
         font-size: 44px;
     }
-    .mar-R {
-        margin-right: 25px;
-    }
+   
     .WT-footer-textarea {
         border-radius: 32px;
     }
@@ -790,6 +801,17 @@
     .banner-right-path {
         right: -60px;transform: translate(87%, 36%);
     }
+    .mar-R {
+        margin-right: 85px;
+    }
+/* ----------SAF PAGE-------------- */
+.browse-solutions .solutions-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.solution_btn_section span.solution-txt {
+    width: 81%;
+}
+
 }
 
   /* 
@@ -871,7 +893,13 @@
     .EFE-content {
         min-height: 130px;
     }
-
+    .mar-R {
+        margin-right: 88px;
+    }
+/* ----------SAF PAGE-------------- */
+.browse-solutions .solutions-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
     
   }
 
@@ -930,9 +958,7 @@
     .midd-footer {
         width: 100%;
     }
-    .mar-R {
-        margin-right: 33px;
-    }
+   
     .bottom-footer .inner-container2 {
         padding: 0 0px;
     }
@@ -960,6 +986,85 @@
         margin-bottom: 0;
         margin-top: -30px;
     }
+
+
+    /* -------SAF PAGE --------- */
+    .benefits-cards .card:first-child {
+        margin-left: 0;
+    }
+    .benefits-cards .card:last-child {
+        margin-right: 0;
+    }
+    .benefits-cards {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        flex-direction: unset;
+        display: inline-block;
+        float: left;
+    }
+    .benefits-cards .card {
+        border-radius: 32px;
+        width: 25.1%;
+        float: left;
+        margin: 0 12.8px;
+        padding: 32px 20px;
+    }
+    .benefits-section {
+        padding: 40px 0 40px 0;
+    }
+    .card h3 {
+        line-height: 28px;
+        font-size: 20px;
+        letter-spacing: -0.2px;
+    }
+    .card p {
+        line-height: 20px;
+        font-size: 14px;
+        letter-spacing: -0.2px;
+        margin-top: 5px;
+        max-width: 155px;
+    }
+    .Left_cta_section {
+        width: 460px;
+    }
+    .cta_title {
+        letter-spacing: -0.7px;
+        font-size: 30px;
+        line-height: 38px;
+    }
+    .partner-img {
+        bottom: -52px;
+        width: 72%;
+    }
+    .os_paragraph {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .partner-btn .contact-bg {
+        margin: 0 auto;
+        border-radius: 132px 100px 100px 0px;
+        flex-grow: 0;
+        border: 0 none;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+        letter-spacing: -0.2px;
+        height: 48px;
+        width: 120px;
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        line-height: 48px;
+        padding: 0 18px 0 28px;
+        background: linear-gradient(92.86deg, #5F8AC7 0%, #5F8AC7 17.53%, #78A293 48.78%, #99C152 82%, #A6CE39 100%);
+    }
+    
+
+
+
 }
 
 @media (max-width:920px) {
@@ -972,7 +1077,7 @@
     .LEFT-list {
         width: 100%;
         /* padding: 32px 16px 16px 16px; */
-        padding: 32px 0px 16px 0px;
+        padding: 32px 0px 16px 16px;
     }
     .mask img{
         width: 100%;
@@ -980,6 +1085,21 @@
     .midd-footer {
         width: 100%;
     }
+    footer .foot-col-1, footer .foot-col-3, footer .foot-col-4, footer .foot-col-5 {
+        padding-left: 0;
+    }
+    .mar-R {
+        margin-right: 25px;
+    }
+    /* -------SAF PAGE----------- */
+    .browse-solutions .solutions-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .Left_cta_section {
+        width: 400px;
+    }
+
+
 }
 @media screen and (max-width:767px){
     html.lenis {
@@ -1304,7 +1424,7 @@ h2.mobile-banner {
     .EFE-Left-area {
         width: 80%;
         padding: 20px 0px 20px 40px;
-        border-radius: 0px 40px 40px 0px;
+        border-radius: 0px 32px 32px 0px;
     }
     .EFE-Midd-area {
         position: relative;
@@ -1319,7 +1439,7 @@ h2.mobile-banner {
         right: 0;
         top: 0;
         float: right;
-        border-radius:40px 0px 0px 40px;
+        border-radius:32px 0px 0px 32px;
     }
     .mobi-top-path, .mobi-bottom-path {
         display: block;
@@ -1593,16 +1713,20 @@ h2.mobile-banner {
     .NR-content a p {
         font-size: 18px;
         line-height: 24px;
-        padding:8px 0px;
+        padding:12px 0px 25px 0;
         min-height: auto;
         letter-spacing: -0.4px;
         margin: 0;
     }
     .bloger-name {
         padding: 0;
+        line-height: 24px;
     }
     .NR-content a span {
         font-size: 12px;
+    }
+    .fr img {
+        width: 24px;
     }
     .NR-title h3 {
         font-size: 28px;
@@ -1768,7 +1892,7 @@ h2.mobile-banner {
     .Right-content img {
         transform: scale(6);
         /* top: -160%; */
-        bottom: 147%;
+        bottom: 147%;        z-index: 0;
     }
     .Right-content.mobi {
         display: block;
@@ -1794,8 +1918,8 @@ h2.mobile-banner {
         line-height: 40px;
     }
     .Left-content .Gbutton{
-        z-index: 5;
-        position: relative;
+        /* z-index: 5;
+        position: relative; */
     }
     /* .Gbutton {
         padding: 11px 22px;
@@ -1810,22 +1934,91 @@ h2.mobile-banner {
     }
     .Left-content .Gbutton-box {
         padding: 12px 0 0 0;
-        z-index: 0;
+        z-index: 1;
+        position: relative;
     }
     .Left-content span.gradient-font {
         display: block;
     }
     
 /* ----SAF PAGE--------- */
-.our-solution-section {
-    padding: 16px;
-}
-h2.hero_title {
-    font-size: 32px;
-    line-height: 43px;
-}
-
-
+    .our-solution-section {
+        padding:50px 16px 50px 16px;
+    }
+    h2.hero_title {
+        font-size: 32px;
+        line-height: 43px;
+    }
+    .saf_page section.headersection {
+        min-height: 64px;
+    }
+    .padding-vertical {
+        padding: 0;
+    }
+    .inner-content-area {
+        padding: 0px 20px 0px 20px;
+    }
+    .benefits-cards .card {
+        width: 76%;
+    }
+    .Left_cta_section {
+        width: 100%;
+    }
+    .benefits-section {
+        padding: 50px 0 50px 0;
+    }
+    .partnership-section .inner-container2 {
+        padding: 0 20px;
+    }
+    .cta_title {
+        letter-spacing: -0.6px;
+        font-size: 26px;
+        line-height: 30px;
+    }
+    .partner-btn .contact-bg {
+        margin: 0 auto;
+        border-radius: 132px 100px 100px 0px;
+        flex-grow: 0;
+        border: 0 none;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+        letter-spacing: -0.2px;
+        height: 48px;
+        width: 120px;
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        line-height: 48px;
+        padding: 0 18px 0 28px;
+        background: linear-gradient(92.86deg, #5F8AC7 0%, #5F8AC7 17.53%, #78A293 48.78%, #99C152 82%, #A6CE39 100%);
+    }
+    .os_paragraph {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+        letter-spacing: -0.2px;
+    }
+    .partner-img {
+        bottom: -52px;
+        right: -9px;
+        width: 70%;
+    }
+    .partnership-section .container {
+        padding: 0 16px;
+        overflow: hidden;
+    }
+    section.browse-solutions {
+        padding: 25px 0 0 0;
+    }
+    .solution_btn_section span.solution-txt {
+        padding-right: 20px;
+    }
+    .solution_btn_section {
+        min-height: auto;
+    }
 
 }
 @media (max-width:370px){

@@ -241,27 +241,55 @@ nav:hover .menu-bg{
     nav .navbar .links li .sub-menu{
       position: absolute;
       top: 70px;
-      left: 0;
+      left: -50px;
       line-height: 40px;
       background: #ffffff;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-      border-radius: 0 0 4px 4px;
+      border: 1px solid #D1D5DB;
+      border-radius: 24px;
       display: none;
       z-index: 2;
+      padding: 32px 0 22px 0;
+      width: 286px;
+      box-shadow: 0px 12px 48px rgba(0, 0, 0, 0.12);
     }
+    nav .navbar .links li .sub-menu::before {
+      background: url(../images/menu/sm_tri.png) no-repeat;
+      content: "";
+      position: absolute;
+      top: -12px;
+      left: 45%;
+      z-index: 9999;
+      width: 28px;
+      height: 12px;
+  }
     nav .navbar .links li:hover .htmlCss-sub-menu,
     nav .navbar .links li:hover .js-sub-menu{
       display: block;
     }
     .navbar .links li .sub-menu li{
-      padding: 0 22px;
+      padding: 0 0px;
       border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 0 32px;
     }
     .navbar .links li .sub-menu a{
       color: #374151;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 500;
+      line-height: 28px;
+      letter-spacing: -0.2px;
+      padding: 0 0px 10px 0;
+      display: flex;
+      align-items: center;
     }
+    span.SM_img {
+      width: 24px;
+      position: relative;
+  }
+  span.SM_txt {
+    width: 190px;
+    display: block;
+    text-wrap: auto;    padding-left: 16px;
+}
     .navbar .links li .sub-menu .more-arrow{
       line-height: 40px;
     }
@@ -492,9 +520,9 @@ nav:hover .menu-bg{
       nav .navbar .nav-links{
         position: fixed;
         top: 0;
-        right: -100%;
+        right: -110%;
         display: block;
-        max-width: 270px;
+        max-width: 100%;
         width: 100%;
         background:  #ffffff;
         line-height: 40px;
@@ -502,12 +530,13 @@ nav:hover .menu-bg{
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         transition: all 0.5s ease;
         z-index: 1000;
-        min-height: 500px;
+        min-height: 100vh;
       }
       .navbar .nav-links .sidebar-logo{
         display: inline;
         float: right;
-        margin-top: -13px;
+        margin-top: 0;
+        margin-right: 30px;
       }
       .sidebar-logo i.bx.bx-x {
   
@@ -536,6 +565,7 @@ nav:hover .menu-bg{
       nav .navbar .links{
         display: block;
         margin-top: 20px;
+        padding-left: 10px;
       }
       nav .navbar .links li .arrow{
         line-height: 40px;
@@ -547,6 +577,18 @@ nav:hover .menu-bg{
       position: relative;
       top: 0;
       box-shadow: none;
+      display: none;
+      border: 0;
+      left: 0;
+      padding: 5px 0 5px 0;
+    }
+    .navbar .links li .sub-menu a {
+      font-size: 14px;
+      line-height: 20px;
+      padding: 0 0px 10px 0;
+
+  }
+    nav .navbar .links li .sub-menu::before{
       display: none;
     }
     nav .navbar .links li .sub-menu li{

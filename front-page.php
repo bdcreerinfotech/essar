@@ -348,6 +348,32 @@ get_header();
 		<img src="<?php echo esc_url( get_template_directory_uri() . '/images/mobile-mask.png' ); ?>" alt="Mobile Mask">
 	</div>
 </section>
+<section>
+	<div class="brand-video-area">
+		<div class="inner-container-space">
+			<div class="container">
+				<div class="video-container">
+					<video autoplay muted loop>
+						<source src="<?php the_field('brand_video'); ?>" type="video/mp4" />
+						<?php esc_html_e( 'Your browser does not support HTML5 video.', 'essar' ); ?>
+					</video>
+					<div class="overlay"></div>
+					<div class="b-overlay"></div>
+					<div class="video-txt">
+						<span class="borderL"></span>
+						<h1>
+							<?php esc_html_e( 'Brand', 'essar' ); ?>
+							<img src="<?php echo esc_url( get_template_directory_uri() . '/images/video-icon.png' ); ?>" alt="<?php esc_attr_e( 'Play Icon', 'essar' ); ?>" />
+							<?php esc_html_e( 'Video', 'essar' ); ?>
+						</h1>
+						<span class="borderR"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<i class="clearfix"></i>
+</section>
 
 
 

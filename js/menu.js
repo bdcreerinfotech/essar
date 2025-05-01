@@ -4,10 +4,10 @@ let navLinks = document.querySelector(".nav-links");
 let menuOpenBtn = document.querySelector(".navbar .bx-menu");
 let menuCloseBtn = document.querySelector(".nav-links .bx-x");
 menuOpenBtn.onclick = function() {
-navLinks.style.right = "0";
+navLinks.style.right = "-30px";
 }
 menuCloseBtn.onclick = function() {
-navLinks.style.right = "-100%";
+navLinks.style.right = "-110%";
 }
 
 
