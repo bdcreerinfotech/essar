@@ -85,7 +85,7 @@ nav:hover .menu-bg{
       backdrop-filter: blur(10px);
       animation: slideDown 0.35s ease-out;
       background-color: #fff;
-      z-index: 999;
+      z-index: 9;
     }
     .navigation.is-sticky nav ul li a, .navigation.is-sticky nav ul li a:visited {
       color: #374151;
@@ -104,6 +104,7 @@ nav:hover .menu-bg{
     color: #374151;
     -webkit-text-fill-color: #374151;
   }
+
     @keyframes slideDown {
       from {
         transform: translateY(-100%);
@@ -112,6 +113,9 @@ nav:hover .menu-bg{
         transform: translateY(0);
       }
     }
+
+
+    
     nav .navbar{
       height: 100%;
       max-width: 1200px;
@@ -121,7 +125,7 @@ nav:hover .menu-bg{
       justify-content: space-between;
       margin: auto;
       /* background: red; */
-      padding:6px 0px;
+      padding:6px 0px 0 0;
     }
     .navbar .logo a{
       font-size: 30px;
@@ -130,7 +134,7 @@ nav:hover .menu-bg{
       font-weight: 600;
     }
     nav .navbar .nav-links{
-      line-height: 70px;
+      line-height: 90px;
       height: 100%;
     }
     nav .navbar .links{
@@ -240,7 +244,7 @@ nav:hover .menu-bg{
     }
     nav .navbar .links li .sub-menu{
       position: absolute;
-      top: 70px;
+      top: 100px;
       left: -50px;
       line-height: 40px;
       background: #ffffff;
@@ -253,7 +257,7 @@ nav:hover .menu-bg{
       box-shadow: 0px 12px 48px rgba(0, 0, 0, 0.12);
     }
     nav .navbar .links li .sub-menu::before {
-      background: url(../images/menu/sm_tri.png) no-repeat;
+      background: url(../images/menu/sm_tri1.png) no-repeat;
       content: "";
       position: absolute;
       top: -12px;
@@ -262,6 +266,9 @@ nav:hover .menu-bg{
       width: 28px;
       height: 12px;
   }
+  nav .navbar .links li ul.js-sub-menu.sub-menu {
+    left: -70px;
+}
     nav .navbar .links li:hover .htmlCss-sub-menu,
     nav .navbar .links li:hover .js-sub-menu{
       display: block;
@@ -378,7 +385,8 @@ nav:hover .menu-bg{
   
     @media screen and (min-width: 800px) and (max-width: 1280px) {
       nav .navbar {
-        padding: 0 30px;
+        padding: 0;
+        max-width: 1170px;
     }
     .inner-container {
       padding: 0 0px;
@@ -439,11 +447,11 @@ nav:hover .menu-bg{
         font-size: 27px;
       }
       nav .navbar .links li{
-        padding: 0 10px;
+        padding: 8px 10px;
         white-space: nowrap;
       }
       nav .navbar .links li a{
-        font-size: 15px;
+        font-size: 20px;
       }
       nav .navbar .links li a {
         padding: 0;
@@ -460,9 +468,13 @@ nav:hover .menu-bg{
         line-height: 40px;
         color: #374151;
     }
-    .contact-bg {
-      text-align: left;
-      
+    nav.navigation.is-sticky .navbar .links li a.contact-bg,
+    .mobileview nav .navbar .links li a.contact-bg, nav .navbar .links li a.contact-bg {
+      color: #ffffff;
+      padding: 0 18px 0 25px;
+  }
+  .saf_page nav .navbar .links li a.contact-bg .arrow{
+    background: none;        width: auto;
   }
       .mobileview nav .navbar .links li a,
       nav .navbar .links li a{
@@ -483,26 +495,26 @@ nav:hover .menu-bg{
   .navbar i.bx.bx-menu {
     margin-left: 10px;
   }
-      .contact-bg{
+      /* .contact-bg{
         background:none;
         padding:0;
-      }
+      } */
       nav .navbar .links li.mobile{
         display: block;
       }
       .search-box.desktop {
           display: none;
       }
-      .mobileview nav .navbar .links li a.contact-bg{
+      /* .mobileview nav .navbar .links li a.contact-bg{
           background:none;
           padding: 0;
-      }
-      .mobileview nav .navbar .links li a.contact-bg:hover{
+      } */
+      /* .mobileview nav .navbar .links li a.contact-bg:hover{
         background: rgb(95,138,199);
         background: linear-gradient(90deg, rgba(95,138,199,1) 15%, rgba(95,138,199,1) 26%, rgba(120,162,147,1) 48%, rgba(153,193,82,1) 67%, rgba(166,206,57,1) 87%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-    } 
+    }  */
     nav .navbar .links li .arrow{
       color: #374151;
     }
@@ -520,27 +532,30 @@ nav:hover .menu-bg{
       nav .navbar .nav-links{
         position: fixed;
         top: 0;
-        right: -110%;
+        right: -115%;
         display: block;
         max-width: 100%;
         width: 100%;
-        background:  #ffffff;
+        /* background:  #ffffff; */
+        background: linear-gradient(90deg, rgba(70, 151, 250, 0.2) -0.15%, rgba(174, 217, 61, 0.2) 59.62%), rgb(255, 255, 255);
         line-height: 40px;
-        padding: 20px;
+        padding: 5px 20px 20px 20px;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         transition: all 0.5s ease;
         z-index: 1000;
         min-height: 100vh;
       }
       .navbar .nav-links .sidebar-logo{
-        display: inline;
-        float: right;
+        display: block;
+        float: none;
         margin-top: 0;
         margin-right: 30px;
+        width: auto;
+        margin-left: 15px;
       }
       .sidebar-logo i.bx.bx-x {
-  
-        font-size: 24px;
+        font-size: 30px;
+        float: right;
     }
       
         .navbar .bx-menu{
@@ -564,8 +579,8 @@ nav:hover .menu-bg{
        
       nav .navbar .links{
         display: block;
-        margin-top: 20px;
-        padding-left: 10px;
+        margin-top: 0px;
+        padding-left: 5px;
       }
       nav .navbar .links li .arrow{
         line-height: 40px;
@@ -583,11 +598,13 @@ nav:hover .menu-bg{
       padding: 5px 0 5px 0;
     }
     .navbar .links li .sub-menu a {
-      font-size: 14px;
-      line-height: 20px;
+      font-size: 16px;
+      line-height: 22px;
       padding: 0 0px 10px 0;
-
   }
+  .logo-name img {
+    width: 150px;
+}
     nav .navbar .links li .sub-menu::before{
       display: none;
     }
@@ -631,6 +648,9 @@ nav:hover .menu-bg{
       .navbar .nav-links.show3 .links .js-sub-menu,
       .navbar .nav-links.show2 .links .more .more-sub-menu{
           display: block;
+        }
+        nav .navbar .links li .sub-menu{
+          background: transparent;
         }
         .navbar .nav-links.show1 .links .htmlcss-arrow,
         .navbar .nav-links.show3 .links .js-arrow{

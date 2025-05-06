@@ -142,7 +142,8 @@ function essar_scripts() {
 	// Lenis Smooth Scroll.
 	wp_enqueue_script( 'lenis', 'https://unpkg.com/lenis@1.2.3/dist/lenis.min.js', array(), '1.2.3', true );
 
-	wp_enqueue_script( 'essar-navigation', get_template_directory_uri() . '/js/custom_script.js', array(), _S_VERSION, true );
+	//wp_enqueue_script( 'essar-navigation', get_template_directory_uri() . '/js/custom_script.js', array(), _S_VERSION, true );
+	//wp_enqueue_script( 'about-us-script', get_template_directory_uri() . '/js/about-us.js', array(), _S_VERSION, true );
 
 	// Enable threaded comments.
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

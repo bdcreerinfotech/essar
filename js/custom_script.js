@@ -1,47 +1,159 @@
-ScrollTrigger.matchMedia({
-    // Desktop
-    "(min-width: 1025px)": function () {
-        gsap.set(".scaleDown", {
-            xPercent: -20,
-            yPercent: 7.4,
-            scale: 1.2
-        });
+gsap.registerPlugin(ScrollTrigger);
 
-        gsap.to(".scaleDown", {
-            scale: 0.3753,
-            ease: "power2.inOut",
+let mm = gsap.matchMedia();
+
+// Laptop screens (1024px and above)
+mm.add("(min-width: 1024px)", () => {
+    gsap.fromTo(".earth-image",
+        { scale: 5, top: -536, right: -15 },
+        {
+            scale: 0.8,
+            top: "-7vh",
+            right: "-15%",
+            ease: "none",
             scrollTrigger: {
-                trigger: ".container1",
-                start: "top 45%",
-                end: "top 85%",
-                pin: true,
-                scrub: 3, // Slower, smoother
-                anticipatePin: 1 // Helps smooth out pinning
+                trigger: ".image-wrap",
+                start: "top center",
+                end: "bottom top",
+                scrub: true
             }
-        });
-    },
+        }
+    );
+});
 
-    // Tablet and below
-    "(max-width: 1024px)": function () {
-        gsap.set(".scaleDown", {
-            xPercent: -22,
-            yPercent: -2,
-            scale: 1.1
-        });
-
-        gsap.to(".scaleDown", {
-            scale: 0.2,
-            ease: "power2.inOut",
+// Tablet screens (768px - 1023px)
+mm.add("(max-width: 1023px) and (min-width: 768px)", () => {
+    gsap.fromTo(".earth-image",
+        { scale: 6, top: -400, right: -10 },
+        {
+            scale: 0.8,
+            top: "31vh",
+            right: "-2%",
+            ease: "none",
             scrollTrigger: {
-                trigger: ".container1",
-                start: "top 50%",
-                end: "top 90%",
-                pin: true,
-                scrub: 3, // Slower, smoother
-                anticipatePin: 1
+                trigger: ".image-wrap",
+                start: "top center",
+                end: "bottom top",
+                scrub: true
             }
-        });
-    }
+        }
+    );
+});
+
+// Large mobile screens (480px - 767px)
+mm.add("(max-width: 767px) and (min-width: 480px)", () => {
+    gsap.fromTo(".earth-image",
+        { scale: 3, top: -300, right: -5 },
+        {
+            scale: 0.8,
+            top: "12vh",
+            right: "-10%",
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".image-wrap",
+                start: "top center",
+                end: "bottom top",
+                scrub: true
+            }
+        }
+    );
+});
+
+// Small mobile screens (up to 479px)
+mm.add("(max-width: 479px)", () => {
+    gsap.fromTo(".earth-image",
+        { scale: 8, top: -130, right: 0 },
+        {
+            scale: 1,
+            top: "33vh",
+            right: "0",
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".image-wrap",
+                start: "top center",
+                end: "bottom top",
+                scrub: true
+            }
+        }
+    );
+});
+
+
+
+// Small mobile screens (up to 479px)
+mm.add("(max-width: 425px)", () => {
+    gsap.fromTo(".earth-image",
+        { scale: 8, top: -130, right: 0 },
+        {
+            scale: 1,
+            top: "33vh",
+            right: "0",
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".image-wrap",
+                start: "top center",
+                end: "bottom top",
+                scrub: true
+            }
+        }
+    );
+});
+
+// Small mobile screens (up to 479px)
+mm.add("(max-width: 391px)", () => {
+    gsap.fromTo(".earth-image",
+        { scale: 8, top: -130, right: 0 },
+        {
+            scale: 1,
+            top: "36vh",
+            right: "0",
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".image-wrap",
+                start: "top center",
+                end: "bottom top",
+                scrub: true
+            }
+        }
+    );
+});
+
+// Small mobile screens (up to 479px)
+mm.add("(max-width: 375px)", () => {
+    gsap.fromTo(".earth-image",
+        { scale: 8, top: -130, right: 0 },
+        {
+            scale: 1,
+            top: "46vh",
+            right: "0",
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".image-wrap",
+                start: "top center",
+                end: "bottom top",
+                scrub: true
+            }
+        }
+    );
+});
+
+// Small mobile screens (up to 479px)
+mm.add("(max-width: 320px)", () => {
+    gsap.fromTo(".earth-image",
+        { scale: 8, top: -130, right: 0 },
+        {
+            scale: 1,
+            top: "33vh",
+            right: "0",
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".image-wrap",
+                start: "top center",
+                end: "bottom top",
+                scrub: true
+            }
+        }
+    );
 });
 
 gsap.set(".video-container video", {
@@ -61,14 +173,14 @@ gsap.to(".video-container video", {
     }
 });
 
-gsap.fromTo(".h-our-service-section", 
+gsap.fromTo(".h-our-service-section",
     {
         opacity: 0,
         scale: 0.6,
         y: 100,
         transformPerspective: 1000,
         transformOrigin: "center center",
-    }, 
+    },
     {
         scrollTrigger: {
             trigger: ".h-our-service-section",
@@ -85,14 +197,14 @@ gsap.fromTo(".h-our-service-section",
     }
 );
 
-gsap.fromTo(".EFE-video-area", 
+gsap.fromTo(".EFE-video-area",
     {
         opacity: 0,
         scale: 0.6,
         y: 100,
         transformPerspective: 1000,
         transformOrigin: "center center",
-    }, 
+    },
     {
         scrollTrigger: {
             trigger: ".EFE-video-area",
@@ -108,15 +220,14 @@ gsap.fromTo(".EFE-video-area",
         ease: "power4.out",
     }
 );
-
-gsap.fromTo(".Green-future-section", 
+gsap.fromTo(".Green-future-section",
     {
         opacity: 0,
         scale: 0.6,
         y: 0,
         transformPerspective: 1000,
         transformOrigin: "center center",
-    }, 
+    },
     {
         scrollTrigger: {
             trigger: ".Green-future-section",
@@ -132,15 +243,14 @@ gsap.fromTo(".Green-future-section",
         ease: "power4.out",
     }
 );
-
-gsap.fromTo(".footer-section", 
+gsap.fromTo(".footer-section",
     {
         opacity: 0,
         scale: 0.6,
         y: 0,
         transformPerspective: 1000,
         transformOrigin: "center center",
-    }, 
+    },
     {
         scrollTrigger: {
             trigger: ".footer-section",
@@ -157,14 +267,14 @@ gsap.fromTo(".footer-section",
     }
 );
 
-gsap.fromTo("#homeSectionOne", 
+gsap.fromTo("#homeSectionOne",
     {
         opacity: 0,
         scale: 0.6,
         y: 0,
         transformPerspective: 1000,
         transformOrigin: "center center",
-    }, 
+    },
     {
         scrollTrigger: {
             trigger: "#homeSectionOne",
@@ -180,8 +290,8 @@ gsap.fromTo("#homeSectionOne",
         ease: "power4.out",
     }
 );
-
 /* News section */
+
 gsap.set(".blog-img img", {
     scale: 2.5
 });
@@ -199,6 +309,7 @@ gsap.to(".blog-img img", {
     }
 });
 
+
 gsap.to(".CB1 h3", {
     paddingTop: "155px",
     ease: "power1.out",
@@ -209,6 +320,7 @@ gsap.to(".CB1 h3", {
         scrub: 2 // slower, smoother follow
     }
 });
+
 
 gsap.to(".CB2 h3", {
     paddingTop: "110px",
@@ -242,6 +354,7 @@ gsap.to(".CB4 h3", {
         scrub: 2 // slower, smoother follow
     }
 });
+
 
 const items = document.querySelectorAll('.item');
 const center = document.getElementById('centerContent');
@@ -294,6 +407,7 @@ gsap.to("#loader", {
     onComplete: () => {
         // Hide loader completely
         document.getElementById("loader").style.display = "none";
+
     }
 });
 
@@ -307,7 +421,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Home Page Banner Animation
+//Home Page Banner Animation
 const sectionTwoTL = gsap.timeline({
     scrollTrigger: {
         trigger: "#homeSectionTwo",
@@ -315,7 +429,6 @@ const sectionTwoTL = gsap.timeline({
     },
     ease: Sine.easeNone,
 });
-
 sectionTwoTL.addLabel("start").from("#homeSectionTwo .bannertitle h2", {
     delay: 0.5,
     y: 20,
@@ -346,7 +459,7 @@ sectionTwoTL.addLabel("start").from("#homeSectionTwo .bannertitle h2", {
     },
 }).addLabel("end");
 
-// Home About Section2 Animation
+//Home About Section2 Animation
 const sectionOneTL = gsap.timeline({
     scrollTrigger: {
         trigger: "#homeSectionOne",
@@ -354,7 +467,6 @@ const sectionOneTL = gsap.timeline({
     },
     ease: Sine.easeNone,
 });
-
 sectionOneTL.addLabel("start").from("#homeSectionOne .bannertitle", {
     delay: 0.9,
     y: 10,
@@ -375,7 +487,7 @@ sectionOneTL.addLabel("start").from("#homeSectionOne .bannertitle", {
     },
 }).addLabel("end");
 
-// About Left logo Image Animation          
+//About Left logo Image Animation          
 let revealContainersLeft = document.querySelectorAll(".imagerevealLeft");
 
 revealContainersLeft.forEach((container) => {
@@ -387,21 +499,22 @@ revealContainersLeft.forEach((container) => {
             toggleActions: "play none none reverse",
         }
     })
-    .set(container, { autoAlpha: 1 })
-    .from(container, {
-        xPercent: 100, // container slides in from the left
-        duration: 2.2,
-        ease: "power3.out",
-    })
-    .from(image, {
-        xPercent: -100, // image slides in from the right
-        scale: 1.15,
-        duration: 2.2,
-        ease: "power3.out",
-    }, "<");
+        .set(container, { autoAlpha: 1 })
+        .from(container, {
+            xPercent: 100, // container slides in from the left
+            duration: 2.2,
+            ease: "power3.out",
+        })
+        .from(image, {
+            xPercent: -100, // image slides in from the right
+            scale: 1.15,
+            duration: 2.2,
+            ease: "power3.out",
+        }, "<");
 });
 
-// CHART TEXT ANIMATION
+
+//CHART TEXT ANIMATION
 const divThreeTL = gsap.timeline({
     scrollTrigger: {
         trigger: "#homeSectionThree",
@@ -409,7 +522,6 @@ const divThreeTL = gsap.timeline({
     },
     ease: Sine.easeNone,
 });
-
 divThreeTL.addLabel("start").from("#homeSectionThree .count-box", {
     delay: 0.5,
     y: 20,
@@ -431,7 +543,16 @@ divThreeTL.addLabel("start").from("#homeSectionThree .count-box", {
     },
 }).addLabel("end");
 
-// Offering Single platform Animation
+//Why ESSAR Energy ANIMATION
+const sectionFourTL = gsap.timeline({
+    scrollTrigger: {
+        trigger: "#homeSectionFour",
+        toggleActions: "play none none none",
+    },
+});
+
+//Offering Single platform Animation
+//Home About Section2 Animation
 const homeSectionSixTL = gsap.timeline({
     scrollTrigger: {
         trigger: "#homeSectionSix",
@@ -439,7 +560,6 @@ const homeSectionSixTL = gsap.timeline({
     },
     ease: Sine.easeNone,
 });
-
 sectionOneTL.addLabel("start").from("#homeSectionSix .top-OS-title-area .quote", {
     delay: 0.9,
     y: 10,
@@ -536,7 +656,7 @@ sections.forEach((section, index) => {
         const isOpen = section.content.classList.contains('open');
         if (!isOpen) {
             openSection(index);
-        } 
+        }
     });
 });
 
@@ -550,6 +670,7 @@ sections.forEach((section, index) => {
         // If already open, do nothing!
     });
 });
+
 
 // Autoplay logic
 function autoplaySections() {

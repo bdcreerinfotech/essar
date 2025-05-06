@@ -471,6 +471,5 @@ get_header();
 	</div>
 	<i class="clearfix"></i>
 </section>
-
 <?php
 get_footer();
