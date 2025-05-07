@@ -189,3 +189,35 @@ function essar_register_our_solutions_post_type() {
 	);
 }
 add_action( 'init', 'essar_register_our_solutions_post_type' );
+
+
+/**
+ * Enqueue JS only on single Our Solutions posts.
+ */
+function essar_enqueue_our_solutions_js() {
+	if ( is_singular( 'our_solutions' ) ) {
+		wp_enqueue_script(
+			'our-solutions-custom-js',
+			get_template_directory_uri() . '/js/our_solutions.js',
+			array( 'jquery' ),
+			'1.0',
+			true
+		);
+	}
+}
+add_action( 'wp_enqueue_scripts', 'essar_enqueue_our_solutions_js' );
+
+/**
+ * Add custom body classes for Our Solutions post type.
+ *
+ * @param array $classes Existing body classes.
+ * @return array Modified body classes.
+ */
+function essar_add_our_solutions_body_class( $classes ) {
+	if ( is_singular( 'our_solutions' ) ) {
+		$classes[] = 'saf_page';
+	}
+	return $classes;
+}
+add_filter( 'body_class', 'essar_add_our_solutions_body_class' );
+
