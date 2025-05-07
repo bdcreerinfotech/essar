@@ -1,14 +1,12 @@
 <?php
 /**
- * Custom walker for the Essar theme menu.
- *
- * @package Essar
+ * Custom Walker Nav Menu Class for Essar Theme.
  */
 
 if ( ! class_exists( 'Essar_Walker_Nav_Menu' ) ) {
 
 	/**
-	 * Essar Walker Nav Menu Class.
+	 * Extends Walker_Nav_Menu to customize menu output.
 	 */
 	class Essar_Walker_Nav_Menu extends Walker_Nav_Menu {
 
@@ -17,15 +15,12 @@ if ( ! class_exists( 'Essar_Walker_Nav_Menu' ) ) {
 		 *
 		 * @param string $output Passed by reference. Used to append additional content.
 		 * @param int    $depth  Depth of menu item. Used for padding.
-		 * @param object $args   An object of wp_nav_menu() arguments.
+		 * @param array  $args   An array of arguments. @see wp_nav_menu()
 		 */
 		public function start_lvl( &$output, $depth = 0, $args = array() ) {
-			$indent = str_repeat( "\t", $depth );
-
-			// Add custom submenu classes based on depth.
+			$indent        = str_repeat( "\t", $depth );
 			$submenu_class = ( 0 === $depth ) ? 'htmlCss-sub-menu sub-menu' : 'js-sub-menu sub-menu';
-
-			$output .= "\n{$indent}<ul class=\"" . esc_attr( $submenu_class ) . "\">\n";
+			$output       .= "\n" . $indent . '<ul class="' . esc_attr( $submenu_class ) . '">' . "\n";
 		}
 
 		/**
@@ -33,14 +28,14 @@ if ( ! class_exists( 'Essar_Walker_Nav_Menu' ) ) {
 		 *
 		 * @param string $output Passed by reference. Used to append additional content.
 		 * @param object $item   Menu item data object.
-		 * @param int    $depth  Depth of menu item. Used for padding.
-		 * @param object $args   An object of wp_nav_menu() arguments.
+		 * @param int    $depth  Depth of menu item.
+		 * @param array  $args   An array of arguments. @see wp_nav_menu()
 		 * @param int    $id     Current item ID.
 		 */
 		public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 			$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
-			$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+			$classes   = empty( $item->classes ) ? array() : (array) $item->classes;
 			$classes[] = 'menu-item-' . $item->ID;
 
 			$class_names = join( ' ', array_filter( $classes ) );
@@ -63,23 +58,41 @@ if ( ! class_exists( 'Essar_Walker_Nav_Menu' ) ) {
 				}
 			}
 
-			// Add arrow icon if item has children.
 			$title = apply_filters( 'the_title', $item->title, $item->ID );
-			if ( in_array( 'menu-item-has-children', $classes, true ) ) {
-				$title .= ' <i class="bx arrow"></i>';
+
+			// Get arrow icon for top-level parents.
+			$arrow_icon = '';
+			if ( 0 === $depth && in_array( 'menu-item-has-children', $classes, true ) ) {
+				if ( stripos( $title, 'Solutions' ) !== false ) {
+					$arrow_icon = ' <i class="bx arrow htmlcss-arrow"></i>';
+				} elseif ( stripos( $title, 'Markets' ) !== false ) {
+					$arrow_icon = ' <i class="bx arrow js-arrow"></i>';
+				} else {
+					$arrow_icon = ' <i class="bx arrow"></i>';
+				}
 			}
 
-			// Safely handle $args: It may be object or array.
-			$before      = ( is_object( $args ) && isset( $args->before ) ) ? $args->before : '';
-			$link_before = ( is_object( $args ) && isset( $args->link_before ) ) ? $args->link_before : '';
-			$link_after  = ( is_object( $args ) && isset( $args->link_after ) ) ? $args->link_after : '';
-			$after       = ( is_object( $args ) && isset( $args->after ) ) ? $args->after : '';
+			// Get image from ACF for submenu items.
+			$image_html = '';
+			if ( $depth > 0 && function_exists( 'get_field' ) ) {
+				$image_url = get_field( 'menu_item_icon', $item );
+				if ( $image_url ) {
+					$image_src  = wp_get_attachment_image_url( $image_url, 'full' );
+					$image_html = '<span class="SM_img"><img src="' . esc_url( $image_src ) . '" alt="" /></span>';
+				}
+			}
 
-			$item_output  = $before;
-			$item_output .= '<a' . $attributes . '>';
-			$item_output .= $link_before . $title . $link_after;
+			// Construct final menu item output.
+			$item_output  = '<a' . $attributes . '>';
+
+			if ( 0 === $depth ) {
+				$item_output .= esc_html( $title ) . $arrow_icon;
+			} else {
+				$item_output .= $image_html;
+				$item_output .= '<span class="SM_txt">' . esc_html( $title ) . '</span>';
+			}
+
 			$item_output .= '</a>';
-			$item_output .= $after;
 
 			$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 		}

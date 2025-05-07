@@ -27,30 +27,7 @@ get_header();
 				</div>
 
 				<div class="Right_contact">
-					<form onsubmit="return validateForm();" novalidate>
-						<div class="row">
-							<div class="form_div">
-								<input type="text" name="firstName" placeholder="<?php esc_attr_e( 'First Name', 'text-domain' ); ?>" required>
-							</div>
-							<div class="form_div">
-								<input type="text" name="lastName" placeholder="<?php esc_attr_e( 'Last Name', 'text-domain' ); ?>" required>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form_div">
-								<input type="email" name="email" placeholder="<?php esc_attr_e( 'E-mail', 'text-domain' ); ?>" required>
-							</div>
-							<div class="form_div">
-								<input type="tel" name="phone" placeholder="<?php esc_attr_e( 'Phone', 'text-domain' ); ?>" required pattern="[0-9+()\-\s]+">
-							</div>
-						</div>
-						<div class="form_div">
-							<textarea name="interest" placeholder="<?php esc_attr_e( 'What are you interested in?', 'text-domain' ); ?>" required></textarea>
-						</div>
-						<button type="submit">
-							<?php esc_html_e( 'Send message', 'text-domain' ); ?> &#8594;
-						</button>
-					</form>
+					<?php echo do_shortcode('[contact-form-7 id="1231511" title="Contact form"]'); ?>
 				</div>
 
 			</div>

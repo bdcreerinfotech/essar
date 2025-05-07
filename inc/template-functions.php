@@ -136,3 +136,56 @@ function essar_register_team_cpt() {
 	);
 }
 add_action( 'init', 'essar_register_team_cpt' );
+
+
+/**
+ * Remove <span class="wpcf7-form-control-wrap"> from Contact Form 7 output.
+ *
+ * @param string $content The form HTML.
+ * @return string Modified form HTML without span wrappers.
+ */
+function remove_cf7_control_wrap_spans( $content ) {
+	// Remove opening span tag with class wpcf7-form-control-wrap
+	$content = preg_replace( '/<span class="wpcf7-form-control-wrap[^"]*">/', '', $content );
+
+	// Remove closing span tags
+	$content = str_replace( '</span>', '', $content );
+
+	return $content;
+}
+add_filter( 'wpcf7_form_elements', 'remove_cf7_control_wrap_spans' );
+
+add_filter( 'wpcf7_autop_or_not', '__return_false' );
+
+
+/**
+ * Register Custom Post Type: Our Solutions
+ */
+function essar_register_our_solutions_post_type() {
+	register_post_type(
+		'our_solutions',
+		array(
+			'labels'             => array(
+				'name'               => __( 'Our Solutions', 'essar' ),
+				'singular_name'      => __( 'Solution', 'essar' ),
+				'add_new'            => __( 'Add New', 'essar' ),
+				'add_new_item'       => __( 'Add New Solution', 'essar' ),
+				'edit_item'          => __( 'Edit Solution', 'essar' ),
+				'new_item'           => __( 'New Solution', 'essar' ),
+				'view_item'          => __( 'View Solution', 'essar' ),
+				'search_items'       => __( 'Search Solutions', 'essar' ),
+				'not_found'          => __( 'No Solutions found', 'essar' ),
+				'not_found_in_trash' => __( 'No Solutions found in Trash', 'essar' ),
+			),
+			'public'             => true,
+			'show_in_menu'       => true,
+			'menu_position'      => 20,
+			'menu_icon'          => 'dashicons-lightbulb',
+			'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+			'has_archive'        => true,
+			'rewrite'            => array( 'slug' => 'our-solutions' ),
+			'show_in_rest'       => true,
+		)
+	);
+}
+add_action( 'init', 'essar_register_our_solutions_post_type' );
