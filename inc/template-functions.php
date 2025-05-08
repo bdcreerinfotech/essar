@@ -221,3 +221,45 @@ function essar_add_our_solutions_body_class( $classes ) {
 }
 add_filter( 'body_class', 'essar_add_our_solutions_body_class' );
 
+/**
+ * Add custom body class for 'industries' slug.
+ */
+add_filter( 'body_class', 'essar_add_custom_body_class_for_industries' );
+
+if ( ! function_exists( 'essar_add_custom_body_class_for_industries' ) ) {
+	/**
+	 * Adds 'saf_page' and 'solution_page' classes to body if slug is 'industries'.
+	 *
+	 * @param array $classes Existing body classes.
+	 * @return array Modified body classes.
+	 */
+	function essar_add_custom_body_class_for_industries( $classes ) {
+		if ( is_singular() ) {
+			global $post;
+			if ( isset( $post->post_name ) && 'industries' === $post->post_name ) {
+				$classes[] = 'saf_page';
+				$classes[] = 'solution_page';
+			}
+		}
+		return $classes;
+	}
+}
+
+/**
+ * Enqueue JS on specific page slug.
+ */
+function enqueue_industries_js() {
+	if ( is_page() ) {
+		global $post;
+		if ( isset( $post->post_name ) && 'industries' === $post->post_name ) {
+			wp_enqueue_script(
+				'industries-custom-js',
+				get_template_directory_uri() . '/js/industries.js',
+				array(),
+				'1.0.0',
+				true
+			);
+		}
+	}
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_industries_js' );

@@ -1,132 +1,87 @@
-function smoothScrollTo(targetY, duration = 600) {
-  const startY = window.pageYOffset;
-  const distance = targetY - startY;
-  const startTime = performance.now();
 
-  function easeInOutQuad(t) {
-    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+// Make ScrollTrigger available for use in GSAP animations
+gsap.registerPlugin(ScrollTrigger);
+
+// Select the HTML elements needed for the animation
+const scrollSection = document.querySelectorAll(".scroll-section");
+
+scrollSection.forEach((section) => {
+  const wrapper = section.querySelector(".wrapper");
+  const items2 = wrapper.querySelectorAll(".item_saf");
+
+  // Initialize
+  let direction = null;
+
+  if (section.classList.contains("vertical-section")) {
+    direction = "vertical";
+  } else if (section.classList.contains("horizontal-section")) {
+    direction = "horizontal";
   }
 
-  function animateScroll(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const ease = easeInOutQuad(progress);
-    window.scrollTo(0, startY + (distance * ease));
-
-    if (progress < 1) {
-      requestAnimationFrame(animateScroll);
-    }
-  }
-
-  requestAnimationFrame(animateScroll);
-}
-
-const headerOffset = 100;
-
-const anchors = document.querySelectorAll('a[href^="#"]');
-let sections1 = [];
-
-function updateSections() {
-  sections1 = Array.from(anchors)
-    .map(anchor => {
-      const id = anchor.getAttribute('href').slice(1);
-      const el = document.getElementById(id);
-      return el ? { id, el, anchor } : null;
-    })
-    .filter(item => item !== null);
-}
-
-
-anchors.forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const targetId = this.getAttribute('href').slice(1);
-    const targetElement = document.getElementById(targetId);
-
-    if (targetElement) {
-      e.preventDefault();
-      const elementY = targetElement.getBoundingClientRect().top + window.pageYOffset;
-      const offsetY = elementY - headerOffset;
-
-      smoothScrollTo(offsetY);
-
-      anchors.forEach(link => link.classList.remove('active'));
-      this.classList.add('active');
-    }
-  });
+  initScroll(section, items2, direction);
 });
 
-function onScroll() {
-  const scrollPosition = window.scrollY + headerOffset + 1;
-
-  let found = false;
-
-  sections1.forEach(({ el, anchor }) => {
-    const top = el.getBoundingClientRect().top + window.scrollY;
-    const bottom = top + el.offsetHeight;
-
-    if (scrollPosition >= top && scrollPosition < bottom) {
-      anchors.forEach(link => link.classList.remove('active'));
-      anchor.classList.add('active');
-      found = true;
+function initScroll(section, items2, direction) {
+  // Initial states
+  items2.forEach((item, index) => {
+    if (index !== 0) {
+      direction == "horizontal"
+        ? gsap.set(item, { xPercent: 100 })
+        : gsap.set(item, { yPercent: 100 });
     }
   });
 
-  // Edge case for bottom
-  if (!found && (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-    const last = sections1[sections1.length - 1];
-    anchors.forEach(link => link.classList.remove('active'));
-    last.anchor.classList.add('active');
-  }
+  const timeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: section,
+      pin: true,
+      start: "top top",
+      end: () => `+=${items2.length * 100}%`,
+      scrub: 1,
+      invalidateOnRefresh: true
+      // markers: true,
+    },
+    defaults: { ease: "none" }
+  });
+  items2.forEach((item, index) => {
+    timeline.to(item, {
+      scale: 0.9,
+      borderRadius: "10px"
+    });
+
+    direction == "horizontal"
+      ? timeline.to(
+          items2[index + 1],
+          {
+            xPercent: 0
+          },
+          "<"
+        )
+      : timeline.to(
+          items2[index + 1],
+          {
+            yPercent: 0
+          },
+          "<"
+        );
+  });
 }
 
 
+window.addEventListener("scroll", function() {
+  const verticalSection = document.querySelector(".vertical-section");
+  const headerSection = document.querySelector(".headersection");
 
+  const verticalSectionTop = verticalSection.getBoundingClientRect().top;
 
-
-const firstAnchor = document.querySelector('a[href^="#"]');
-if (firstAnchor) firstAnchor.classList.add('active');
-
-const nav = document.querySelector('.solution_navigation');
-const solutionSection = document.querySelector('.main-content');
-
-window.addEventListener('scroll', () => {
-  const offset = 250; // Adjust this for earlier/later fix point
-  const rect = solutionSection.getBoundingClientRect();
-
-  if (rect.top <= offset && rect.bottom > offset) {
-    nav.classList.add('fixed');
-    document.body.classList.add('solution-fixed');
+  // Add class to .headersection when .vertical-section is at the top
+  if (verticalSectionTop === 0) {
+    headerSection.classList.add("hide");
   } else {
-    nav.classList.remove('fixed');
-    document.body.classList.remove('solution-fixed');
+    headerSection.classList.remove("hide");
   }
 });
 
-// Watch for when nav becomes fixed, then trigger onScroll
-let navWasFixed = false;
-
-window.addEventListener('scroll', () => {
-  const offset = 250;
-  const rect = solutionSection.getBoundingClientRect();
-  const nowFixed = rect.top <= offset && rect.bottom > offset;
-
-  if (nowFixed) {
-    nav.classList.add('fixed');
-    document.body.classList.add('solution-fixed');
-
-    if (!navWasFixed) {
-      updateSections();  // ← recalculate section positions now
-      onScroll();        // ← trigger scroll check now
-      navWasFixed = true;
-    }
-  } else {
-    nav.classList.remove('fixed');
-    document.body.classList.remove('solution-fixed');
-    navWasFixed = false;
-  }
-
-  onScroll(); // keep active link in sync
-});
 
 
 
@@ -145,9 +100,3 @@ gsap.ticker.add((time) => {
 
 // Disable lag smoothing in GSAP to prevent any delay in scroll animations
 gsap.ticker.lagSmoothing(0);
-
-
-
-
-window.addEventListener('scroll', onScroll);
-onScroll(); // Ensure active link is set correctly on page load
