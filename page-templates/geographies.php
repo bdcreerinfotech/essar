@@ -9,153 +9,184 @@
 
 get_header();
 
-$template_uri = get_template_directory_uri();
+$template_uri = esc_url( get_template_directory_uri() );
 ?>
 
 <section class="section">
-	<div class="container-medium">
-		<div class="padding-vertical">
-			<div class="inner-container2">
-				<div class="our-solution-section">
-					<div class="saf_btn border-btn marBottom20">
-						<h5 class="gradient-font"><?php echo esc_html( get_field( 'industries_title' ) ); ?></h5>
-					</div>
-					<h2 class="hero_title"><?php echo wp_kses_post( get_field( 'industries_sub_title' ) ); ?></h2>
-					<?php echo wp_kses_post( get_field( 'industries_description' ) ); ?>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container-medium">
+        <div class="padding-vertical">
+            <div class="inner-container2">
+                <div class="geographies-section">
+                    <div class="saf_btn border-btn marBottom20"><h5 class="gradient-font"><?php echo esc_html( get_field( 'geographies_title' ) ); ?></h5></div>
+                    <h2 class="hero_title"><?php echo esc_html( get_field( 'geographies_sub_title' ) ); ?></h2>
+                    <h2 class="hero_title gradient-font"><?php echo esc_html( get_field( 'geographies_sub_title_2' ) ); ?></h2>              
+                    <p class="os_paragraph marTop20">
+                        <?php echo wp_kses_post( get_field( 'geographies_description' ) ); ?>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
-<?php if ( have_rows( 'industries_tabs' ) ) : ?>
-	<section class="industries_top_bar">
-		<div class="">
-			<div class="inner-container2 fixed-side-bar">
-				<div class="side-bar">
-					<div class="solution_navigation">
-						<div class="container">
-							<div class="inner-container2">
-								<ul>
-									<li>
-										<?php
-										$is_first = true;
-										while ( have_rows( 'industries_tabs' ) ) :
-											the_row();
-											$tab_name = get_sub_field( 'tab_name' );
-											?>
-											<a href="#<?php echo esc_attr( sanitize_title( $tab_name ) ); ?>" <?php echo $is_first ? 'class="active"' : ''; ?>>
-												<?php echo esc_html( $tab_name ); ?>
-											</a>
-											<?php
-											$is_first = false;
-										endwhile;
-										?>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+<section class="geo_ab_section">
+    <div class="geographies_about_area">
+        <div class="container">
+            <div class="inner-container2">
+                <div class="inn_geographies">
+                    <div class="Left_gab_sec">
+                        <p>
+                            <?php echo wp_kses_post( get_field( 'key_advantage_description' ) ); ?>
+                        </p>
+                    </div>
+                    <div class="Right_gab_sec">
+                        <video autoplay muted loop playsinline preload="metadata">
+                            <source src="<?php echo esc_url( get_field( 'key_advantage_video' ) ); ?>" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-			<div class="main-content">
-				<?php while ( have_rows( 'industries_tabs' ) ) : the_row(); ?>
-					<div class="TBG">
-						<?php
-						$image = get_sub_field( 'industry_image' );
-						if ( $image ) :
-							?>
-							<img src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ); ?>" />
-						<?php endif; ?>
-					</div>
+<section class="industries_top_bar">
+    <div class="">
+        <div class="inner-container2 fixed-side-bar">
+            <div class="side-bar">
+                <div class="solution_navigation geo_navigation">
+                    <div class="container">
+                        <div class="inner-container2">
+                            <ul>
+                                <li>
+                                    <?php
+                                    if ( have_rows( 'geographies_tabs' ) ) :
+                                        $first = true;
+                                        while ( have_rows( 'geographies_tabs' ) ) :
+                                            the_row();
+                                            $tab_name = get_sub_field( 'tab_name' );
+                                            $slug     = sanitize_title_with_dashes( $tab_name );
+                                            ?>
+                                            <a href="#<?php echo esc_attr( $slug ); ?>"<?php echo $first ? ' class="active"' : ''; ?>>
+                                                <?php echo esc_html( $tab_name ); ?>
+                                            </a>
+                                            <?php
+                                            $first = false;
+                                        endwhile;
+                                    endif;
+                                    ?>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--inner Container2--->
 
-					<div class="indutries_infomation">
-						<div class="inner-container2">
-							<div id="<?php echo esc_attr( sanitize_title( get_sub_field( 'tab_name' ) ) ); ?>" class="industries_info_section">
-								<div class="industries_infomation_title">
-									<div class="inn_info_title">
-										<h3 class="third_title FC"><?php echo esc_html( get_sub_field( 'industry_title' ) ); ?></h3>
-									</div>
-									<div class="inn_pro_info">
-										<div class="LSM"><span class="sm_title"><?php esc_html_e( 'Fuel:', 'essar' ); ?></span></div>
-										<div class="RSM">
-											<?php
-											if ( have_rows( 'industry_fuel' ) ) :
-												while ( have_rows( 'industry_fuel' ) ) :
-													the_row();
-													?>
-													<span class="sm_info"><?php echo esc_html( get_sub_field( 'fuel_name' ) ); ?></span>
-													<?php
-												endwhile;
-											endif;
-											?>
-										</div>
-									</div>
-								</div>
+        <div class="main-content">
+            <?php
+            if ( have_rows( 'geographies_tabs' ) ) :
+                while ( have_rows( 'geographies_tabs' ) ) :
+                    the_row();
+                    $tab_name                = get_sub_field( 'tab_name' );
+                    $tab_slug                = sanitize_title_with_dashes( $tab_name );
+                    $geographies_image       = get_sub_field( 'geographies_image' );
+                    $geographies_title       = get_sub_field( 'geographies_title' );
+                    $geographies_sub_title   = get_sub_field( 'geographies_sub_title' );
+                    $challange_title         = get_sub_field( 'challange_title' );
+                    $challange_description   = get_sub_field( 'challange_description' );
+                    $solution_title          = get_sub_field( 'solution_title' );
+                    $solution_textarea       = get_sub_field( 'solution_textarea' );
+                    $key_benefits_title      = get_sub_field( 'key_benefits_title' );
+                    $key_benefits_description = get_sub_field( 'key_benefits_description' );
+                    ?>
+                    <div class="TBG">
+                        <?php if ( $geographies_image ) : ?>
+                            <img src="<?php echo esc_url( $geographies_image['url'] ); ?>" alt="<?php echo esc_attr( $geographies_image['alt'] ); ?>">
+                        <?php endif; ?>
+                    </div>
+                    <div class="indutries_infomation">
+                        <div class="inner-container2">
+                            <div id="<?php echo esc_attr( $tab_slug ); ?>" class="industries_info_section">
+                                <div class="industries_infomation_title">
+                                    <div class="inn_info_title">
+                                        <h3 class="third_title FC"><?php echo esc_html( $geographies_title ); ?></h3>
+                                        <h3 class="third_title gradient-font"><?php echo esc_html( $geographies_sub_title ); ?></h3>
+                                    </div>
+                                </div>
 
-								<div class="midd_industries_area">
-									<div class="Left_industries_area FR">
-										<div class="inn_content">
-											<div class="challeage_title">
-												<img src="<?php echo esc_url( $template_uri . '/images/industries/cil_puzzle.png' ); ?>" alt="<?php esc_attr_e( 'Challenge Icon', 'essar' ); ?>" />
-												<h5 class="CS_title FC"><?php echo esc_html( get_sub_field( 'challange_title' ) ); ?></h5>
-											</div>
-											<p><?php echo esc_html( get_sub_field( 'challange_description' ) ); ?></p>
-										</div>
-									</div>
+                                <div class="midd_industries_area">
+                                    <div class="Left_industries_area FR">
+                                        <div class="inn_content">
+                                            <div class="challeage_title">
+                                                <img src="<?php echo esc_url( $template_uri ); ?>/images/industries/cil_puzzle.png" alt="<?php esc_attr_e( 'Challenge icon', 'essar' ); ?>" />
+                                                <h5 class="CS_title FC"><?php echo esc_html( $challange_title ); ?></h5>
+                                            </div>
+                                            <p><?php echo esc_html( $challange_description ); ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="Right_industries_area Fl">
+                                        <div class="inn_content">
+                                            <div class="challeage_title">
+                                                <img src="<?php echo esc_url( $template_uri ); ?>/images/industries/lets-icons_target.png" alt="<?php esc_attr_e( 'Solution icon', 'essar' ); ?>" />
+                                                <h5 class="CS_title FC"><?php echo esc_html( $solution_title ); ?></h5>
+                                            </div>
+                                            <p><?php echo esc_html( $solution_textarea ); ?></p>
+                                        </div>
+                                    </div>
+                                </div>
 
-									<div class="Right_industries_area Fl">
-										<div class="inn_content">
-											<div class="challeage_title">
-												<img src="<?php echo esc_url( $template_uri . '/images/industries/lets-icons_target.png' ); ?>" alt="<?php esc_attr_e( 'Solution Icon', 'essar' ); ?>" />
-												<h5 class="CS_title FC"><?php echo esc_html( get_sub_field( 'solution_title' ) ); ?></h5>
-											</div>
-											<p><?php echo esc_html( get_sub_field( 'solution_textarea' ) ); ?></p>
-										</div>
-									</div>
-								</div>
-
-								<div class="key_benifit_section">
-									<div class="KB_title">
-										<img src="<?php echo esc_url( $template_uri . '/images/industries/key_benfit.png' ); ?>" alt="<?php esc_attr_e( 'Key Benefit Icon', 'essar' ); ?>" />
-										<h5><?php echo esc_html( get_sub_field( 'key_benefits_title' ) ); ?></h5>
-									</div>
-									<div class="KB_info">
-										<p><?php echo esc_html( get_sub_field( 'key_benefits_description' ) ); ?></p>
-									</div>
-								</div>
-							</div> <!-- .industries_info_section -->
-						</div>
-					</div>
-				<?php endwhile; ?>
-			</div>
-		</div>
-	</section>
+                                <div class="key_benifit_section">
+                                    <div class="KB_title">
+                                        <img src="<?php echo esc_url( $template_uri ); ?>/images/industries/key_benfit.png" alt="<?php esc_attr_e( 'Key benefit icon', 'essar' ); ?>" />
+                                        <h5><?php echo esc_html( $key_benefits_title ); ?></h5>
+                                    </div>
+                                    <div class="KB_info">
+                                        <p><?php echo esc_html( $key_benefits_description ); ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
+ <!-- Partnership Section -->
+ <section class="partnership-section geographies_cta_section animate-on-scroll">
+    <div class="container">
+      <div class="call_to_action_section">
+          <div class="inner-container2">
+            <div class="Left_cta_section">
+              <h2 class="cta_title"><?php the_field('geographies_global_vision_title'); ?></h2>
+              <p class="os_paragraph"><?php the_field('geographies_global_vision_description'); ?></p>
+              <?php
+$geographies_contact_button = get_field( 'geographies_link' );
+if ( $geographies_contact_button ) :
+    $geographies_contact_url    = esc_url( $geographies_contact_button['url'] );
+    $geographies_contact_title  = esc_html( $geographies_contact_button['title'] );
+    $geographies_contact_target = $geographies_contact_button['target'] ? esc_attr( $geographies_contact_button['target'] ) : '_self';
+    $template_uri   = get_template_directory_uri();
+    ?>
+    <div class="partner-btn">
+        <a href="<?php echo $geographies_contact_url; ?>" target="<?php echo $geographies_contact_target; ?>" class="contact-bg">
+            <span class="con-txt"><?php echo $geographies_contact_title; ?></span>
+            <span class="arrow">
+                <img src="<?php echo esc_url( $template_uri . '/images/Arrow-3.png' ); ?>" alt="<?php echo esc_attr__( 'Arrow Icon', 'essar' ); ?>">
+            </span>
+            <span class="arrow2">
+                <img src="<?php echo esc_url( $template_uri . '/images/Arrow-3.png' ); ?>" alt="<?php echo esc_attr__( 'Arrow Icon', 'essar' ); ?>">
+            </span>
+        </a>
+    </div>
 <?php endif; ?>
+            </div>
 
-<section class="partnership-section solution_cta_section animate-on-scroll">
-	<div class="container">
-		<div class="call_to_action_section">
-			<div class="inner-container2">
-				<div class="Left_cta_section">
-					<h2 class="cta_title">
-						<?php esc_html_e( 'Committed to delivering scalable, sustainable, and commercially viable clean energy solutions', 'essar' ); ?>
-					</h2>
-					<p class="os_paragraph">
-						<?php esc_html_e( 'Contact us today to partner us in our journey to power the world\'s transition to a net-zero future.', 'essar' ); ?>
-					</p>
-					<div class="partner-btn">
-						<a href="#" class="contact-bg">
-							<span class="con-txt"><?php esc_html_e( 'Contact Us', 'essar' ); ?></span>
-							<span class="arrow"><img src="<?php echo esc_url( $template_uri . '/images/Arrow-3.png' ); ?>" alt="<?php esc_attr_e( 'Arrow Icon', 'essar' ); ?>"></span>
-							<span class="arrow2"><img src="<?php echo esc_url( $template_uri . '/images/Arrow-3.png' ); ?>" alt="<?php esc_attr_e( 'Arrow Icon', 'essar' ); ?>"></span>
-						</a>
-					</div>
-				</div>
-				<img src="<?php echo esc_url( $template_uri . '/images/solution/cta_right_img.png' ); ?>" alt="<?php esc_attr_e( 'Earth', 'essar' ); ?>" class="partner-img">
-			</div>
-		</div>
-	</div>
-</section>
-<?php get_footer(); ?>
+            <img src="<?php the_field('geographies_image');  ?>" alt="Earth" class="partner-img">
+          </div>
+      </div>
+    </div>
+  </section>
+<?php
+get_footer();

@@ -7,7 +7,7 @@ body{
       top: 0;
       left: 0;
       width: 100%;
-      min-height: 70px;
+      min-height: 100px;
       z-index: 99;
       padding: 0px 0; transition: 0.3s;
   }
@@ -125,7 +125,7 @@ nav:hover .menu-bg{
       justify-content: space-between;
       margin: auto;
       /* background: red; */
-      padding:6px 0px 0 0;
+      padding:6px 0px 4px 0;
     }
     .navbar .logo a{
       font-size: 30px;
@@ -244,7 +244,7 @@ nav:hover .menu-bg{
     }
     nav .navbar .links li .sub-menu{
       position: absolute;
-      top: 100px;
+      top: 102px;
       left: -50px;
       line-height: 40px;
       background: #ffffff;
@@ -442,7 +442,11 @@ nav:hover .menu-bg{
         max-width: 100%;
         padding: 0 0 0 0px
       }
-    
+      nav .navbar .links li a.contact-bg:hover {
+       
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: white;
+    }
       nav .navbar .logo a{
         font-size: 27px;
       }
@@ -473,9 +477,17 @@ nav:hover .menu-bg{
       color: #ffffff;
       padding: 0 18px 0 25px;
   }
-  .saf_page nav .navbar .links li a.contact-bg .arrow{
+  .saf_page nav .navbar .links li a.contact-bg .arrow,
+  nav .navbar .links li a.contact-bg .arrow{
     background: none;        width: auto;
   }
+  .saf_page nav .navbar .links li a.contact-bg:hover .arrow,
+  nav .navbar .links li a.contact-bg:hover .arrow{
+    display: none;
+  }
+  /* .contact-bg:hover span.arrow2 {
+    transform: translate(4px, 3px);
+} */
       .mobileview nav .navbar .links li a,
       nav .navbar .links li a{
           color: #374151;
@@ -556,8 +568,15 @@ nav:hover .menu-bg{
       .sidebar-logo i.bx.bx-x {
         font-size: 30px;
         float: right;
+        margin-top: 13px;
+        margin-right: -5px;
     }
-      
+    nav .navbar .links li .sub-menu {
+      width: 336px;
+    }
+    span.SM_txt {
+        width: 210px;
+    }
         .navbar .bx-menu{
           font-size: 26px;
           color: #ffffff;
@@ -647,7 +666,7 @@ nav:hover .menu-bg{
     .navbar .nav-links.show1 .links .htmlCss-sub-menu,
       .navbar .nav-links.show3 .links .js-sub-menu,
       .navbar .nav-links.show2 .links .more .more-sub-menu{
-          display: block;
+          display: block;        left: 0;
         }
         nav .navbar .links li .sub-menu{
           background: transparent;

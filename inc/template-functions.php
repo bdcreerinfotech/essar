@@ -236,7 +236,7 @@ if ( ! function_exists( 'essar_add_custom_body_class_for_industries' ) ) {
 	function essar_add_custom_body_class_for_industries( $classes ) {
 		if ( is_singular() ) {
 			global $post;
-			if ( isset( $post->post_name ) && 'industries' === $post->post_name ) {
+			if ( isset( $post->post_name ) && 'industries' === $post->post_name || 'geographies' === $post->post_name  ) {
 				$classes[] = 'saf_page';
 				$classes[] = 'solution_page';
 			}
@@ -263,3 +263,19 @@ function enqueue_industries_js() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_industries_js' );
+
+/**
+ * Enqueue custom script for 'geographies' page.
+ */
+function enqueue_geographies_script() {
+	if ( is_page( 'geographies' ) ) {
+		wp_enqueue_script(
+			'custom-geographies-script',
+			get_template_directory_uri() . '/js/geographies.js',
+			array(),
+			null,
+			true
+		);
+	}
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_geographies_script' );

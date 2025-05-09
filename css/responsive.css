@@ -28,13 +28,19 @@
 
 /* (1440x900) WXGA+ Display */
 @media  screen and (max-width: 1440px) {
+    span.borderL {
+        left: 167px;
+    }
+    span.borderR {
+        right: 166px;
+    }
     /* insert styles here */
     .h-our-service-info,
     .LEFT-list {
         width: 572px;
     }
     .inner-container-box {
-        padding: 20px 20px 20px 90px;
+        padding: 20px 20px 10px 60px;
     }
     .why-essar-enery-tab .WE-txt {
         width: 90%;
@@ -957,6 +963,9 @@
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
+    .saf_page section.headersection {
+        min-height: 70px;
+    }
     .banner-textarea h2 {
         font-size: 60px;
         line-height: 72px;
@@ -1037,10 +1046,12 @@
     }
     .footer-section {
         margin-bottom: 0;
-        margin-top: -30px;
+        
     }
 
-
+    h2.ab_hero_title.ab_width {
+        width: auto;
+    }
     /* -------SAF PAGE --------- */
     .benefits-cards .card:first-child {
         margin-left: 0;
@@ -1254,8 +1265,74 @@ section.industries-section.geographics_section {
     margin-top:20px;
 }
 
+/* ----------------Contact Us-------------------- */
+section.contact_us_section {
+    padding: 10px 0 100px 0;
+}
+.Left_contact h3 {
+    font-size: 28px;
+    line-height: 35px;
+}
+.mail_text a {
+    font-size: 18px;
+    line-height: 24px;
+}
+form {
+    width:340px;
+}
+.Right_contact {
+    width: 50%;
+    padding: 20px;
+}
+.Left_contact {
+    width: 37.6%;
+}
+.Right_contact .inner-container-space {
+    padding: 0;
+}
+button.common_btn {
+    width: 170px;
+}
+/* ----------------------Contact Us------------------- */
+form {
+    width: 100%;
+}
+.form_div {
+    width: 96%;
+}
+input {
+    width: 83%;
+}
+textarea {
+    width: 96%;
+}
+.Left_contact p {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 16px 0 46px 0;
+}
+/* -------------Newsroom------------ */
+.grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 
-
+}
+.card .card-body p {
+    font-size: 18px;
+    line-height: 24px;
+    max-width:100%;
+}
+.card {
+    margin-bottom: 25px;
+}
+.card .newsroom_video_icons {
+    opacity: 1;
+}
+.newsroom_title_section {
+    padding: 30px 0 54px 0;
+}
+section.partnership-section.solution_cta_section {
+    top: -40px;
+}
 
 }
 
@@ -1294,6 +1371,9 @@ section.industries-section.geographics_section {
 
 }
 @media screen and (max-width:767px){
+    .contact-bg:hover span.arrow2 {
+        transform: translate(4px, 3px);
+    }
     html.lenis {
         overflow-x: hidden;
     }
@@ -1579,7 +1659,7 @@ h2.mobile-banner {
         border-radius: 24px;
     }
     .about-chart-section {
-        padding: 64px 0 64px 0;
+        padding: 40px 0 40px 0;
     }
     .count-box:first-child {
         margin-left: 0;
@@ -1824,7 +1904,8 @@ h2.mobile-banner {
         margin-top:0;
     }
     .brand-video-area {
-        padding: 10px 0 48px 0;
+        padding: 10px 0 40px 0;
+        margin: 0;
     }
     .video-txt h1 {
         font-size: 36px;
@@ -1926,7 +2007,7 @@ h2.mobile-banner {
         letter-spacing: -0.6px;
     }
     section.Green-future-section {
-        margin: 12px 0 -5px 0;
+        margin: 12px 0 20px 0;
     }
     .Left-content {
         width: 100%;
@@ -2143,9 +2224,9 @@ h2.mobile-banner {
         font-size: 32px;
         line-height: 43px;
     }
-    .saf_page section.headersection {
+    /* .saf_page section.headersection {
         min-height: 64px;
-    }
+    } */
     .padding-vertical {
         padding: 0;
     }
@@ -2221,14 +2302,21 @@ h2.mobile-banner {
     .vision-section .inner-content-area {
         padding: 0px 16px 0px 16px;
     }
+    .call_to_action_section {
+        border-radius: 24px;
+        padding: 35px 0;
+    }
     .ab_hero_title {
         font-size: 32px;
         letter-spacing: -0.6px;
         line-height: 38px;
         width: 100%;
     }
+    h2.ab_hero_title.ab_width {
+        width: auto;
+    }
     .leadership {
-        margin: 64px 0 0 0;
+        margin:40px 0 0 0;
     }
     .leader_name_designation {
         width: 90%;
@@ -2281,6 +2369,12 @@ h2.mobile-banner {
         padding: 0 16px;
     }
 /* ------------------Our Solution---------------- */
+.innovation_hero_bg {
+    padding: 40px 0 0 0;
+}
+.innovation_hero_bg img {
+    border-radius: 18px;
+}
 .innovation_bg .innovation_hero_bg.Martop100 {
     margin-top: 50px;
 }
@@ -2309,6 +2403,10 @@ h2.mobile-banner {
 .solution_navigation{
     display: none;
 }
+
+body.solution-fixed .headersection {
+    display: block;
+}
 .solution_box {
     display: inline-block;
     gap: 0;
@@ -2336,7 +2434,7 @@ h2.mobile-banner {
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
-    margin: 15px 0;
+    margin: 12px 0 0 0;
 }
 
 /* ------------------Market Page---------------- */
@@ -2345,7 +2443,9 @@ h2.mobile-banner {
     width: 100%;
 }
 
-
+.inner_overflow, .inner_overflow2 {
+    border-radius: 24px;
+}
 .inner_industries_container {
     padding: 0 15px;
 }
@@ -2390,12 +2490,18 @@ section.industries-section.geographics_section {
 .Right_industries_area {
     width: 100%;
 }
+.Right_industries_area {
+    margin-top: 18px;
+}
 .CS_title {
     font-size: 22px;
     line-height: 30px;
 }
 .challeage_title img {
     width: 28px;
+}
+.inn_pro_info {
+    display: flex;
 }
 .key_benifit_section {
     background: linear-gradient(90deg, rgba(70, 151, 250, 0.2) -0.15%, rgba(174, 217, 61, 0.2) 59.62%), #FFFFFF;
@@ -2456,9 +2562,12 @@ section.industries-section.geographics_section {
     z-index: 5;
 }
 /* ----------------Contact Us---------------- */
+.saf_page section.headersection {
+    min-height: 70px;
+}
 section.contact_us_section {
     top: 0;
-    padding: 20px 0 30px 0;
+    padding:15px 0 30px 0;
 }
 .inner_contact_us {
     width: 100%;
@@ -2469,7 +2578,8 @@ section.contact_us_section {
 form {
     width: auto;
     display: inline-block;
-    padding: 20px;
+    padding: 0px;
+    border-radius: 24px;
 }
 .row {
     display: inline-block;
@@ -2481,11 +2591,11 @@ form {
     border: 0px solid #fff;
     width: 100%;
     margin-bottom: 15px;
-    background: #ffffff;
 }
 input, textarea {
-    background: transparent;
-    border: 0;
+    background: #fff;
+    /* border: 0; */
+    width: 92%;
 }
 .Left_contact p {
     font-size: 16px;
@@ -2494,14 +2604,63 @@ input, textarea {
     padding: 20px 0 20px 0;
 }
 .Left_contact h3 {
-    font-size: 24px;
-    line-height: 30px;
-    padding-right: 130px;
+    font-size: 28px;
+    line-height: 35px;
+    width: 288px;
 }
 .Right_contact {
     margin-top: 20px;
-    width: 100%;
+    width: 90%;
+    padding: 20px;border-radius: 24px;
 }
+.mail_text a {
+    font-size: 21px;
+    line-height: 30px;
+}
+button.common_btn {
+    width: 180px;
+}
+
+/* ------------------Newsroom Page----------------- */
+.card .card-footer img {
+    height: auto;
+}
+.news_tabs {
+    width: 100%;    padding: 8px 0;
+}
+
+.news_tabs button {
+    padding: 6px 10px;
+    width: 100px;
+    height: 52px;
+    font-size: 16px;
+    line-height: 22px;
+}
+.grid {
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+}
+.card {
+    margin-bottom: 0;
+}
+.content-section.active {
+    margin: 20px 0px 20px 0;
+}
+.card .newsroom_video_icons {
+    opacity: 1;
+}
+.card-body {
+    padding: 15px 0 20px 0;
+}
+.card-body p {
+    font-size: 18px;
+    line-height: 28px;
+    margin-top: 0;
+}
+
+.newsroom_title_section {
+    padding: 20px 0 20px 0;
+}
+
 
 
 
@@ -2515,6 +2674,19 @@ input, textarea {
     }
     .banner-textarea {
         bottom: 74px;
+    }
+    .newsroom_title_section {
+        padding: 30px 0 30px 0px;
+    }
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(312px, 1fr));
+    }
+    .news_tabs button {
+        padding: 6px 6px;
+        width: 92px;
+        height: 40px;
+        font-size: 14px;
+        line-height: 20px;
     }
 /* 
 
