@@ -1,6 +1,6 @@
 <?php
 /**
- * Functions which enhance the theme by hooking into WordPress
+ * Theme enhancement functions.
  *
  * @package essar
  */
@@ -28,6 +28,8 @@ add_filter( 'body_class', 'essar_body_classes' );
 
 /**
  * Add a pingback url auto-discovery header for single posts, pages, or attachments.
+ *
+ * @return void
  */
 function essar_pingback_header() {
 	if ( is_singular() && pings_open() ) {
@@ -38,18 +40,20 @@ add_action( 'wp_head', 'essar_pingback_header' );
 
 /**
  * Register footer menus.
+ *
+ * @return void
  */
 function essar_register_menus() {
-    register_nav_menus(
-        array(
-            'top-footer-menu'    => __( 'Top Footer Menu', 'essar' ),
-            'solutions-menu'     => __( 'Solutions Menu', 'essar' ),
-            'markets-menu'       => __( 'Markets Menu', 'essar' ),
-            'news-room-menu'  => __( 'Newsroom Menu', 'essar' ),
-			'contact-us-menu'  => __( 'Contact Us Menu', 'essar' ),
-            'social-menu'  => __( 'Social Menu', 'essar' ),
-        )
-    );
+	register_nav_menus(
+		array(
+			'top-footer-menu'   => __( 'Top Footer Menu', 'essar' ),
+			'solutions-menu'    => __( 'Solutions Menu', 'essar' ),
+			'markets-menu'      => __( 'Markets Menu', 'essar' ),
+			'news-room-menu'    => __( 'Newsroom Menu', 'essar' ),
+			'contact-us-menu'   => __( 'Contact Us Menu', 'essar' ),
+			'social-menu'       => __( 'Social Menu', 'essar' ),
+		)
+	);
 }
 add_action( 'init', 'essar_register_menus' );
 
@@ -60,13 +64,12 @@ add_action( 'init', 'essar_register_menus' );
  * @return array Modified body classes.
  */
 function add_custom_body_class_for_about_us( $classes ) {
-	if ( is_page( 'about-us' )) {
+	if ( is_page( 'about-us' ) ) {
 		$classes[] = 'saf_page';
 	}
 	return $classes;
 }
 add_filter( 'body_class', 'add_custom_body_class_for_about_us' );
-
 
 /**
  * Add custom class to body for specific page.
@@ -75,16 +78,17 @@ add_filter( 'body_class', 'add_custom_body_class_for_about_us' );
  * @return array Modified body classes.
  */
 function add_custom_body_class_for_contact_us( $classes ) {
-	if (  is_page( 'contact-us' )) {
+	if ( is_page( 'contact-us' ) ) {
 		$classes[] = 'saf_page solution_page';
 	}
 	return $classes;
 }
 add_filter( 'body_class', 'add_custom_body_class_for_contact_us' );
 
-
 /**
  * Conditionally enqueue homepage animation script.
+ *
+ * @return void
  */
 function enqueue_custom_homepage_script() {
 	if ( is_front_page() ) {
@@ -99,9 +103,10 @@ function enqueue_custom_homepage_script() {
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_custom_homepage_script' );
 
-
 /**
  * Enqueue 'about-us' page animation script.
+ *
+ * @return void
  */
 function enqueue_about_us_script_file() {
 	if ( is_page( 'about-us' ) ) {
@@ -118,6 +123,8 @@ add_action( 'wp_enqueue_scripts', 'enqueue_about_us_script_file' );
 
 /**
  * Register custom post type: Team.
+ *
+ * @return void
  */
 function essar_register_team_cpt() {
 	register_post_type(
@@ -137,7 +144,6 @@ function essar_register_team_cpt() {
 }
 add_action( 'init', 'essar_register_team_cpt' );
 
-
 /**
  * Remove <span class="wpcf7-form-control-wrap"> from Contact Form 7 output.
  *
@@ -145,10 +151,10 @@ add_action( 'init', 'essar_register_team_cpt' );
  * @return string Modified form HTML without span wrappers.
  */
 function remove_cf7_control_wrap_spans( $content ) {
-	// Remove opening span tag with class wpcf7-form-control-wrap
+	// Remove opening span tag with class wpcf7-form-control-wrap.
 	$content = preg_replace( '/<span class="wpcf7-form-control-wrap[^"]*">/', '', $content );
 
-	// Remove closing span tags
+	// Remove closing span tags.
 	$content = str_replace( '</span>', '', $content );
 
 	return $content;
@@ -157,9 +163,10 @@ add_filter( 'wpcf7_form_elements', 'remove_cf7_control_wrap_spans' );
 
 add_filter( 'wpcf7_autop_or_not', '__return_false' );
 
-
 /**
  * Register Custom Post Type: Our Solutions
+ *
+ * @return void
  */
 function essar_register_our_solutions_post_type() {
 	register_post_type(
@@ -190,9 +197,10 @@ function essar_register_our_solutions_post_type() {
 }
 add_action( 'init', 'essar_register_our_solutions_post_type' );
 
-
 /**
  * Enqueue JS only on single Our Solutions posts.
+ *
+ * @return void
  */
 function essar_enqueue_our_solutions_js() {
 	if ( is_singular( 'our_solutions' ) ) {
@@ -236,7 +244,7 @@ if ( ! function_exists( 'essar_add_custom_body_class_for_industries' ) ) {
 	function essar_add_custom_body_class_for_industries( $classes ) {
 		if ( is_singular() ) {
 			global $post;
-			if ( isset( $post->post_name ) && 'industries' === $post->post_name || 'geographies' === $post->post_name  ) {
+			if ( isset( $post->post_name ) && ( 'industries' === $post->post_name || 'geographies' === $post->post_name ) ) {
 				$classes[] = 'saf_page';
 				$classes[] = 'solution_page';
 			}
@@ -247,6 +255,8 @@ if ( ! function_exists( 'essar_add_custom_body_class_for_industries' ) ) {
 
 /**
  * Enqueue JS on specific page slug.
+ *
+ * @return void
  */
 function enqueue_industries_js() {
 	if ( is_page() ) {
@@ -266,6 +276,8 @@ add_action( 'wp_enqueue_scripts', 'enqueue_industries_js' );
 
 /**
  * Enqueue custom script for 'geographies' page.
+ *
+ * @return void
  */
 function enqueue_geographies_script() {
 	if ( is_page( 'geographies' ) ) {
@@ -279,3 +291,72 @@ function enqueue_geographies_script() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_geographies_script' );
+
+/**
+ * Add custom body classes based on page slug.
+ *
+ * @param array $classes Existing body classes.
+ * @return array Modified body classes.
+ */
+function custom_body_classes_for_solutions_page( $classes ) {
+	// Check if we're on a single page or post.
+	if ( is_page() || is_single() ) {
+		global $post;
+		$post_slug = $post->post_name;
+
+		// Add classes if slug matches "our-solutions".
+		if ( 'our-solutions' === $post_slug|| 'markets' === $post_slug ) {
+			$classes[] = 'saf_page';
+			$classes[] = 'solution_pag';
+		}
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'custom_body_classes_for_solutions_page' );
+
+/**
+ * Enqueue custom JS for our-solutions page.
+ *
+ * @return void
+ */
+function enqueue_custom_js_for_solutions_page() {
+	// Check if we're on a single page or post.
+	if ( is_page() || is_single() ) {
+		global $post;
+		$post_slug = $post->post_name;
+
+		// Check if this is our solutions page.
+		if ( 'our-solution' === $post_slug ) {
+			// Enqueue your custom JS file.
+			wp_enqueue_script(
+				'custom-geographies-scripts',
+				get_template_directory_uri() . '/js/our_solution.js',
+				array(),
+				null,
+				true
+			);
+		}
+	}
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_custom_js_for_solutions_page' );
+
+/**
+ * Enqueue JS only for the 'markets' page.
+ */
+function essar_enqueue_markets_script() {
+	if ( is_page() ) {
+		global $post;
+
+		if ( isset( $post->post_name ) && 'markets' === $post->post_name ) {
+			wp_enqueue_script(
+				'essar-markets-script',
+				get_template_directory_uri() . '/js/market.js',
+				array(),
+				'1.0.0',
+				true
+			);
+		}
+	}
+}
+add_action( 'wp_enqueue_scripts', 'essar_enqueue_markets_script' );
