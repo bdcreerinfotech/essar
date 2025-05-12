@@ -1,4 +1,3 @@
-
 // Make ScrollTrigger available for use in GSAP animations
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,29 +45,29 @@ function initScroll(section, items2, direction) {
   items2.forEach((item, index) => {
     timeline.to(item, {
       scale: 0.9,
-      borderRadius: "10px"
+      borderRadius: "30px"
     });
 
     direction == "horizontal"
       ? timeline.to(
-          items2[index + 1],
-          {
-            xPercent: 0
-          },
-          "<"
-        )
+        items2[index + 1],
+        {
+          xPercent: 0
+        },
+        "<"
+      )
       : timeline.to(
-          items2[index + 1],
-          {
-            yPercent: 0
-          },
-          "<"
-        );
+        items2[index + 1],
+        {
+          yPercent: 0
+        },
+        "<"
+      );
   });
 }
 
 
-window.addEventListener("scroll", function() {
+window.addEventListener("scroll", function () {
   const verticalSection = document.querySelector(".vertical-section");
   const headerSection = document.querySelector(".headersection");
 
@@ -82,7 +81,40 @@ window.addEventListener("scroll", function() {
   }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const elements = document.querySelectorAll(".animate-on-scroll");
 
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target); // only animate once
+      }
+    });
+  }, { threshold: 0.2 });
+
+  elements.forEach((el) => observer.observe(el));
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const cards = document.querySelectorAll(".card");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        // Optional: Add stagger delay
+        entry.target.style.transitionDelay = `${index * 100}ms`;
+        entry.target.classList.add("visible");
+      } else {
+        entry.target.classList.remove("visible"); // Remove for re-trigger on scroll
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  cards.forEach(card => observer.observe(card));
+});
 
 
 

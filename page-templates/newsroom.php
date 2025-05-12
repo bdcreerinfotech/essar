@@ -4,189 +4,170 @@
  *
  * @package essar
  * @subpackage essar
- * @since essar 1.0
+ * @since 1.0.0
  */
 
 get_header();
 
 $template_uri = esc_url( get_template_directory_uri() );
+$default_img  = esc_url( get_template_directory_uri() . '/images/default-news.png' );
 ?>
 
-<section class="section">
-    <div class="container-medium">
-        <div class="padding-vertical">
-            <div class="inner-container2">
-                <div class="geographies-section">
-                    <div class="saf_btn border-btn marBottom20"><h5 class="gradient-font"><?php echo esc_html( get_field( 'geographies_title' ) ); ?></h5></div>
-                    <h2 class="hero_title"><?php echo esc_html( get_field( 'geographies_sub_title' ) ); ?></h2>
-                    <h2 class="hero_title gradient-font"><?php echo esc_html( get_field( 'geographies_sub_title_2' ) ); ?></h2>              
-                    <p class="os_paragraph marTop20">
-                        <?php echo wp_kses_post( get_field( 'geographies_description' ) ); ?>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+<section class="Newsroom_section">
+	<div class="inner_NS_area">
+		<div class="container">
+			<div class="inner-container2">
+				<div class="NS_Main_area">
+					<div class="newsroom_title_section">
+						<h1 class="inner_heading_title"><?php echo esc_html__( 'Newsroom', 'essar' ); ?></h1>
+					</div>
+					<div class="tab-wrapper">
+						<div class="news_tabs">
+							<button class="tab-button active" data-target="news"><?php echo esc_html__( 'News', 'essar' ); ?></button>
+							<button class="tab-button" data-target="videos"><?php echo esc_html__( 'Videos', 'essar' ); ?></button>
+							<button class="tab-button" data-target="downloads"><?php echo esc_html__( 'Downloads', 'essar' ); ?></button>
+						</div>
+					</div>
+
+					<?php
+					$paged      = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+					$news_query = new WP_Query(
+						array(
+							'post_type'      => 'post',
+							'posts_per_page' => 3,
+							'paged'          => $paged,
+						)
+					);
+					?>
+					<div class="content-section active" id="news" data-page="1" data-type="news" data-max="<?php echo esc_attr( $news_query->max_num_pages ?? 5 ); ?>">
+						<?php
+						if ( $news_query->have_posts() ) :
+							while ( $news_query->have_posts() ) :
+								$news_query->the_post();
+								$news_url = get_field( 'news_url' );
+								?>
+								<div class="grid">
+									<div class="card">
+										<a href="<?php echo esc_url( $news_url ); ?>">
+											<?php if ( has_post_thumbnail() ) : ?>
+												<?php the_post_thumbnail( 'custom-thumb-340x200' ); ?>
+											<?php else : ?>
+												<img src="<?php echo esc_url( $default_img ); ?>" alt="<?php esc_attr_e( 'Default image', 'essar' ); ?>">
+											<?php endif; ?>
+											<div class="card-body">
+												<p><?php echo esc_html( get_the_title() ); ?></p>
+											</div>
+											<div class="card-footer">
+												<span><?php echo esc_html( get_the_date( 'M d, Y' ) ); ?></span>
+												<img src="<?php echo esc_url( $template_uri . '/images/nr-button.png' ); ?>" alt="<?php esc_attr_e( 'Arrow icon', 'essar' ); ?>">
+											</div>
+										</a>
+									</div>
+								</div>
+								<?php
+							endwhile;
+							wp_reset_postdata();
+						else :
+							echo '<p>' . esc_html__( 'No news found.', 'essar' ) . '</p>';
+						endif;
+						?>
+					</div>
+
+					<?php
+					$video_query = new WP_Query(
+						array(
+							'post_type'      => 'video',
+							'posts_per_page' => 3,
+						)
+					);
+					?>
+					<div class="content-section" id="videos" data-page="1" data-type="video" data-max="<?php echo esc_attr( $video_query->max_num_pages ); ?>">
+						<?php
+						if ( $video_query->have_posts() ) :
+							while ( $video_query->have_posts() ) :
+								$video_query->the_post();
+								$video_url = get_field( 'video_url' );
+								?>
+								<div class="grid">
+									<div class="card">
+										<a href="#" class="video-link" data-video-url="<?php echo esc_url( $video_url ); ?>">
+											<div class="video_IMG">
+												<?php if ( has_post_thumbnail() ) : ?>
+													<?php the_post_thumbnail( 'custom-thumb-340x200' ); ?>
+												<?php endif; ?>
+												<img src="<?php echo esc_url( $template_uri . '/images/newsroom/VI.png' ); ?>" class="newsroom_video_icons" alt="<?php esc_attr_e( 'Play icon', 'essar' ); ?>">
+											</div>
+											<div class="card-body">
+												<p><?php echo esc_html( get_the_title() ); ?></p>
+											</div>
+											<div class="card-footer">
+												<span><?php echo esc_html( get_the_date( 'M d, Y' ) ); ?></span>
+											</div>
+										</a>
+									</div>
+								</div>
+								<?php
+							endwhile;
+							wp_reset_postdata();
+						else :
+							echo '<p>' . esc_html__( 'No videos found.', 'essar' ) . '</p>';
+						endif;
+						?>
+					</div>
+
+					<?php
+					$download_query = new WP_Query(
+						array(
+							'post_type'      => 'download',
+							'posts_per_page' => 3,
+						)
+					);
+					?>
+					<div class="content-section" id="downloads" data-page="1" data-type="download" data-max="<?php echo esc_attr( $download_query->max_num_pages ); ?>">
+						<?php
+						if ( $download_query->have_posts() ) :
+							while ( $download_query->have_posts() ) :
+								$download_query->the_post();
+								$file_url = get_field( 'file_url' );
+								?>
+								<div class="grid">
+									<div class="card">
+										<a href="<?php echo esc_url( $file_url ); ?>" target="_blank" rel="noopener">
+											<div class="video_IMG">
+												<?php if ( has_post_thumbnail() ) : ?>
+													<?php the_post_thumbnail( 'custom-thumb-340x200' ); ?>
+												<?php endif; ?>
+												<img src="<?php echo esc_url( $template_uri . '/images/newsroom/download_icon.png' ); ?>" class="newsroom_video_icons" alt="<?php esc_attr_e( 'Download icon', 'essar' ); ?>">
+											</div>
+											<div class="card-body">
+												<p><?php echo esc_html( get_the_title() ); ?></p>
+											</div>
+											<div class="card-footer">
+												<span><?php echo esc_html( get_the_date( 'M d, Y' ) ); ?></span>
+											</div>
+										</a>
+									</div>
+								</div>
+								<?php
+							endwhile;
+							wp_reset_postdata();
+						else :
+							echo '<p>' . esc_html__( 'No downloads found.', 'essar' ) . '</p>';
+						endif;
+						?>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 
-<section class="geo_ab_section">
-    <div class="geographies_about_area">
-        <div class="container">
-            <div class="inner-container2">
-                <div class="inn_geographies">
-                    <div class="Left_gab_sec">
-                        <p>
-                            <?php echo wp_kses_post( get_field( 'key_advantage_description' ) ); ?>
-                        </p>
-                    </div>
-                    <div class="Right_gab_sec">
-                        <video autoplay muted loop playsinline preload="metadata">
-                            <source src="<?php echo esc_url( get_field( 'key_advantage_video' ) ); ?>" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<div id="videoModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000;">
+	<div class="youtube_video_box" style="position:relative; width:80%; max-width:800px;">
+		<iframe id="videoFrame" width="100%" height="450" frameborder="0" allowfullscreen></iframe>
+		<button onclick="closeVideo()" class="yt_closebtn">X</button>
+	</div>
+</div>
 
-<section class="industries_top_bar">
-    <div class="">
-        <div class="inner-container2 fixed-side-bar">
-            <div class="side-bar">
-                <div class="solution_navigation geo_navigation">
-                    <div class="container">
-                        <div class="inner-container2">
-                            <ul>
-                                <li>
-                                    <?php
-                                    if ( have_rows( 'geographies_tabs' ) ) :
-                                        $first = true;
-                                        while ( have_rows( 'geographies_tabs' ) ) :
-                                            the_row();
-                                            $tab_name = get_sub_field( 'tab_name' );
-                                            $slug     = sanitize_title_with_dashes( $tab_name );
-                                            ?>
-                                            <a href="#<?php echo esc_attr( $slug ); ?>"<?php echo $first ? ' class="active"' : ''; ?>>
-                                                <?php echo esc_html( $tab_name ); ?>
-                                            </a>
-                                            <?php
-                                            $first = false;
-                                        endwhile;
-                                    endif;
-                                    ?>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!--inner Container2--->
-
-        <div class="main-content">
-            <?php
-            if ( have_rows( 'geographies_tabs' ) ) :
-                while ( have_rows( 'geographies_tabs' ) ) :
-                    the_row();
-                    $tab_name                = get_sub_field( 'tab_name' );
-                    $tab_slug                = sanitize_title_with_dashes( $tab_name );
-                    $geographies_image       = get_sub_field( 'geographies_image' );
-                    $geographies_title       = get_sub_field( 'geographies_title' );
-                    $geographies_sub_title   = get_sub_field( 'geographies_sub_title' );
-                    $challange_title         = get_sub_field( 'challange_title' );
-                    $challange_description   = get_sub_field( 'challange_description' );
-                    $solution_title          = get_sub_field( 'solution_title' );
-                    $solution_textarea       = get_sub_field( 'solution_textarea' );
-                    $key_benefits_title      = get_sub_field( 'key_benefits_title' );
-                    $key_benefits_description = get_sub_field( 'key_benefits_description' );
-                    ?>
-                    <div class="TBG">
-                        <?php if ( $geographies_image ) : ?>
-                            <img src="<?php echo esc_url( $geographies_image['url'] ); ?>" alt="<?php echo esc_attr( $geographies_image['alt'] ); ?>">
-                        <?php endif; ?>
-                    </div>
-                    <div class="indutries_infomation">
-                        <div class="inner-container2">
-                            <div id="<?php echo esc_attr( $tab_slug ); ?>" class="industries_info_section">
-                                <div class="industries_infomation_title">
-                                    <div class="inn_info_title">
-                                        <h3 class="third_title FC"><?php echo esc_html( $geographies_title ); ?></h3>
-                                        <h3 class="third_title gradient-font"><?php echo esc_html( $geographies_sub_title ); ?></h3>
-                                    </div>
-                                </div>
-
-                                <div class="midd_industries_area">
-                                    <div class="Left_industries_area FR">
-                                        <div class="inn_content">
-                                            <div class="challeage_title">
-                                                <img src="<?php echo esc_url( $template_uri ); ?>/images/industries/cil_puzzle.png" alt="<?php esc_attr_e( 'Challenge icon', 'essar' ); ?>" />
-                                                <h5 class="CS_title FC"><?php echo esc_html( $challange_title ); ?></h5>
-                                            </div>
-                                            <p><?php echo esc_html( $challange_description ); ?></p>
-                                        </div>
-                                    </div>
-                                    <div class="Right_industries_area Fl">
-                                        <div class="inn_content">
-                                            <div class="challeage_title">
-                                                <img src="<?php echo esc_url( $template_uri ); ?>/images/industries/lets-icons_target.png" alt="<?php esc_attr_e( 'Solution icon', 'essar' ); ?>" />
-                                                <h5 class="CS_title FC"><?php echo esc_html( $solution_title ); ?></h5>
-                                            </div>
-                                            <p><?php echo esc_html( $solution_textarea ); ?></p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="key_benifit_section">
-                                    <div class="KB_title">
-                                        <img src="<?php echo esc_url( $template_uri ); ?>/images/industries/key_benfit.png" alt="<?php esc_attr_e( 'Key benefit icon', 'essar' ); ?>" />
-                                        <h5><?php echo esc_html( $key_benefits_title ); ?></h5>
-                                    </div>
-                                    <div class="KB_info">
-                                        <p><?php echo esc_html( $key_benefits_description ); ?></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php endwhile; ?>
-            <?php endif; ?>
-        </div>
-    </div>
-</section>
- <!-- Partnership Section -->
- <section class="partnership-section geographies_cta_section animate-on-scroll">
-    <div class="container">
-      <div class="call_to_action_section">
-          <div class="inner-container2">
-            <div class="Left_cta_section">
-              <h2 class="cta_title"><?php the_field('geographies_global_vision_title'); ?></h2>
-              <p class="os_paragraph"><?php the_field('geographies_global_vision_description'); ?></p>
-              <?php
-$geographies_contact_button = get_field( 'geographies_link' );
-if ( $geographies_contact_button ) :
-    $geographies_contact_url    = esc_url( $geographies_contact_button['url'] );
-    $geographies_contact_title  = esc_html( $geographies_contact_button['title'] );
-    $geographies_contact_target = $geographies_contact_button['target'] ? esc_attr( $geographies_contact_button['target'] ) : '_self';
-    $template_uri   = get_template_directory_uri();
-    ?>
-    <div class="partner-btn">
-        <a href="<?php echo $geographies_contact_url; ?>" target="<?php echo $geographies_contact_target; ?>" class="contact-bg">
-            <span class="con-txt"><?php echo $geographies_contact_title; ?></span>
-            <span class="arrow">
-                <img src="<?php echo esc_url( $template_uri . '/images/Arrow-3.png' ); ?>" alt="<?php echo esc_attr__( 'Arrow Icon', 'essar' ); ?>">
-            </span>
-            <span class="arrow2">
-                <img src="<?php echo esc_url( $template_uri . '/images/Arrow-3.png' ); ?>" alt="<?php echo esc_attr__( 'Arrow Icon', 'essar' ); ?>">
-            </span>
-        </a>
-    </div>
-<?php endif; ?>
-            </div>
-
-            <img src="<?php the_field('geographies_image');  ?>" alt="Earth" class="partner-img">
-          </div>
-      </div>
-    </div>
-  </section>
-<?php
-get_footer();
+<?php get_footer(); ?>

@@ -348,6 +348,33 @@ get_header();
 		<img src="<?php echo esc_url( get_template_directory_uri() . '/images/mobile-mask.png' ); ?>" alt="Mobile Mask">
 	</div>
 </section>
+<section>
+        <div class="brand-video-area">
+            <div class="inner-container-space">
+                <div class="container">                
+                        <div class="video-container">
+                            <video autoplay muted loop>
+                            <source src="<?php the_field('brand_video');  ?>" type="video/mp4" />
+                            Your browser does not support HTML5 video.
+                            </video>
+                            <div class="overlay"></div>
+                            <div class="b-overlay"></div>
+                            <div class="video-txt">
+                                <span class="borderL"></span>
+                                    <h1>
+                                        Brand 
+                                        <img src="<?php echo esc_url( get_template_directory_uri()); ?>/images/video-icon.png" alt="Play Icon" />
+                                        Video 
+                                    </h1>
+                                    <span class="borderR"></span>
+                            </div>
+
+                        </div>
+                </div>
+            </div>
+        </div>
+        <i class="clearfix"></i>
+    </section>
 <section class="NewsRoom-section">
 	<div class="NR-section">
 		<div class="container">
@@ -384,7 +411,7 @@ get_header();
 											<?php
 											if ( has_post_thumbnail() ) {
 												the_post_thumbnail(
-													'medium',
+													'custom-thumb-340x200',
 													array(
 														'alt' => the_title_attribute(
 															array(
@@ -429,19 +456,21 @@ get_header();
 	<i class="clearfix"></i>
 </section>
 <section class="Green-future-section">        
-	<div class="inner-container-space">
-		<div class="container">
-			<div class="container1">
-				<div class="inner-green-section">
-					<div class="Left-content">
-						<h2 data-aos="fade-up">
-							<?php the_field( 'green_future_title' ); ?>
-						</h2>
-						<p data-aos="fade-up" data-aos-delay="300">
-						<?php the_field( 'green_future_description' ); ?>
-						</p>
-						<div class="Gbutton-box" data-aos="fade-up" data-aos-delay="300">
-						<?php
+        <div class="inner-container-space">
+            <div class="container">
+                <div class="container1">
+                    <div class="inner-green-section">
+                        <div class="Left-content">
+                            <h2 data-aos="fade-up">
+                            Let’s Build a 
+                        <span class="gradient-font"> <?php the_field( 'green_future_title' ); ?></span>
+                            Together!
+                            </h2>
+                            <p data-aos="fade-up" data-aos-delay="300">
+                            <?php the_field( 'green_future_description' ); ?>
+                            </p>
+                            <div class="Gbutton-box" data-aos="fade-up" data-aos-delay="300">
+								<?php
 						$contact_us_link = get_field( 'green_future_button' );
 
 						if ( $contact_us_link ) :
@@ -459,17 +488,27 @@ get_header();
 								</span>
 							</a>
 						<?php endif; ?>
-						</div>
-					</div>
-					<div class="Right-content scaleDown">
-						<img src="<?php echo esc_url( get_template_directory_uri() . '/images/zoom-img.png' ); ?>" class="earth-image" alt="<?php esc_attr_e( 'Zoomed Earth', 'essar' ); ?>" />
-					</div>
-					<i class="clearfix"></i>
-				</div>
-			</div>
-		</div>
-	</div>
-	<i class="clearfix"></i>
-</section>
+							</div>
+                        </div>
+                        <!-- <div class="Right-content  scaleDown">
+                        <img src="images/zoom-img.png" class="earth-image" alt="Zoomed Earth" />                             
+                        </div> -->
+
+                        <div class="image-wrap">
+                            <img src="<?php echo esc_url( get_template_directory_uri() . '/images/earth_img.png' ); ?>" alt="Earth" class="earth-image" />
+                        </div>
+
+                        <!-- <div class="Right-content mobi">
+                             <img src="images/mobi-zoom-img.png" class="earth-image" alt="Zoomed Earth" /> 
+                        </div> -->
+                        <i class="clearfix"></i>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <i class="clearfix"></i>
+    </section>
+
 <?php
 get_footer();

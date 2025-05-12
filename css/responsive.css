@@ -67,8 +67,12 @@
 .partner-img {
     right: -100px;
 }
-
-
+.partnership-section.green_ammonia_cta .partner-img {
+    right: -40px;
+}
+.methanol img.partner-img {
+    right: -60px;
+}
 
 }
 
@@ -133,11 +137,6 @@
     }
 
 /* --------------SAF Page------------- */
-.plant-section{
-    background: url(../images/saf/small_bg.png) no-repeat;
-    background-size: cover;
-  }
-
 /* ---------------About Us----------------- */
 
 .Right_leadertext p {
@@ -1053,8 +1052,26 @@
         width: auto;
     }
     /* -------SAF PAGE --------- */
+    .item_saf img.ss-mobile-show {
+        display: none;
+    }
+    .item_saf img.ss-desk-show {
+        display: block;
+    }
     .benefits-cards .card:first-child {
         margin-left: 0;
+    }
+    .benefits-cards.four_box .card:nth-child(2) {
+        margin-right: 0;
+    }
+    .benefits-cards.four_box .card:nth-child(3) {
+        margin-left: 0;
+    }
+    .benefits-cards.four_box .card {
+        width:42.5%;        margin-bottom: 20px;
+    }
+    .benefits-cards.four_box .card p {
+        max-width: 245px;
     }
     .benefits-cards .card:last-child {
         margin-right: 0;
@@ -2217,6 +2234,16 @@ h2.mobile-banner {
         opacity: 0.6;
     }
 /* ----SAF PAGE--------- */
+.item_saf img {
+    height: 100%;
+    object-fit: cover;
+}
+.item_saf img.ss-mobile-show {
+    display: block;
+}
+.item_saf img.ss-desk-show {
+    display: none;
+}
     .our-solution-section {
         padding:50px 16px 50px 16px;
     }
@@ -2234,6 +2261,9 @@ h2.mobile-banner {
         padding: 0px 20px 0px 20px;
     }
     .benefits-cards .card {
+        width: 76%;
+    }
+    .benefits-cards.four_box .card {
         width: 76%;
     }
     .Left_cta_section,
@@ -2283,6 +2313,7 @@ h2.mobile-banner {
         bottom: -52px;
         right: -9px;
         width: 70%;
+        display: none;
     }
     .partnership-section .container {
         padding: 0 16px;

@@ -79,17 +79,11 @@
 						$contact_title = $contact_us_link['title'];
 						$contact_target = $contact_us_link['target'] ? $contact_us_link['target'] : '_self';
 						?>
-						<div class="search-box desktop">
-							<a href="<?php echo esc_url( $contact_url ); ?>" class="contact-bg" target="<?php echo esc_attr( $contact_target ); ?>">
-								<?php echo esc_html( $contact_title ); ?>
-								<span class="arrow">
-									<img src="<?php echo esc_url( get_template_directory_uri() . '/images/Arrow-3.png' ); ?>" alt="Arrow">
-								</span>
-								<span class="arrow2">
-									<img src="<?php echo esc_url( get_template_directory_uri() . '/images/Arrow-3.png' ); ?>" alt="Arrow">
-								</span>
-							</a>
-						</div>
+						
+						 <div class="search-box desktop">
+          <a href="<?php echo esc_url( $contact_url ); ?>" class="contact-bg"><span class="con-txt" target="<?php echo esc_attr( $contact_target ); ?>"><?php echo esc_html( $contact_title ); ?></span> <span class="arrow"><img src="<?php echo esc_url( get_template_directory_uri() . '/images/Arrow-3.png' ); ?>"></span><span class="arrow2"><img src="<?php echo esc_url( get_template_directory_uri() . '/images/Arrow-3.png' ); ?>"></span></a>
+
+        </div>
 					<?php endif; ?>
 
 				</div><!-- .navbar -->

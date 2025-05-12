@@ -78,7 +78,7 @@ function essar_setup() {
 		)
 	);
 
-
+	add_image_size( 'custom-thumb-340x200', 340, 200, true );
 	
 }
 add_action( 'after_setup_theme', 'essar_setup' );

@@ -32,7 +32,7 @@ $template_uri = get_template_directory_uri();
 								<?php
 								if ( $background_image ) :
 									?>
-									style="background-image: url('<?php echo esc_url( $background_image['url'] ); ?>')"
+									style="background-image: url('<?php echo esc_url( $background_image['url'] ); ?>'); background-size: cover;"
 									<?php
 								endif;
 								?>
@@ -139,12 +139,7 @@ if ( $popup_loop->have_posts() ) :
 						<?php the_post_thumbnail( 'medium' ); ?>
 					</div>
 					<div class="Right_leadertext">
-						<button type="button" class="close-popup desk-close" aria-label="<?php esc_attr_e( 'Close popup', 'essar' ); ?>">
-							<img 
-								src="<?php echo esc_url( get_template_directory_uri() . '/images/about/close_icon.png' ); ?>"
-								alt="<?php esc_attr_e( 'Close', 'essar' ); ?>"
-							/>
-						</button>
+						<span class="close-popup desk-close"><img src="<?php echo esc_url( get_template_directory_uri() . '/images/about/close_icon.png' ); ?>" alt="<?php esc_attr_e( 'Close', 'essar' ); ?>" /></span>
 						<h3 class="person_name"><?php the_title(); ?></h3>
 						<span class="person_designation"><?php echo esc_html( $designation ); ?></span>
 						<div class="scroll-txt">

@@ -1805,31 +1805,38 @@ section.browse-solutions {
   }
   
   /* Plane Section */
-  .plane-section {
+  /* .plane-section {
     background: url(../images/saf/saf_bg1.png) no-repeat;
     background-size: cover;
-  }
-  .plane-img {
-    max-width: 100%;
-    margin-top: -10%;
-  }
+  } */
+  .item_content.absolute-section {
+    position: absolute;
+}
+.item_saf img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
   
   /* Feedstock Section */
-  .plant-section{
-    background: url(../images/saf/plant_bg.png) no-repeat;
-    background-size: cover;
-  }
+
   .feedstock-section img {
     max-width: 100%;
     margin-top: 40px;
   }
-  
+.item_saf img.ss-mobile-show {
+    display: none;
+}
+.item_saf img.ss-desk-show {
+    display: block;
+}
   /* Tech Section */
-  .tech-section{
+  /* .tech-section{
     background: url(../images/saf/tech_bg.png) no-repeat;
     background-size: cover;
     background-position: top;
-  }
+  } */
   
   .tech-img {
     max-width: 100%;
@@ -1866,6 +1873,7 @@ section.browse-solutions {
     display: inline-block;
     margin-bottom: 0px;
   }
+.benefits-cards.four_box .card{    width: 18.4%;}
   .benefits-cards .card:hover{
     transform: translateY(-10px);
     transition: transform 0.5s ease;
@@ -1897,7 +1905,12 @@ section.browse-solutions {
   .card h3, .card p {
     margin: 0;
 }
-
+.partnership-section.green_ammonia_cta img.partner-img {
+    width: 652px;
+}
+.methanol img.partner-img {
+    width: 778px;
+}
 .benefits-cards .card img {
     width: auto;
     object-fit: none;
@@ -3361,7 +3374,10 @@ section.partnership-section {
     opacity: 1;
     transform: translateY(0);
   } */
-
+  #videoModal span.close-popup.desk-close {
+    right: 20px;
+    top: 20px;
+}
 
 
 
