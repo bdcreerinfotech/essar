@@ -16,8 +16,10 @@ $template_uri = esc_url( get_template_directory_uri() );
     <div class="container-medium">
         <div class="padding-vertical">
             <div class="inner-container2">
-                <div class="geographies-section">
-                    <div class="saf_btn border-btn marBottom20"><h5 class="gradient-font"><?php echo esc_html( get_field( 'geographies_title' ) ); ?></h5></div>
+                <div class="geographies-section" data-aos="fade-up">
+                    <div class="saf_btn border-btn marBottom20">
+                        <h5 class="gradient-font"><?php echo esc_html( get_field( 'geographies_title' ) ); ?></h5>
+                    </div>
                     <h2 class="hero_title"><?php echo esc_html( get_field( 'geographies_sub_title' ) ); ?></h2>
                     <h2 class="hero_title gradient-font"><?php echo esc_html( get_field( 'geographies_sub_title_2' ) ); ?></h2>              
                     <p class="os_paragraph marTop20">
@@ -29,7 +31,7 @@ $template_uri = esc_url( get_template_directory_uri() );
     </div>
 </section>
 
-<section class="geo_ab_section">
+<section class="geo_ab_section" data-aos="fade-up" data-aos-duration="1000">
     <div class="geographies_about_area">
         <div class="container">
             <div class="inner-container2">
@@ -88,16 +90,16 @@ $template_uri = esc_url( get_template_directory_uri() );
             if ( have_rows( 'geographies_tabs' ) ) :
                 while ( have_rows( 'geographies_tabs' ) ) :
                     the_row();
-                    $tab_name                = get_sub_field( 'tab_name' );
-                    $tab_slug                = sanitize_title_with_dashes( $tab_name );
-                    $geographies_image       = get_sub_field( 'geographies_image' );
-                    $geographies_title       = get_sub_field( 'geographies_title' );
-                    $geographies_sub_title   = get_sub_field( 'geographies_sub_title' );
-                    $challange_title         = get_sub_field( 'challange_title' );
-                    $challange_description   = get_sub_field( 'challange_description' );
-                    $solution_title          = get_sub_field( 'solution_title' );
-                    $solution_textarea       = get_sub_field( 'solution_textarea' );
-                    $key_benefits_title      = get_sub_field( 'key_benefits_title' );
+                    $tab_name                 = get_sub_field( 'tab_name' );
+                    $tab_slug                 = sanitize_title_with_dashes( $tab_name );
+                    $geographies_image        = get_sub_field( 'geographies_image' );
+                    $geographies_title        = get_sub_field( 'geographies_title' );
+                    $geographies_sub_title    = get_sub_field( 'geographies_sub_title' );
+                    $challange_title          = get_sub_field( 'challange_title' );
+                    $challange_description    = get_sub_field( 'challange_description' );
+                    $solution_title           = get_sub_field( 'solution_title' );
+                    $solution_textarea        = get_sub_field( 'solution_textarea' );
+                    $key_benefits_title       = get_sub_field( 'key_benefits_title' );
                     $key_benefits_description = get_sub_field( 'key_benefits_description' );
                     ?>
                     <div class="TBG">
@@ -107,7 +109,7 @@ $template_uri = esc_url( get_template_directory_uri() );
                     </div>
                     <div class="indutries_infomation">
                         <div class="inner-container2">
-                            <div id="<?php echo esc_attr( $tab_slug ); ?>" class="industries_info_section">
+                            <div id="<?php echo esc_attr( $tab_slug ); ?>" class="industries_info_section" data-aos="fade-up" data-aos-duration="1000">
                                 <div class="industries_infomation_title">
                                     <div class="inn_info_title">
                                         <h3 class="third_title FC"><?php echo esc_html( $geographies_title ); ?></h3>
@@ -153,40 +155,40 @@ $template_uri = esc_url( get_template_directory_uri() );
         </div>
     </div>
 </section>
- <!-- Partnership Section -->
- <section class="partnership-section geographies_cta_section animate-on-scroll">
-    <div class="container">
-      <div class="call_to_action_section">
-          <div class="inner-container2">
-            <div class="Left_cta_section">
-              <h2 class="cta_title"><?php the_field('geographies_global_vision_title'); ?></h2>
-              <p class="os_paragraph"><?php the_field('geographies_global_vision_description'); ?></p>
-              <?php
-$geographies_contact_button = get_field( 'geographies_link' );
-if ( $geographies_contact_button ) :
-    $geographies_contact_url    = esc_url( $geographies_contact_button['url'] );
-    $geographies_contact_title  = esc_html( $geographies_contact_button['title'] );
-    $geographies_contact_target = $geographies_contact_button['target'] ? esc_attr( $geographies_contact_button['target'] ) : '_self';
-    $template_uri   = get_template_directory_uri();
-    ?>
-    <div class="partner-btn">
-        <a href="<?php echo $geographies_contact_url; ?>" target="<?php echo $geographies_contact_target; ?>" class="contact-bg">
-            <span class="con-txt"><?php echo $geographies_contact_title; ?></span>
-            <span class="arrow">
-                <img src="<?php echo esc_url( $template_uri . '/images/Arrow-3.png' ); ?>" alt="<?php echo esc_attr__( 'Arrow Icon', 'essar' ); ?>">
-            </span>
-            <span class="arrow2">
-                <img src="<?php echo esc_url( $template_uri . '/images/Arrow-3.png' ); ?>" alt="<?php echo esc_attr__( 'Arrow Icon', 'essar' ); ?>">
-            </span>
-        </a>
-    </div>
-<?php endif; ?>
-            </div>
 
-            <img src="<?php the_field('geographies_image');  ?>" alt="Earth" class="partner-img">
-          </div>
-      </div>
+<section class="partnership-section geographies_cta_section animate-on-scroll" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+        <div class="call_to_action_section">
+            <div class="inner-container2">
+                <div class="Left_cta_section">
+                    <h2 class="cta_title"><?php the_field( 'geographies_global_vision_title' ); ?></h2>
+                    <p class="os_paragraph"><?php the_field( 'geographies_global_vision_description' ); ?></p>
+                    <?php
+                    $geographies_contact_button = get_field( 'geographies_link' );
+                    if ( $geographies_contact_button ) :
+                        $geographies_contact_url    = esc_url( $geographies_contact_button['url'] );
+                        $geographies_contact_title  = esc_html( $geographies_contact_button['title'] );
+                        $geographies_contact_target = $geographies_contact_button['target'] ? esc_attr( $geographies_contact_button['target'] ) : '_self';
+                        $template_uri               = get_template_directory_uri();
+                        ?>
+                        <div class="partner-btn">
+                            <a href="<?php echo $geographies_contact_url; ?>" target="<?php echo $geographies_contact_target; ?>" class="contact-bg">
+                                <span class="con-txt"><?php echo $geographies_contact_title; ?></span>
+                                <span class="arrow">
+                                    <img src="<?php echo esc_url( $template_uri . '/images/Arrow-3.png' ); ?>" alt="<?php echo esc_attr__( 'Arrow Icon', 'essar' ); ?>">
+                                </span>
+                                <span class="arrow2">
+                                    <img src="<?php echo esc_url( $template_uri . '/images/Arrow-3.png' ); ?>" alt="<?php echo esc_attr__( 'Arrow Icon', 'essar' ); ?>">
+                                </span>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <img src="<?php the_field( 'geographies_image' ); ?>" alt="Earth" class="partner-img">
+            </div>
+        </div>
     </div>
-  </section>
+</section>
+
 <?php
 get_footer();

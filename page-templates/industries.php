@@ -12,11 +12,11 @@ get_header();
 $template_uri = get_template_directory_uri();
 ?>
 
-<section class="section">
+<section class="section" data-aos="fade-up">
 	<div class="container-medium">
 		<div class="padding-vertical">
 			<div class="inner-container2">
-				<div class="our-solution-section">
+				<div class="our-solution-section" data-aos="fade-up" data-aos-delay="100">
 					<div class="saf_btn border-btn marBottom20">
 						<h5 class="gradient-font"><?php echo esc_html( get_field( 'industries_title' ) ); ?></h5>
 					</div>
@@ -32,7 +32,7 @@ $template_uri = get_template_directory_uri();
 	<section class="industries_top_bar">
 		<div class="">
 			<div class="inner-container2 fixed-side-bar">
-				<div class="side-bar">
+				<div class="side-bar" data-aos="fade-right" data-aos-duration="800">
 					<div class="solution_navigation">
 						<div class="container">
 							<div class="inner-container2">
@@ -61,7 +61,7 @@ $template_uri = get_template_directory_uri();
 
 			<div class="main-content">
 				<?php while ( have_rows( 'industries_tabs' ) ) : the_row(); ?>
-					<div class="TBG">
+					<div class="TBG" data-aos="zoom-in" data-aos-delay="100">
 						<?php
 						$image = get_sub_field( 'industry_image' );
 						if ( $image ) :
@@ -72,7 +72,7 @@ $template_uri = get_template_directory_uri();
 
 					<div class="indutries_infomation">
 						<div class="inner-container2">
-							<div id="<?php echo esc_attr( sanitize_title( get_sub_field( 'tab_name' ) ) ); ?>" class="industries_info_section">
+							<div id="<?php echo esc_attr( sanitize_title( get_sub_field( 'tab_name' ) ) ); ?>" class="industries_info_section" data-aos="fade-up" data-aos-duration="1000">
 								<div class="industries_infomation_title">
 									<div class="inn_info_title">
 										<h3 class="third_title FC"><?php echo esc_html( get_sub_field( 'industry_title' ) ); ?></h3>
@@ -95,7 +95,7 @@ $template_uri = get_template_directory_uri();
 								</div>
 
 								<div class="midd_industries_area">
-									<div class="Left_industries_area FR">
+									<div class="Left_industries_area FR" data-aos="fade-right" data-aos-delay="200">
 										<div class="inn_content">
 											<div class="challeage_title">
 												<img src="<?php echo esc_url( $template_uri . '/images/industries/cil_puzzle.png' ); ?>" alt="<?php esc_attr_e( 'Challenge Icon', 'essar' ); ?>" />
@@ -105,7 +105,7 @@ $template_uri = get_template_directory_uri();
 										</div>
 									</div>
 
-									<div class="Right_industries_area Fl">
+									<div class="Right_industries_area Fl" data-aos="fade-left" data-aos-delay="200">
 										<div class="inn_content">
 											<div class="challeage_title">
 												<img src="<?php echo esc_url( $template_uri . '/images/industries/lets-icons_target.png' ); ?>" alt="<?php esc_attr_e( 'Solution Icon', 'essar' ); ?>" />
@@ -116,7 +116,7 @@ $template_uri = get_template_directory_uri();
 									</div>
 								</div>
 
-								<div class="key_benifit_section">
+								<div class="key_benifit_section" data-aos="fade-up" data-aos-delay="300">
 									<div class="KB_title">
 										<img src="<?php echo esc_url( $template_uri . '/images/industries/key_benfit.png' ); ?>" alt="<?php esc_attr_e( 'Key Benefit Icon', 'essar' ); ?>" />
 										<h5><?php echo esc_html( get_sub_field( 'key_benefits_title' ) ); ?></h5>
@@ -134,7 +134,7 @@ $template_uri = get_template_directory_uri();
 	</section>
 <?php endif; ?>
 
-<section class="partnership-section solution_cta_section animate-on-scroll">
+<section class="partnership-section solution_cta_section animate-on-scroll" data-aos="fade-up" data-aos-delay="200">
 	<div class="container">
 		<div class="call_to_action_section">
 			<div class="inner-container2">
@@ -153,9 +153,10 @@ $template_uri = get_template_directory_uri();
 						</a>
 					</div>
 				</div>
-				<img src="<?php echo esc_url( $template_uri . '/images/solution/cta_right_img.png' ); ?>" alt="<?php esc_attr_e( 'Earth', 'essar' ); ?>" class="partner-img">
+				<img src="<?php echo esc_url( $template_uri . '/images/solution/cta_right_img.png' ); ?>" alt="<?php esc_attr_e( 'Earth', 'essar' ); ?>" class="partner-img" data-aos="fade-left" data-aos-delay="300">
 			</div>
 		</div>
 	</div>
 </section>
+
 <?php get_footer(); ?>
