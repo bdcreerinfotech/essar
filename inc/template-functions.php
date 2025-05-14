@@ -46,12 +46,12 @@ add_action( 'wp_head', 'essar_pingback_header' );
 function essar_register_menus() {
 	register_nav_menus(
 		array(
-			'top-footer-menu'   => __( 'Top Footer Menu', 'essar' ),
-			'solutions-menu'    => __( 'Solutions Menu', 'essar' ),
-			'markets-menu'      => __( 'Markets Menu', 'essar' ),
-			'news-room-menu'    => __( 'Newsroom Menu', 'essar' ),
-			'contact-us-menu'   => __( 'Contact Us Menu', 'essar' ),
-			'social-menu'       => __( 'Social Menu', 'essar' ),
+			'top-footer-menu' => __( 'Top Footer Menu', 'essar' ),
+			'solutions-menu'  => __( 'Solutions Menu', 'essar' ),
+			'markets-menu'    => __( 'Markets Menu', 'essar' ),
+			'news-room-menu'  => __( 'Newsroom Menu', 'essar' ),
+			'contact-us-menu' => __( 'Contact Us Menu', 'essar' ),
+			'social-menu'     => __( 'Social Menu', 'essar' ),
 		)
 	);
 }
@@ -130,14 +130,14 @@ function essar_register_team_cpt() {
 	register_post_type(
 		'team',
 		array(
-			'labels'       => array(
+			'labels'      => array(
 				'name'          => esc_html__( 'Team', 'essar' ),
 				'singular_name' => esc_html__( 'Team Member', 'essar' ),
 			),
-			'public'       => true,
-			'menu_icon'    => 'dashicons-groups',
-			'supports'     => array( 'title', 'thumbnail', 'editor' ),
-			'has_archive'  => false,
+			'public'      => true,
+			'menu_icon'   => 'dashicons-groups',
+			'supports'    => array( 'title', 'thumbnail', 'editor' ),
+			'has_archive' => false,
 			'show_in_rest' => true,
 		)
 	);
@@ -172,7 +172,7 @@ function essar_register_our_solutions_post_type() {
 	register_post_type(
 		'our_solutions',
 		array(
-			'labels'             => array(
+			'labels'       => array(
 				'name'               => __( 'Our Solutions', 'essar' ),
 				'singular_name'      => __( 'Solution', 'essar' ),
 				'add_new'            => __( 'Add New', 'essar' ),
@@ -184,14 +184,14 @@ function essar_register_our_solutions_post_type() {
 				'not_found'          => __( 'No Solutions found', 'essar' ),
 				'not_found_in_trash' => __( 'No Solutions found in Trash', 'essar' ),
 			),
-			'public'             => true,
-			'show_in_menu'       => true,
-			'menu_position'      => 20,
-			'menu_icon'          => 'dashicons-lightbulb',
-			'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
-			'has_archive'        => true,
-			'rewrite'            => array( 'slug' => 'our-solutions' ),
-			'show_in_rest'       => true,
+			'public'       => true,
+			'show_in_menu' => true,
+			'menu_position' => 20,
+			'menu_icon'    => 'dashicons-lightbulb',
+			'supports'     => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+			'has_archive'  => true,
+			'rewrite'      => array( 'slug' => 'our-solutions' ),
+			'show_in_rest' => true,
 		)
 	);
 }
@@ -305,7 +305,7 @@ function custom_body_classes_for_solutions_page( $classes ) {
 		$post_slug = $post->post_name;
 
 		// Add classes if slug matches "our-solutions".
-		if ( 'our-solutions' === $post_slug|| 'markets' === $post_slug ) {
+		if ( 'our-solutions' === $post_slug || 'markets' === $post_slug || 'newsroom' === $post_slug ) {
 			$classes[] = 'saf_page';
 			$classes[] = 'solution_pag';
 		}
@@ -343,6 +343,8 @@ add_action( 'wp_enqueue_scripts', 'enqueue_custom_js_for_solutions_page' );
 
 /**
  * Enqueue JS only for the 'markets' page.
+ *
+ * @return void
  */
 function essar_enqueue_markets_script() {
 	if ( is_page() ) {
@@ -361,242 +363,90 @@ function essar_enqueue_markets_script() {
 }
 add_action( 'wp_enqueue_scripts', 'essar_enqueue_markets_script' );
 
-
-// Register Custom Post Types
-function register_newsroom_post_types() {
-    // Videos Post Type
-    register_post_type('video',
-        array(
-            'labels'      => array(
-                'name'          => __('Videos', 'textdomain'),
-                'singular_name' => __('Video', 'textdomain'),
-            ),
-            'public'      => true,
-            'has_archive' => true,
-            'supports'    => array('title', 'editor', 'thumbnail', 'excerpt'),
-            'menu_icon'   => 'dashicons-video-alt3',
-        )
-    );
-
-    // Downloads Post Type
-    register_post_type('download',
-        array(
-            'labels'      => array(
-                'name'          => __('Downloads', 'textdomain'),
-                'singular_name' => __('Download', 'textdomain'),
-            ),
-            'public'      => true,
-            'has_archive' => true,
-            'supports'    => array('title', 'editor', 'thumbnail', 'excerpt'),
-            'menu_icon'   => 'dashicons-download',
-        )
-    );
-}
-add_action('init', 'register_newsroom_post_types');
-
-// AJAX Handlers
-add_action('wp_ajax_load_news', 'load_news_callback');
-add_action('wp_ajax_nopriv_load_news', 'load_news_callback');
-
-add_action('wp_ajax_load_videos', 'load_videos_callback');
-add_action('wp_ajax_nopriv_load_videos', 'load_videos_callback');
-
-add_action('wp_ajax_load_downloads', 'load_downloads_callback');
-add_action('wp_ajax_nopriv_load_downloads', 'load_downloads_callback');
-
-function load_news_callback() {
-    $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
-    $posts_per_page = 3; // Adjust as needed
-    
-    $args = array(
-        'post_type'      => 'post',
-        'post_status'    => 'publish',
-        'posts_per_page' => $posts_per_page,
-        'paged'          => $page,
-    );
-    
-    $query = new WP_Query($args);
-    
-    if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post();
-            ?>
-            <div class="grid">
-                <div class="card">
-                    <a href="<?php the_permalink(); ?>">
-                        <?php if (has_post_thumbnail()) : ?>
-                            <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large')); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" />
-                        <?php endif; ?>
-                        <div class="card-body">
-                            <p><?php echo esc_html(wp_trim_words(get_the_excerpt(), 20)); ?></p>
-                        </div>
-                        <div class="card-footer">
-                            <span><?php echo esc_html(get_the_date('M j, Y')); ?></span>
-                            <img src="<?php echo esc_url(get_template_directory_uri() . '/images/nr-button.png'); ?>" alt="<?php esc_attr_e('Arrow icon', 'textdomain'); ?>"/>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <?php
-        }
-        wp_reset_postdata();
-    }
-    
-    wp_die();
-}
-
-function load_videos_callback() {
-    $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
-    $posts_per_page = 9;
-    
-    $args = array(
-        'post_type'      => 'video',
-        'post_status'    => 'publish',
-        'posts_per_page' => $posts_per_page,
-        'paged'          => $page,
-    );
-    
-    $query = new WP_Query($args);
-    
-    if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post();
-            $video_url = get_post_meta(get_the_ID(), 'video_url', true);
-            ?>
-            <div class="grid">
-                <div class="card">
-                    <a href="#" class="video-link" data-video-url="<?php echo esc_url($video_url); ?>">
-                        <div class="video_IMG">
-                            <?php if (has_post_thumbnail()) : ?>
-                                <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large')); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" />
-                            <?php endif; ?>
-                            <img src="<?php echo esc_url(get_template_directory_uri() . '/images/newsroom/VI.png'); ?>" class="newsroom_video_icons" />
-                        </div>
-                        <div class="card-body">
-                            <p><?php echo esc_html(wp_trim_words(get_the_excerpt(), 15)); ?></p>
-                        </div>
-                        <div class="card-footer">
-                            <span><?php echo esc_html(get_the_date('M j, Y')); ?></span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <?php
-        }
-        wp_reset_postdata();
-    }
-    
-    wp_die();
-}
-
-
 /**
- * Enqueue newsroom scripts only for the newsroom template.
+ * Register Custom Post Types for Newsroom.
+ *
+ * @return void
  */
-function essar_enqueue_newsroom_script() {
-   	if ( is_page( 'newsroom' ) ) {
-        wp_enqueue_script(
-            'newsroom-script',
-            get_template_directory_uri() . '/js/newsroom.js',
-            array( 'jquery' ),
-            '1.0.0',
-            true
-        );
-
-        wp_localize_script(
-			'newsroom-script',
-			'newsroom_vars',
-			array(
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'nonce'    => wp_create_nonce( 'newsroom_nonce' ),
-			)
-		);
-    }
-}
-add_action( 'wp_enqueue_scripts', 'essar_enqueue_newsroom_script' );
-
-add_action( 'wp_ajax_load_more_newsroom', 'essar_load_more_newsroom' );
-add_action( 'wp_ajax_nopriv_load_more_newsroom', 'essar_load_more_newsroom' );
-
-function essar_load_more_newsroom() {
-	check_ajax_referer( 'newsroom_nonce', 'nonce' );
-
-	$page        = isset( $_POST['page'] ) ? absint( $_POST['page'] ) : 1;
-	$post_type   = isset( $_POST['post_type'] ) ? sanitize_text_field( $_POST['post_type'] ) : 'post';
-	$exclude_ids = isset( $_POST['exclude_ids'] ) && is_array( $_POST['exclude_ids'] )
-		? array_map( 'absint', $_POST['exclude_ids'] )
-		: array();
-
-	$query = new WP_Query(
+function register_newsroom_post_types() {
+	// Videos Post Type.
+	register_post_type(
+		'video',
 		array(
-			'post_type'      => $post_type,
-			'posts_per_page' => 3,
-			'paged'          => $page,
-			'post__not_in'   => $exclude_ids,
+			'labels'      => array(
+				'name'          => __( 'Videos', 'essar' ),
+				'singular_name' => __( 'Video', 'essar' ),
+			),
+			'public'      => true,
+			'has_archive' => true,
+			'supports'    => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+			'menu_icon'   => 'dashicons-video-alt3',
 		)
 	);
 
-	ob_start();
-	$new_ids = array();
-	$template_uri = get_template_directory_uri();
-	$default_img  = esc_url( $template_uri . '/images/default-news.png' );
+	// Downloads Post Type.
+	register_post_type(
+		'download',
+		array(
+			'labels'      => array(
+				'name'          => __( 'Downloads', 'essar' ),
+				'singular_name' => __( 'Download', 'essar' ),
+			),
+			'public'      => true,
+			'has_archive' => true,
+			'supports'    => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+			'menu_icon'   => 'dashicons-download',
+		)
+	);
+}
+add_action( 'init', 'register_newsroom_post_types' );
+
+// AJAX Handlers.
+add_action( 'wp_ajax_load_news', 'load_news_callback' );
+add_action( 'wp_ajax_nopriv_load_news', 'load_news_callback' );
+
+add_action( 'wp_ajax_load_videos', 'load_videos_callback' );
+add_action( 'wp_ajax_nopriv_load_videos', 'load_videos_callback' );
+
+add_action( 'wp_ajax_load_downloads', 'load_downloads_callback' );
+add_action( 'wp_ajax_nopriv_load_downloads', 'load_downloads_callback' );
+
+/**
+ * AJAX callback to load news posts.
+ *
+ * @return void
+ */
+function load_news_callback() {
+	$page          = isset( $_POST['page'] ) ? intval( $_POST['page'] ) : 1;
+	$posts_per_page = 3; // Adjust as needed.
+
+	$args = array(
+		'post_type'      => 'post',
+		'post_status'    => 'publish',
+		'posts_per_page' => $posts_per_page,
+		'paged'          => $page,
+	);
+
+	$query = new WP_Query( $args );
 
 	if ( $query->have_posts() ) {
 		while ( $query->have_posts() ) {
 			$query->the_post();
-			$new_ids[] = get_the_ID();
-
 			?>
 			<div class="grid">
 				<div class="card">
-					<?php if ( 'post' === $post_type ) : ?>
-						<a href="<?php echo esc_url( get_field( 'news_url' ) ); ?>">
-							<?php if ( has_post_thumbnail() ) : ?>
-								<?php the_post_thumbnail( 'custom-thumb-340x200' ); ?>
-							<?php else : ?>
-								<img src="<?php echo esc_url( $default_img ); ?>" alt="<?php esc_attr_e( 'Default image', 'essar' ); ?>">
-							<?php endif; ?>
-							<div class="card-body">
-								<p><?php echo esc_html( get_the_title() ); ?></p>
-							</div>
-							<div class="card-footer">
-								<span><?php echo esc_html( get_the_date( 'M d, Y' ) ); ?></span>
-								<img src="<?php echo esc_url( $template_uri . '/images/nr-button.png' ); ?>" alt="<?php esc_attr_e( 'Arrow icon', 'essar' ); ?>">
-							</div>
-						</a>
-
-					<?php elseif ( 'video' === $post_type ) : ?>
-						<a href="#" class="video-link" data-video-url="<?php echo esc_url( get_field( 'video_url' ) ); ?>">
-							<div class="video_IMG">
-								<?php if ( has_post_thumbnail() ) : ?>
-									<?php the_post_thumbnail( 'custom-thumb-340x200' ); ?>
-								<?php endif; ?>
-								<img src="<?php echo esc_url( $template_uri . '/images/newsroom/VI.png' ); ?>" class="newsroom_video_icons" alt="<?php esc_attr_e( 'Play icon', 'essar' ); ?>">
-							</div>
-							<div class="card-body">
-								<p><?php echo esc_html( get_the_title() ); ?></p>
-							</div>
-							<div class="card-footer">
-								<span><?php echo esc_html( get_the_date( 'M d, Y' ) ); ?></span>
-							</div>
-						</a>
-
-					<?php elseif ( 'download' === $post_type ) : ?>
-						<a href="<?php echo esc_url( get_field( 'file_url' ) ); ?>" target="_blank" rel="noopener">
-							<div class="video_IMG">
-								<?php if ( has_post_thumbnail() ) : ?>
-									<?php the_post_thumbnail( 'custom-thumb-340x200' ); ?>
-								<?php endif; ?>
-								<img src="<?php echo esc_url( $template_uri . '/images/newsroom/download_icon.png' ); ?>" class="newsroom_video_icons" alt="<?php esc_attr_e( 'Download icon', 'essar' ); ?>">
-							</div>
-							<div class="card-body">
-								<p><?php echo esc_html( get_the_title() ); ?></p>
-							</div>
-							<div class="card-footer">
-								<span><?php echo esc_html( get_the_date( 'M d, Y' ) ); ?></span>
-							</div>
-						</a>
-					<?php endif; ?>
+					<a href="<?php the_permalink(); ?>">
+						<?php if ( has_post_thumbnail() ) : ?>
+							<img src="<?php echo esc_url( get_the_post_thumbnail_url( get_the_ID(), 'large' ) ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" />
+						<?php endif; ?>
+						<div class="card-body">
+							<p><?php echo esc_html( wp_trim_words( get_the_excerpt(), 20 ) ); ?></p>
+						</div>
+						<div class="card-footer">
+							<span><?php echo esc_html( get_the_date( 'M j, Y' ) ); ?></span>
+							<img src="<?php echo esc_url( get_template_directory_uri() . '/images/nr-button.png' ); ?>" alt="<?php esc_attr_e( 'Arrow icon', 'essar' ); ?>"/>
+						</div>
+					</a>
 				</div>
 			</div>
 			<?php
@@ -604,11 +454,233 @@ function essar_load_more_newsroom() {
 		wp_reset_postdata();
 	}
 
+	wp_die();
+}
+
+/**
+ * AJAX callback to load video posts.
+ *
+ * @return void
+ */
+function load_videos_callback() {
+	$page          = isset( $_POST['page'] ) ? intval( $_POST['page'] ) : 1;
+	$posts_per_page = 9;
+
+	$args = array(
+		'post_type'      => 'video',
+		'post_status'    => 'publish',
+		'posts_per_page' => $posts_per_page,
+		'paged'          => $page,
+	);
+
+	$query = new WP_Query( $args );
+
+	if ( $query->have_posts() ) {
+		while ( $query->have_posts() ) {
+			$query->the_post();
+			$video_url = get_post_meta( get_the_ID(), 'video_url', true );
+			?>
+			<div class="grid">
+				<div class="card">
+					<a href="#" class="video-link" data-video-url="<?php echo esc_url( $video_url ); ?>">
+						<div class="video_IMG">
+							<?php if ( has_post_thumbnail() ) : ?>
+								<img src="<?php echo esc_url( get_the_post_thumbnail_url( get_the_ID(), 'large' ) ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" />
+							<?php endif; ?>
+							<img src="<?php echo esc_url( get_template_directory_uri() . '/images/newsroom/VI.png' ); ?>" class="newsroom_video_icons" />
+						</div>
+						<div class="card-body">
+							<p><?php echo esc_html( wp_trim_words( get_the_excerpt(), 15 ) ); ?></p>
+						</div>
+						<div class="card-footer">
+							<span><?php echo esc_html( get_the_date( 'M j, Y' ) ); ?></span>
+						</div>
+					</a>
+				</div>
+			</div>
+			<?php
+		}
+		wp_reset_postdata();
+	}
+
+	wp_die();
+}
+
+/**
+ * Enqueue newsroom scripts only for the newsroom template.
+ *
+ * @return void
+ */
+function essar_enqueue_newsroom_script() {
+	if ( is_page() ) {
+		$page = get_queried_object();
+		$slug = isset( $page->post_name ) ? $page->post_name : '';
+
+		if ( 'newsroom' === $slug ) {
+			// Prepare loaded post IDs for each post type.
+			$loaded_ids = array(
+				'post'     => array(),
+				'video'    => array(),
+				'download' => array(),
+			);
+
+			// News.
+			$news_query = new WP_Query(
+				array(
+					'post_type'      => 'post',
+					'posts_per_page' => 3,
+					'paged'          => 1,
+				)
+			);
+			$loaded_ids['post'] = wp_list_pluck( $news_query->posts, 'ID' );
+
+			// Video.
+			$video_query = new WP_Query(
+				array(
+					'post_type'      => 'video',
+					'posts_per_page' => 3,
+					'paged'          => 1,
+				)
+			);
+			$loaded_ids['video'] = wp_list_pluck( $video_query->posts, 'ID' );
+
+			// Download.
+			$download_query = new WP_Query(
+				array(
+					'post_type'      => 'download',
+					'posts_per_page' => 3,
+					'paged'          => 1,
+				)
+			);
+			$loaded_ids['download'] = wp_list_pluck( $download_query->posts, 'ID' );
+
+			// Enqueue JS.
+			wp_enqueue_script(
+				'newsroom-script',
+				get_template_directory_uri() . '/js/newsroom.js',
+				array( 'jquery' ),
+				'1.0.0',
+				true
+			);
+
+			// Localize.
+			wp_localize_script(
+				'newsroom-script',
+				'newsroom_vars',
+				array(
+					'ajax_url'   => admin_url( 'admin-ajax.php' ),
+					'nonce'      => wp_create_nonce( 'newsroom_nonce' ),
+					'loaded_ids' => $loaded_ids,
+				)
+			);
+		}
+	}
+}
+add_action( 'wp_enqueue_scripts', 'essar_enqueue_newsroom_script' );
+
+add_action( 'wp_ajax_load_more_newsroom', 'essar_load_more_newsroom_ajax' );
+add_action( 'wp_ajax_nopriv_load_more_newsroom', 'essar_load_more_newsroom_ajax' );
+
+/**
+ * AJAX callback to load more newsroom content.
+ *
+ * @return void
+ */
+function essar_load_more_newsroom_ajax() {
+	check_ajax_referer( 'newsroom_nonce', 'nonce' );
+
+	$page    = isset( $_POST['page'] ) ? absint( $_POST['page'] ) : 1;
+	$type    = isset( $_POST['post_type'] ) ? sanitize_key( $_POST['post_type'] ) : 'post';
+	$exclude = isset( $_POST['exclude_ids'] ) ? array_map( 'absint', $_POST['exclude_ids'] ) : array();
+
+	if ( 'news' === $type ) {
+		$type = 'post';
+	}
+	$args = array(
+		'post_type'      => $type,
+		'posts_per_page' => 3,
+		'paged'          => $page,
+	//	'post__not_in'   => $exclude
+	);
+	//var_dump($args); exit;
+
+	$query   = new WP_Query( $args );
+	//var_dump($query );
+	$new_ids = array();
+	if ( $query->have_posts() ) {
+		$default_img  = esc_url( get_template_directory_uri() . '/images/default-news.png' );
+		$template_uri = esc_url( get_template_directory_uri() );
+
+		while ( $query->have_posts() ) :
+			$query->the_post();
+			$new_ids[] = get_the_ID();
+		endwhile;
+	}
+
+	ob_start();
+
+	if ( $query->have_posts() ) {
+		$default_img  = esc_url( get_template_directory_uri() . '/images/default-news.png' );
+		$template_uri = esc_url( get_template_directory_uri() );
+
+		while ( $query->have_posts() ) :
+			$query->the_post();
+
+			$field_key = ( 'post' === $type ) ? 'news_url' : ( 'video' === $type ? 'video_url' : 'file_url' );
+			$url       = get_field( $field_key );
+			$icon      = ( 'video' === $type ) ? 'newsroom/VI.png' : ( 'download' === $type ? 'newsroom/download_icon.png' : 'nr-button.png' );
+			?>
+			<div class="grid">
+				<div class="card">
+					<a href="<?php echo esc_url( $url ); ?>"
+						<?php echo ( 'download' === $type ) ? 'target="_blank" rel="noopener"' : ''; ?>
+						<?php echo ( 'video' === $type ) ? 'class="video-link" data-video-url="' . esc_url( $url ) . '"' : ''; ?>>
+						<div class="video_IMG">
+							<?php if ( has_post_thumbnail() ) : ?>
+								<?php the_post_thumbnail( 'custom-thumb-340x200' ); ?>
+							<?php else : ?>
+								<img src="<?php echo esc_url( $default_img ); ?>" alt="<?php esc_attr_e( 'Default image', 'essar' ); ?>">
+							<?php endif; ?>
+							<?php if ( 'post' !== $type ) : ?>
+								<img src="<?php echo esc_url( $template_uri . '/images/' . $icon ); ?>" class="newsroom_video_icons" alt="icon">
+							<?php endif; ?>
+						</div>
+						<div class="card-body">
+							<p><?php echo esc_html( get_the_title() ); ?></p>
+						</div>
+						<div class="card-footer">
+							<span><?php echo esc_html( get_the_date( 'M d, Y' ) ); ?></span>
+							<?php if ( 'post' === $type ) : ?>
+								<img src="<?php echo esc_url( $template_uri . '/images/' . $icon ); ?>" alt="<?php esc_attr_e( 'Arrow icon', 'essar' ); ?>">
+							<?php endif; ?>
+						</div>
+					</a>
+				</div>
+			</div>
+			<?php
+		endwhile;
+		wp_reset_postdata();
+	}
+	$content = ob_get_clean();
+
 	wp_send_json_success(
 		array(
-			'content' => ob_get_clean(),
+			'content' => $content,
 			'new_ids' => $new_ids,
 		)
 	);
 }
 
+/**
+ * Filter the single template for our_solutions post type.
+ *
+ * @param string $single_template The path to the single template.
+ * @return string The modified template path.
+ */
+function essar_custom_template_for_solutions( $single_template ) {
+	if ( is_singular( 'our_solutions' ) ) {
+		return get_template_directory() . '/single-our_solutions.php';
+	}
+	return $single_template;
+}
+add_filter( 'single_template', 'essar_custom_template_for_solutions' );

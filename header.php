@@ -14,12 +14,17 @@
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
+<?php if ( is_front_page() ) { ?>	
+<div id="loader">
+    <h1></h1>
+  </div> 
+  <?php } ?>
 <?php wp_body_open(); ?>
 <section class="headersection">
 	<div class="menu-bg"></div>
@@ -90,4 +95,5 @@
 			</div><!-- .inner-container -->
 		</div><!-- .container -->
 	</nav>
+	 <i class="clearfix"></i>
 </section>

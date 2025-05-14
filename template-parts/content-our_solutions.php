@@ -1,3 +1,12 @@
+<?php
+/**
+ * HVO Page Template
+ *
+ * @package essar
+ */
+
+$template_uri = esc_url( get_template_directory_uri() );
+?>
 <main class="main-wrapper">
   <div class="section">
     <div class="container-medium">

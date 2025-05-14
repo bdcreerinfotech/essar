@@ -1,42 +1,4 @@
 
-//translate(-16.6%, 16.4%) scale(0.3753, 0.3753)
-
-//translate(-19%, -29.8%) translate3d(0px, 0px, 0px) scale(0.2953, 0.295311)
-//translate(-16%, -20.8%) translate3d(0px, 0px, 0px) scale(0.3006, 0.30062)
-//translate(-16%, 2.7%) scale(0.3753, 0.3753)
-
-
-// gsap.set(".scaleDown", {xPercent: -16.6, yPercent: 15.4,scale: 1.2,duration: 5,});
-// gsap.to(".scaleDown", {scale: 0.3753,duration:5, ease: "power2.inOut", scrollTrigger: {
-//   trigger: ".container1",
-//   start: "top 45%",
-//   end: "top 85%",
-//   pin: ".container1",
-//   scrub: 4.5 
-// }})
-
-// gsap.registerPlugin(ScrollTrigger);
-
-// gsap.fromTo(".earth-image",
-//   {
-//     scale: 5,
-//     top: -536,
-//     right: -15
-//   },
-//   {
-//     scale: 0.6,
-//     top: "7vh",     // Example: move image down
-//     right: "-20%",    // Example: shift image left
-//     ease: "none",
-//     scrollTrigger: {
-//       trigger: ".image-wrap",
-//       start: "top center",
-//       end: "bottom top",
-//       scrub: true
-//     }
-//   });
-
-
 
 
 
@@ -840,3 +802,4 @@ function openSection(index) {
 AOS.init({
   duration: 1200,
 })
+

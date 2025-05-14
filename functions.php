@@ -123,6 +123,7 @@ function essar_scripts() {
 	wp_enqueue_style( 'essar-boxicons', 'https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css', array(), '2.0.7' );
 	wp_enqueue_style( 'essar-accordion', get_template_directory_uri() . '/css/accordion.css', array(), _S_VERSION );
 	wp_enqueue_style( 'essar-easy-responsive-tabs', get_template_directory_uri() . '/css/easy-responsive-tabs.css', array(), _S_VERSION );
+	wp_enqueue_style( 'essar-aos-css', get_template_directory_uri() . '/css/aos.css', array(), _S_VERSION );
 	wp_enqueue_style( 'essar-google-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;600;700;800&display=swap', array(), null );
 
 	wp_enqueue_script( 'essar-jquery-latest', get_template_directory_uri() . '/js/jquery-latest.min.js', array(), _S_VERSION, true );
@@ -130,6 +131,7 @@ function essar_scripts() {
 	wp_enqueue_script( 'essar-parallax', get_template_directory_uri() . '/js/parallax.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'essar-custom', get_template_directory_uri() . '/js/custom.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'essar-accordion', get_template_directory_uri() . '/js/accordion.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'essar-aos', get_template_directory_uri() . '/js/aos.js', array(), _S_VERSION, true );
 
 	// GSAP plugins and animations.
 	wp_enqueue_script( 'gsap-scrollto', 'https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollToPlugin.min.js', array(), '3.12.7', true );

@@ -1,10 +1,9 @@
 <?php
 /**
  * Template Name: Newsroom
+ * Description: Newsroom template with dynamic videos, modals, and tabs.
  *
  * @package essar
- * @subpackage essar
- * @since 1.0.0
  */
 
 get_header();
@@ -19,28 +18,25 @@ $default_img  = esc_url( get_template_directory_uri() . '/images/default-news.pn
 			<div class="inner-container2">
 				<div class="NS_Main_area">
 					<div class="newsroom_title_section">
-						<h1 class="inner_heading_title"><?php echo esc_html__( 'Newsroom', 'essar' ); ?></h1>
+						<h1 class="inner_heading_title"><?php echo esc_html( 'Newsroom' ); ?></h1>
 					</div>
 					<div class="tab-wrapper">
 						<div class="news_tabs">
-							<button class="tab-button active" data-target="news"><?php echo esc_html__( 'News', 'essar' ); ?></button>
-							<button class="tab-button" data-target="videos"><?php echo esc_html__( 'Videos', 'essar' ); ?></button>
-							<button class="tab-button" data-target="downloads"><?php echo esc_html__( 'Downloads', 'essar' ); ?></button>
+							<button class="tab-button active" data-target="news"><?php echo esc_html( 'News' ); ?></button>
+							<button class="tab-button" data-target="videos"><?php echo esc_html( 'Videos' ); ?></button>
+							<button class="tab-button" data-target="downloads"><?php echo esc_html( 'Downloads' ); ?></button>
 						</div>
 					</div>
 
-					<?php
-					$paged      = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-					$news_query = new WP_Query(
-						array(
-							'post_type'      => 'post',
-							'posts_per_page' => 3,
-							'paged'          => $paged,
-						)
-					);
-					?>
-					<div class="content-section active" id="news" data-page="1" data-type="news" data-max="<?php echo esc_attr( $news_query->max_num_pages ?? 5 ); ?>">
+					<!-- News Section -->
+					<div class="content-section active" id="news">
 						<?php
+						$news_query = new WP_Query(
+							array(
+								'post_type'      => 'post',
+								'posts_per_page' => 9,
+							)
+						);
 						if ( $news_query->have_posts() ) :
 							while ( $news_query->have_posts() ) :
 								$news_query->the_post();
@@ -48,18 +44,20 @@ $default_img  = esc_url( get_template_directory_uri() . '/images/default-news.pn
 								?>
 								<div class="grid">
 									<div class="card">
-										<a href="<?php echo esc_url( $news_url ); ?>">
-											<?php if ( has_post_thumbnail() ) : ?>
-												<?php the_post_thumbnail( 'custom-thumb-340x200' ); ?>
-											<?php else : ?>
-												<img src="<?php echo esc_url( $default_img ); ?>" alt="<?php esc_attr_e( 'Default image', 'essar' ); ?>">
+										<a href="<?php echo esc_url( $news_url ? $news_url : '#' ); ?>">
+											<?php
+											if ( has_post_thumbnail() ) :
+												the_post_thumbnail( 'custom-thumb-340x200' );
+											else :
+												?>
+												<img src="<?php echo esc_url( $default_img ); ?>" alt="Default image">
 											<?php endif; ?>
 											<div class="card-body">
-												<p><?php echo esc_html( get_the_title() ); ?></p>
+												<p><?php the_title(); ?></p>
 											</div>
 											<div class="card-footer">
 												<span><?php echo esc_html( get_the_date( 'M d, Y' ) ); ?></span>
-												<img src="<?php echo esc_url( $template_uri . '/images/nr-button.png' ); ?>" alt="<?php esc_attr_e( 'Arrow icon', 'essar' ); ?>">
+												<img src="<?php echo esc_url( $template_uri ); ?>/images/nr-button.png" alt="Arrow icon">
 											</div>
 										</a>
 									</div>
@@ -68,21 +66,20 @@ $default_img  = esc_url( get_template_directory_uri() . '/images/default-news.pn
 							endwhile;
 							wp_reset_postdata();
 						else :
-							echo '<p>' . esc_html__( 'No news found.', 'essar' ) . '</p>';
+							echo '<div class="no-record-found">No news found.</div>';
 						endif;
 						?>
 					</div>
 
-					<?php
-					$video_query = new WP_Query(
-						array(
-							'post_type'      => 'video',
-							'posts_per_page' => 3,
-						)
-					);
-					?>
-					<div class="content-section" id="videos" data-page="1" data-type="video" data-max="<?php echo esc_attr( $video_query->max_num_pages ); ?>">
+					<!-- Videos Section -->
+					<div class="content-section" id="videos">
 						<?php
+						$video_query = new WP_Query(
+							array(
+								'post_type'      => 'video',
+								'posts_per_page' => 9,
+							)
+						);
 						if ( $video_query->have_posts() ) :
 							while ( $video_query->have_posts() ) :
 								$video_query->the_post();
@@ -92,13 +89,15 @@ $default_img  = esc_url( get_template_directory_uri() . '/images/default-news.pn
 									<div class="card">
 										<a href="#" class="video-link" data-video-url="<?php echo esc_url( $video_url ); ?>">
 											<div class="video_IMG">
-												<?php if ( has_post_thumbnail() ) : ?>
-													<?php the_post_thumbnail( 'custom-thumb-340x200' ); ?>
-												<?php endif; ?>
-												<img src="<?php echo esc_url( $template_uri . '/images/newsroom/VI.png' ); ?>" class="newsroom_video_icons" alt="<?php esc_attr_e( 'Play icon', 'essar' ); ?>">
+												<?php
+												if ( has_post_thumbnail() ) :
+													the_post_thumbnail( 'custom-thumb-340x200' );
+												endif;
+												?>
+												<img src="<?php echo esc_url( $template_uri ); ?>/images/newsroom/VI.png" class="newsroom_video_icons" alt="Play">
 											</div>
 											<div class="card-body">
-												<p><?php echo esc_html( get_the_title() ); ?></p>
+												<p><?php the_title(); ?></p>
 											</div>
 											<div class="card-footer">
 												<span><?php echo esc_html( get_the_date( 'M d, Y' ) ); ?></span>
@@ -110,21 +109,20 @@ $default_img  = esc_url( get_template_directory_uri() . '/images/default-news.pn
 							endwhile;
 							wp_reset_postdata();
 						else :
-							echo '<p>' . esc_html__( 'No videos found.', 'essar' ) . '</p>';
+							echo '<div class="no-record-found">No videos found.</div>';
 						endif;
 						?>
 					</div>
 
-					<?php
-					$download_query = new WP_Query(
-						array(
-							'post_type'      => 'download',
-							'posts_per_page' => 3,
-						)
-					);
-					?>
-					<div class="content-section" id="downloads" data-page="1" data-type="download" data-max="<?php echo esc_attr( $download_query->max_num_pages ); ?>">
+					<!-- Downloads Section -->
+					<div class="content-section" id="downloads">
 						<?php
+						$download_query = new WP_Query(
+							array(
+								'post_type'      => 'download',
+								'posts_per_page' => 9,
+							)
+						);
 						if ( $download_query->have_posts() ) :
 							while ( $download_query->have_posts() ) :
 								$download_query->the_post();
@@ -132,15 +130,17 @@ $default_img  = esc_url( get_template_directory_uri() . '/images/default-news.pn
 								?>
 								<div class="grid">
 									<div class="card">
-										<a href="<?php echo esc_url( $file_url ); ?>" target="_blank" rel="noopener">
+										<a href="<?php echo esc_url( $file_url ); ?>" download  target="_blank" rel="noopener">
 											<div class="video_IMG">
-												<?php if ( has_post_thumbnail() ) : ?>
-													<?php the_post_thumbnail( 'custom-thumb-340x200' ); ?>
-												<?php endif; ?>
-												<img src="<?php echo esc_url( $template_uri . '/images/newsroom/download_icon.png' ); ?>" class="newsroom_video_icons" alt="<?php esc_attr_e( 'Download icon', 'essar' ); ?>">
+												<?php
+												if ( has_post_thumbnail() ) :
+													the_post_thumbnail( 'custom-thumb-340x200' );
+												endif;
+												?>
+												<img src="<?php echo esc_url( $template_uri ); ?>/images/newsroom/download_icon.png" class="newsroom_video_icons" alt="Download">
 											</div>
 											<div class="card-body">
-												<p><?php echo esc_html( get_the_title() ); ?></p>
+												<p><?php the_title(); ?></p>
 											</div>
 											<div class="card-footer">
 												<span><?php echo esc_html( get_the_date( 'M d, Y' ) ); ?></span>
@@ -152,7 +152,7 @@ $default_img  = esc_url( get_template_directory_uri() . '/images/default-news.pn
 							endwhile;
 							wp_reset_postdata();
 						else :
-							echo '<p>' . esc_html__( 'No downloads found.', 'essar' ) . '</p>';
+							echo '<div class="no-record-found">No downloads found.</div>';
 						endif;
 						?>
 					</div>
@@ -163,11 +163,15 @@ $default_img  = esc_url( get_template_directory_uri() . '/images/default-news.pn
 	</div>
 </section>
 
+<!-- Modal -->
 <div id="videoModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000;">
-	<div class="youtube_video_box" style="position:relative; width:80%; max-width:800px;">
-		<iframe id="videoFrame" width="100%" height="450" frameborder="0" allowfullscreen></iframe>
-		<button onclick="closeVideo()" class="yt_closebtn">X</button>
+	<div class="popup-content">
+		<span class="close-popup mobi-close"><img src="<?php echo esc_url( $template_uri ); ?>/images/about/close_icon.png" alt="Close"></span>
+		<iframe id="videoFrame" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+		<span class="close-popup desk-close" onclick="closeVideo()"><img src="<?php echo esc_url( $template_uri ); ?>/images/about/close_icon.png" alt="Close"></span>
 	</div>
 </div>
+
+
 
 <?php get_footer(); ?>

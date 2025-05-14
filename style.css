@@ -21,3 +21,48 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 Normalizing styles have been helped along thanks to the fine work of
 Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 */
+
+.popup-content {
+    position: relative;
+    width: 90%;
+    max-width: 960px;
+    height: 540px;
+    background: #000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+.close-popup {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.mobi-close {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .popup-content {
+        width: 95%;
+        height: auto;
+    }
+
+    .mobi-close {
+        display: block;
+        top: 10px;
+        right: 10px;
+    }
+
+    .desk-close {
+        display: none;
+    }
+}
+
+.no-record-found {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 18px;
+    color: #555;
+}

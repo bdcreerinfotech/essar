@@ -67,6 +67,7 @@ get_header();
 				</div>
 			</div>
 		</div>
+		 <i class="clearfix"></i>
 	</div>
 </section>
 <section class="about-essar-section" id="homeSectionOne">
@@ -462,9 +463,7 @@ get_header();
                     <div class="inner-green-section">
                         <div class="Left-content">
                             <h2 data-aos="fade-up">
-                            Let’s Build a 
-                        <span class="gradient-font"> <?php the_field( 'green_future_title' ); ?></span>
-                            Together!
+                          <?php the_field( 'green_future_title' ); ?>
                             </h2>
                             <p data-aos="fade-up" data-aos-delay="300">
                             <?php the_field( 'green_future_description' ); ?>
